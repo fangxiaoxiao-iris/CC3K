@@ -1,20 +1,20 @@
-#ifndef _HUMAN_H_
-#define _HUMAN_H_
+#ifndef _DWARF_H_
+#define _DWARF_H_
 
 #include "character.h"
 
-class Human: public Character {
+class Dwarf: public Character {
 public:
 	// default ctor
-	Human();
+	Dwarf();
 	// dtor
-	~Human();
+	~Dwarf();
 
 	// method for attack
 	virtual void attack(PC &defender) override;
 
 	// methods for beAttacked by PC 
-	// PC is the attacker and human is the defender
+	// PC is the attacker and dwarf is the defender
 	virtual void beAttacked(Shade &shade) override;
 	virtual void beAttacked(Drow &drow) override;
 	virtual void beAttacked(Vampire &vampire) override;
@@ -24,3 +24,4 @@ public:
 };
 
 #endif
+

@@ -17,6 +17,9 @@ public:
 	virtual void beAttacked(Vampire &vampire)=0;
 	virtual void beAttacked(Troll &troll)=0;
 	virtual void beAttacked(Goblin &goblin)=0;
+
+	virtual bool isDead()=0;
+	virtual void dead()=0;
 };
 
 #endif

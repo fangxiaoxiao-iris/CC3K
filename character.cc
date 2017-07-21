@@ -24,6 +24,14 @@ void Character::setmaxhp(int maxhp){
 	this->maxhp = maxhp;
 }
 
+void Character::setgold(int gold) {
+	this->gold = gold;
+}
+
+void Character::settype(string type) {
+	this->type = type;
+}
+
 int Character::gethp(){
 	return this->hp;
 }
@@ -37,9 +45,12 @@ int Character::getdef(){
 }
 
 int Character::getmaxhp(){
-	return this->getmaxhp;
+	return this->maxhp;
 }
 
+int Character::getgold(){
+	return this->gold;
+}
 int Character::gettype(){
 	return this->type;
 }

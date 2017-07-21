@@ -4,14 +4,8 @@
 using namespace std;
 
 
-Character::Character(): Square() {
-	sethp(0);
-	setatk(0);
-	setdef(0);
-	setmaxhp(0);
-	setgold(0);
-	settype("");
-}
+Character::Character(): 
+	hp(0), atk(0), def(0), maxhp(0), gold(0), type("") {}
 
 Character::~Character() {}
 

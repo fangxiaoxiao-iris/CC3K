@@ -61,7 +61,7 @@ void Human::beAttacked(Vampire &vampire) {
 	int human_newhp = human_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
-	vampire->sethp(vampire.hp + hp_gained);
+	vampire.sethp(vampire.hp + hp_gained);
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();

@@ -8,31 +8,30 @@ using namespace std;
 
 class Square;
 
-class Character: public Subject {
+class Character: public Square {
 protected:
 	int hp;
 	int atk;
 	int def;
 	int maxhp;
+	int gold;
 	string type;
 
-	Square* s;
 public:
-	Character(int hp, int atk, int def, int maxhp, Square* s);
+	Character(int hp, int atk, int def, int maxhp);
 	~Character();
-	virtual void sethp(int hp);
-	virtual void setatk(int atk);
-	virtual void setdef(int def);
-	virtual void setmaxhp(int maxhp);
-	virtual int gethp();
-	virtual int getatk();
-	virtual int getdef();
-	virtual int getmaxhp();
+	void sethp(int hp);
+	void setatk(int atk);
+	void setdef(int def);
+	void setmaxhp(int maxhp);
+	int gethp();
+	int getatk();
+	int getdef();
+	int getmaxhp();
+	int gettype();
 	virtual void move(int x, int y)=0;
-	virtual void attack(Character& defender)=0;
-	virtual void beAttacked(Character& attcker)=0;
-	virtual bool isDead();
-	virtual void dead();
+	virtual bool isDead()=0;
+	virtual void dead()=0;
 };
 
 #endif

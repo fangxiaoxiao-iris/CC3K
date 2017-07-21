@@ -8,18 +8,20 @@ class PC: public Character {
 
 public:
 	PC();
-	virtual void attack(Human &) = 0；
-	virtual void attack(Dwarf &) = 0;
-	virtual void attack(Halfling &) = 0;
-	virtual void attack(Dragon &) = 0;
-	virtual void attack(Orcs &) = 0;
-	virtual void attack(Merchant &) = 0;
-	virtual void beAttacked(Enemy &) = 0;
-	virtual void use(Potion &);
-	virtual void pickUp(Gold &); 
+	~PC();
+	void setKnownPotions(std::string pName); 
+	virtual void attack(Enemy &e) = 0;
+	virtual void beAttacked(Human &hu) = 0;
+	virtual void beAttacked(Dwarf &dw) = 0;
+	virtual void beAttacked(Elf &el) = 0;
+	virtual void beAttacked(Dragon &dr) = 0;
+	virtual void beAttacked(Halfling &ha) = 0;
+	virtual void beAttacked(Orcs &o) = 0;
+	virtual void beAttacked(Merchant &m) = 0;
+	virtual void use(Potion &p);
+	virtual void pickUp(Gold &g); 
 	void move(std::string direction) override;
 	void dead() override;
-	virtual ~PC() = 0;
 };
 
 #endif

@@ -66,14 +66,17 @@ void Square::setSym(char c) {
 /*
 //swap the coordinates of Character and the coordinates of the position 
 that it is moving towards.
-void Square::swapCoords(Square &neighbor){
-	swap(row, neighbor.row);
-	swap(col, neighbor.col);
+void Square::swapCoords(Square *neighbor){
+	swap(row, neighbor->row);
+	swap(col, neighbo->col);
 }
 //swap the neighbors of the Character and the neighbors of the position
 that it is moving towards.
-void Square::swapNeighbors(Square &neighbor){
-	swap(neighbors, neighbor.neighbors);
+void Square::swapNeighbors(Square *neighbor, int pos_nb, int pos_self){
+	Square *temp = neighbors[pos_nb];
+	neighbors[pos_nb] = *this;
+	neighbor->neighbors[pos_self] = temp;
+	swap(neighbors, neighbor->neighbors);
 }
 */
 

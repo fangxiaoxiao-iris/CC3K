@@ -34,8 +34,8 @@ public:
 	void setBoard(GameBoard* gb);	
 	void setPrev(char c);
 	void setSym(char c);
-	// void swapCoords(Square &neighbor);
-	// void swapNeighbors(Square &neighbor);
+	// void swapCoords(Square *neighbor);
+	// void swapNeighbors(Square *neighbor);
 };
 
 #endif 

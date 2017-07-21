@@ -1,7 +1,7 @@
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 
-#include "subject.h"
+#include "square.h"
 #include <string>
 
 using namespace std;
@@ -18,18 +18,19 @@ protected:
 	string type;
 
 public:
-	Character(int hp, int atk, int def, int maxhp);
+	Character();
 	~Character();
 	void sethp(int hp);
 	void setatk(int atk);
 	void setdef(int def);
 	void setmaxhp(int maxhp);
+	void settype(string type);
 	int gethp();
 	int getatk();
 	int getdef();
 	int getmaxhp();
-	int gettype();
-	virtual void move(int x, int y)=0;
+	string gettype();
+	virtual void move(string direction)=0;
 	virtual bool isDead()=0;
 	virtual void dead()=0;
 };

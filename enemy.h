@@ -2,18 +2,21 @@
 #define _ENEMY_H_
 
 #include "character.h"
-#include "subject.h"
 
 class Enemy: public Character {
 public:
-	Enemy(int hp, int atk, int def, int maxhp, Square* s);
+	Enemy();
 	~Enemy();
 
+	virtual void move(string direction);
 
-	virtual void move(int x, int y);
+	virtual void attack(PC &defender)=0;
 
-	virtual void attack(Character& defender)=0;
-	virtual void beAttacked(Character& attacker)=0;
+	virtual void beAttacked(Shade &shade)=0;
+	virtual void beAttacked(Drow &drow)=0;
+	virtual void beAttacked(Vampire &vampire)=0;
+	virtual void beAttacked(Troll &troll)=0;
+	virtual void beAttacked(Goblin &goblin)=0;
 };
 
 #endif

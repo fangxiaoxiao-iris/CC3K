@@ -13,7 +13,7 @@ class GameBoard {
 	vector<vector<char>> theGameBoard;
 public:
 	// custom constructor
-	GameBoard();
+	GameBoard(std::string fname); // use file to initialize GameBoard
 	// custom destructor 
 	~GameBoard();
 	void notify(int row, int col, char sym);

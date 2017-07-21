@@ -33,6 +33,7 @@ public:
 	void setCoords(int r, int c); // Tells me my row and column number
 	void setBoard(GameBoard* gb);	
 	void setPrev(char c);
+	void setSym(char c);
 };
 
 #endif 

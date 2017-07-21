@@ -37,7 +37,9 @@ Floor::~Floor() {
 	delete player;
 }
 
-bool GameOver();
+bool GameOver() {
+	
+}
 bool GameWin();
 
 

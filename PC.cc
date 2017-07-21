@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include "Square.h"
 #include "PC.h"
 using namespace std;
 
@@ -16,7 +17,8 @@ static void proper_move(PC &p, int r_update, int c_update, int index) {
 	if (((p.neighbors[index]).get_sym() == '.') || 
 		((p.neighbors[index]).get_sym() == '#') || 
 		((p.neighbors[index]).get_sym() == '+')) {
-			p.setCoords(r_update, c_update);
+			p.swapCoords(p.neighbors[index]);
+			p.swapNeighbors(p.neighbors[index]);
 			p.notifyBoard();
 		} else {
 			cout << "Invalid direction. You are heading to a dead end." << endl;

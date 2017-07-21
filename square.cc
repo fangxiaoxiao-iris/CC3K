@@ -62,3 +62,18 @@ void Square::setPrev(char c) {
 void Square::setSym(char c) {
 	this->symbol = c;
 }
+
+/*
+//swap the coordinates of Character and the coordinates of the position 
+that it is moving towards.
+void Square::swapCoords(Square &neighbor){
+	swap(row, neighbor.row);
+	swap(col, neighbor.col);
+}
+//swap the neighbors of the Character and the neighbors of the position
+that it is moving towards.
+void Square::swapNeighbors(Square &neighbor){
+	swap(neighbors, neighbor.neighbors);
+}
+*/
+

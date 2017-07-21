@@ -4,7 +4,14 @@
 using namespace std;
 
 
-Character::Character(): Square() {}
+Character::Character(): Square() {
+	sethp(0);
+	setatk(0);
+	setdef(0);
+	setmaxhp(0);
+	setgold(0);
+	settype("");
+}
 
 Character::~Character() {}
 
@@ -53,4 +60,7 @@ int Character::getgold(){
 }
 int Character::gettype(){
 	return this->type;
+}
+bool Character::isDead() {
+	return this->gethp <= 0;
 }

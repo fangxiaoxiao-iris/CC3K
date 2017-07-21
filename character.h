@@ -24,14 +24,17 @@ public:
 	void setatk(int atk);
 	void setdef(int def);
 	void setmaxhp(int maxhp);
+	void setgold(int gold);
 	void settype(string type);
+
 	int gethp();
 	int getatk();
 	int getdef();
 	int getmaxhp();
+	int getgold(int gold);
 	string gettype();
 	virtual void move(string direction)=0;
-	virtual bool isDead()=0;
+	virtual bool isDead();
 	virtual void dead()=0;
 };
 

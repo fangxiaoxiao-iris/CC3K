@@ -13,8 +13,8 @@
 
 
 class Floor {
-	std::vector<Square*> theFloor; // do not use arrays of arrays, use just one array 
-	                               // the length should be 79 * 25 
+	std::vector<vector<Square>> theFloor; 
+	
 	GameBoard* Board;
 	PC* player;
 	int level;
@@ -37,9 +37,10 @@ public:
 	bool GameWin();
 	void clearFloor();
 	
-	void init(); // initialize the floor without provided file
-	void init(std::string name); // initialize the floor with the file
+	void init_no_file(std::string name); 
+	void init_file(std::string name);  // initialize the floor with the file
 	void restart();
+	void clear();
 	
 	// generate a series of things :(
 	
@@ -49,8 +50,8 @@ public:
 	void make_gold();
 	void make_enemy();
 	
-	void pcMove();
-	void pcAtk();
+	void pcMove(std::string direction);
+	void pcAtk(std::string direction);
 	
 	// use potion? pick up gold?
 	
@@ -65,8 +66,8 @@ public:
 	
 	// accessors 
 	
-	void getLevel();
-	void getScore();
+	int getLevel();
+	int getScore();
 	
 	friend std::ostream &operator<<(std::ostream &out, const Floor *f);
 	

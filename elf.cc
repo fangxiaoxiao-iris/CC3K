@@ -104,6 +104,3 @@ void Elf::beAttacked(Goblin &goblin){
 		this->setup(Elf_newhp);
 	}
 }
-
-// when Elf dies, it drops 2 normal pules of gold
-void Elf::dead();

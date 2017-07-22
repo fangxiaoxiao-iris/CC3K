@@ -56,7 +56,7 @@ void Goblin::beAttacked(Orcs &o) override {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int o_atk = o.getatk()
-	int damage = ceil((100/(100+g_def))*o_atk)*1.5;
+	int damage = ceil((100/(100+g_def))*o_atk*1.5);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
 	if (g_updated_hp == 0) {

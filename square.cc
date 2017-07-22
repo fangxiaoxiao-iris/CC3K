@@ -68,7 +68,7 @@ void Square::setSym(char c) {
 that it is moving towards.
 void Square::swapCoords(Square *neighbor){
 	swap(row, neighbor->row);
-	swap(col, neighbo->col);
+	swap(col, neighbor->col);
 }
 //swap the neighbors of the Character and the neighbors of the position
 that it is moving towards.

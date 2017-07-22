@@ -31,6 +31,7 @@ void Dragon::beAttacked(Shade &shade) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
 	}
@@ -46,6 +47,7 @@ void Dragon::beAttacked(Drow &drow) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
 	}
@@ -65,6 +67,7 @@ void Dragon::beAttacked(Vampire &vampire) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
 	}
@@ -82,6 +85,7 @@ void Dragon::beAttacked(Troll &troll){
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
 	}
@@ -100,10 +104,27 @@ void Dragon::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
 	}
 }
 
-// when Dragon dies, it drops 2 normal pules of gold
-void Dragon::dead();
+void Dragon::move() {
+	bool attacked = false;
+
+	for(auto n: neighbors) {
+		if(n->get_sym() == '@') {
+			attack(*n);
+			attacked = true;
+		}
+	}
+	for(auto m: hoard->neighbors) {
+		if(m->get_sym() == '@') {
+			if(attacked == false) {
+			attack(*n);
+			attacked = true;
+		}
+		}
+	}
+}

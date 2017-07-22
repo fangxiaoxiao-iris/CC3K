@@ -28,8 +28,8 @@ void Enemy::move(){
 	bool propermove;
 	bool stationary = true;
 
-	for(int i = 0; i <= 7; ++i) {
-		if(this->neighbors[i].get_sym() == '.') {
+	for(auto n: neighbors) {
+		if(n->get_sym() == '.') {
 			stationary = false;
 		}
 	}
@@ -41,42 +41,48 @@ void Enemy::move(){
 			if(random == 0) {
 				r_update = r_coord;
 		        c_update = c_coord-1;
-				proper_move(*this, r_update, c_update, "no", "so");
+				proper_move(*this, "no", "so");
 			} else if (random == 1) {
 				r_update = r_coord;
 				c_update = c_coord+1;
-				proper_move(*this, r_update, c_update, "so", "no");
+				proper_move(*this, "so", "no");
 			} else if (random == 2) {
 					r_update = r_coord+1;
 					c_update = c_coord;
-					proper_move(*this, r_update, c_update, "ea", "we");
+					proper_move(*this, "ea", "we");
 			} else if (random == 3) {
 					r_update = r_coord-1;
 					c_update = c_coord;
-					proper_move(*this, r_update, c_update, "we", "ea");
+					proper_move(*this, "we", "ea");
 			} else if (random == 4) {
 					r_update = r_coord-1;
 					c_update = c_coord+1;
-					proper_move(*this, r_update, c_update, "ne", "sw");
+					proper_move(*this, "ne", "sw");
 			} else if (random == 5) {
 					r_update = r_coord-1;
 					c_update = c_coord-1;
-					proper_move(*this, r_update, c_update, "nw", "se");
+					proper_move(*this, "nw", "se");
 			} else if (random == 6) {
 					r_update = r_coord+1;
 					c_update = c_coord+1;
-					proper_move(*this, r_update, c_update, "se", "nw");
+					proper_move(*this, "se", "nw");
 			} else {
 				// random == 7
 					r_update = r_coord+1;
 					c_update = c_coord-1;
-					proper_move(*this, r_update, c_update, "sw", "ne");
+					proper_move(*this, "sw", "ne");
 			}
 		} else {
 		continue;
 }
 }
 }
+	for(auto n: neighbors) {
+		if(n->get_sym() == '@') {
+			attack(*n);
+		}
+	}
+
 }
 
 void Enemy::dead() override {

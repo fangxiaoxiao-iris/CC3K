@@ -104,6 +104,3 @@ void Orcs::beAttacked(Goblin &goblin){
 		this->setup(Orcs_newhp);
 	}
 }
-
-// when Orcs dies, it drops 2 normal pules of gold
-void Orcs::dead();

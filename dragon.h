@@ -4,6 +4,7 @@
 #include "character.h"
 
 class Dragon: public Character {
+	gold &hoard;
 public:
 	// default ctor
 	Dragon();
@@ -20,6 +21,7 @@ public:
 	virtual void beAttacked(Vampire &vampire) override;
 	virtual void beAttacked(Troll &troll) override;
 	virtual void beAttacked(Goblin &goblin) override;
+	void move() override;
     void dead() override;
 };
 

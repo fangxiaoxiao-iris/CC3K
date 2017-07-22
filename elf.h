@@ -20,7 +20,6 @@ public:
 	virtual void beAttacked(Vampire &vampire) override;
 	virtual void beAttacked(Troll &troll) override;
 	virtual void beAttacked(Goblin &goblin) override;
-    void dead() override;
 };
 
 #endif

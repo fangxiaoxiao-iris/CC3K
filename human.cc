@@ -31,6 +31,8 @@ void Human::beAttacked(Shade &shade) {
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int cur_gold = shade.getgold();
+		shade.setgold(cur_gold+4);
 		} else {
 		this->setup(human_newhp);
 	}
@@ -46,6 +48,8 @@ void Human::beAttacked(Drow &drow) {
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int cur_gold = drow.getgold();
+		drow.setgold(cur_gold+4);
 		} else {
 		this->setup(human_newhp);
 	}
@@ -65,6 +69,8 @@ void Human::beAttacked(Vampire &vampire) {
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int cur_gold = vampire.getgold();
+		vampire.setgold(cur_gold+4);
 		} else {
 		this->setup(human_newhp);
 	}
@@ -82,6 +88,8 @@ void Human::beAttacked(Troll &troll){
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int cur_gold = troll.getgold();
+		troll.setgold(cur_gold+4);
 		} else {
 		this->setup(human_newhp);
 	}
@@ -100,10 +108,11 @@ void Human::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		int cur_gold = goblin.getgold();
+		goblin.setgold(cur_gold+4);
 		} else {
 		this->setup(human_newhp);
 	}
 }
 
 // when human dies, it drops 2 normal pules of gold
-void Human::dead();

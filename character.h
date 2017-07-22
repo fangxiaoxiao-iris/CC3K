@@ -33,7 +33,6 @@ public:
 	int getmaxhp();
 	int getgold(int gold);
 	string gettype();
-	virtual void move(string direction)=0;
 	virtual bool isDead();
 	virtual void dead()=0;
 };

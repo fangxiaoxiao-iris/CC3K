@@ -3,7 +3,8 @@
 
 class Drow: public PC {
 public:
-	Drow(); // default ctor
+	Drow(int row, int col, char sym, char prev, GameBoard* theBoard); 
+	// default ctor
 	~Drow(); // dtor
 	void attack(Enemy &e) override;
 	void beAttacked(Human &hu) override;

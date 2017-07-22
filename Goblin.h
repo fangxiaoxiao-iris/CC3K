@@ -2,7 +2,8 @@
 #define GOBLIN_H
 
 class Goblin: public PC {
-	Goblin(); // defualt ctor
+	Goblin(int row, int col, char sym, char prev, GameBoard* theBoard); 
+	// defualt ctor
 	~Goblin(); // dtors
 	void attack(Enemy &e) override;
 	void beAttacked(Human &hu) override;

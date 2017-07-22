@@ -2,7 +2,8 @@
 #include <cmath>
 #include "Drow.h"
 
-Drow::Drow(): PC() {
+Drow::Drow(int row, int col, char sym, char prev, GameBoard* theBoard): 
+PC(row, col, sym, prev, theBoard) {
 	sethp(150);
 	setatk(25);
 	setdef(15);

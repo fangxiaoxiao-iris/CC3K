@@ -18,7 +18,7 @@ protected:
 	string type;
 
 public:
-	Character();
+	Character(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Character();
 	void sethp(int hp);
 	void setatk(int atk);

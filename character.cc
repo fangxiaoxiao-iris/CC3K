@@ -4,8 +4,9 @@
 using namespace std;
 
 
-Character::Character(): 
-	hp(0), atk(0), def(0), maxhp(0), gold(0), type("") {}
+Character::Character(int row, int col, char sym, char prev, GameBoard* theBoard):
+Square(row, col, sym, prev, theBoard), hp(0), atk(0), def(0), maxhp(0), 
+gold(0), type(""){}
 
 Character::~Character() {}
 

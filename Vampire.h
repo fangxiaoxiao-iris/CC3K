@@ -2,7 +2,8 @@
 #define VAMPIRE_H
 
 class Vampire: public PC {
-	Vampire(); // defualt ctor
+	Vampire(int row, int col, char sym, char prev, GameBoard* theBoard); 
+	// defualt ctor
 	~Vampire(); // dtors
 	void attack(Enemy &e) override;
 	void beAttacked(Human &hu) override;

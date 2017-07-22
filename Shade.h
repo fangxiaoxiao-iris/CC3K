@@ -4,7 +4,8 @@
 class Shade: public PC {
 	int maxhp;
 public:
-	Shade(); // defualt ctor
+	Shade(int row, int col, char sym, char prev, GameBoard* theBoard); 
+	// defualt ctor
 	~Shade(); // dtors
 	void attack(Enemy &e) override;
 	void beAttacked(Human &hu) override;

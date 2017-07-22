@@ -2,7 +2,8 @@
 #include <cmath>
 #include "Troll.h"
 
-Troll::Troll(): PC() {
+Troll::Troll(int row, int col, char sym, char prev, GameBoard* theBoard): 
+PC(row, col, sym, prev, theBoard){
 	sethp(120);
 	setatk(25);
 	setdef(15);

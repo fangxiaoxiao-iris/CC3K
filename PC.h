@@ -7,7 +7,7 @@ class PC: public Character {
 	std::vector<std::string> knownPotions;
 
 public:
-	PC();
+	PC(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~PC();
 	void setKnownPotions(std::string pName); 
 	virtual void attack(Enemy &e) = 0;
@@ -18,10 +18,10 @@ public:
 	virtual void beAttacked(Halfling &ha) = 0;
 	virtual void beAttacked(Orcs &o) = 0;
 	virtual void beAttacked(Merchant &m) = 0;
-	virtual void use(Potion &p);
-	virtual void pickUp(Gold &g); 
+	void use(std::string direction);
+	void pickUp(Gold &g); 
 	void move(std::string direction);
-	void dead() override;
+	bool isDead() override;
 };
 
 #endif

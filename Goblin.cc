@@ -2,7 +2,8 @@
 #include <cmath>
 #include "Goblin.h"
 
-Goblin::Goblin(): PC() {
+Goblin::Goblin(int row, int col, char sym, char prev, GameBoard* theBoard): 
+PC(row, col, sym, prev, theBoard){
 	sethp(110);
 	setatk(15);
 	setdef(20);

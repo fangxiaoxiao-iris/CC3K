@@ -2,7 +2,8 @@
 #include <cmath>
 #include "Shade.h"
 
-Shade::Shade(): PC() {
+Shade::Shade(int row, int col, char sym, char prev, GameBoard* theBoard): 
+PC(row, col, sym, prev, theBoard) {
 	sethp(125);
 	setatk(25);
 	setdef(25);

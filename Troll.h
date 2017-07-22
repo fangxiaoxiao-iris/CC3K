@@ -2,7 +2,8 @@
 #define TROLL_H
 
 class Troll: public PC {
-	Troll(); // defualt ctor
+	Troll(int row, int col, char sym, char prev, GameBoard* theBoard); 
+	// defualt ctor
 	~Troll(); // dtors
 	void attack(Enemy &e) override;
 	void beAttacked(Human &hu) override;

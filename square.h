@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <utility>
 
 #include "GameBoard.h"
@@ -13,14 +14,14 @@ class Square {
 	int col;
 	char symbol;
 	char prev; // in the case of first a dragon hoard, then PC walks over it 
-	vector<Square*> neighbors;
+	map<std::string, Square*> neighbors;
 	GameBoard* theBoard;
 	
 public:
 	Square(); // Default constructor
 	virtual ~Square();
 	
-	void attach(Square* s);
+	void attach(std::string, Square* s);
 	void notifyBoard();
 	
 	// accessors

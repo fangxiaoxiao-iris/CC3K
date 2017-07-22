@@ -17,8 +17,8 @@ using namespace std;
 
 // attach and notifyBoard 
 
-void Square::attach(Square* s) {
-	this->neighbors.emplace_back(s);
+void Square::attach(string direction, Square* s) {
+	this->neighbors.emplace(direction, s);
 }
 
 void Square::notifyBoard() {

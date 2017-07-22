@@ -41,35 +41,35 @@ void PC::move(std::string direction) override {
 	if (direction == "no") {
 		r_update = r_coord;
 		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, 0, 1);
+		proper_move(*this, r_update, c_update, "no", "so");
 	} else if (direction == "so") {
 		r_update = r_coord;
 		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, 1, 0);
+		proper_move(*this, r_update, c_update, "so", "no");
 	} else if (direction == "ea") {
 		r_update = r_coord+1;
 		c_update = c_coord;
-		proper_move(*this, r_update, c_update, 2, 3);
+		proper_move(*this, r_update, c_update, "ea", "we");
 	} else if (direction == "we") {
 		r_update = r_coord-1;
 		c_update = c_coord;
-		proper_move(*this, r_update, c_update, 3, 2);
+		proper_move(*this, r_update, c_update, "we", "ea");
 	} else if (direction == "ne") {
 		r_update = r_coord-1;
 		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, 4, 7);
+		proper_move(*this, r_update, c_update, "ne", "sw");
 	} else if (direction == "nw") {
 		r_update = r_coord-1;
 		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, 5, 6);
+		proper_move(*this, r_update, c_update, "nw", "se");
 	} else if (direction == "se") {
 		r_update = r_coord+1;
 		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, 6, 5);
+		proper_move(*this, r_update, c_update, "se", "nw");
 	} else if (direction == "sw") {
 		r_update = r_coord+1;
 		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, 7, 4);
+		proper_move(*this, r_update, c_update, "sw", "ne");
 	} else {
 		cout << "Invalid direction. Please choose a valid direction from 
 		no (North), so (South), ea (East), we (West), ne (Northeast), 

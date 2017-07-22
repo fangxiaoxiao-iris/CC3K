@@ -20,7 +20,7 @@ public:
 	virtual void beAttacked(Merchant &m) = 0;
 	virtual void use(Potion &p);
 	virtual void pickUp(Gold &g); 
-	void move(std::string direction) override;
+	void move(std::string direction);
 	void dead() override;
 };
 

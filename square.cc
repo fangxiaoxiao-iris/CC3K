@@ -4,16 +4,10 @@
 
 using namespace std;
 
-
-
-
-
-
-
-
-
-
-
+Square::Square(int row, int col, char sym, char prev, map<string, Square*> neighbors, GameBoard* theBoard): 
+row(row), col(col), sym(sym), prev(prev), theBoard(theBoard) {}
+ 
+Square::~Square() {}
 
 // attach and notifyBoard 
 
@@ -40,8 +34,13 @@ int Square::get_col() {
 char Square::get_sym() {
 	return this->symbol;
 }
+
 char Square::get_prev() {
 	return this->prev;
+}
+
+map<string, Square*> Square::getNeigh() {
+	return this->neighbors;
 }
 
 // mutators
@@ -61,6 +60,11 @@ void Square::setPrev(char c) {
 
 void Square::setSym(char c) {
 	this->symbol = c;
+}
+
+<<<<<<< HEAD
+void Square::setNeigh(map<std::string, Square*> neigh) {
+	this->neighbors = neigh;
 }
 
 /*

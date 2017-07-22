@@ -19,7 +19,7 @@ protected:
 	map<std::string, Square*> neighbors;
 	
 public:
-	Square(); // Default constructor
+	Square(int row, int col, char sym, char prev, GameBoard* theBoard); // Default constructor
 	virtual ~Square();
 	
 	void attach(std::string, Square* s);
@@ -30,12 +30,14 @@ public:
 	int get_col();
 	char get_sym();
 	char get_prev();
+	map<std::string, Square*> getNeigh();
 	
 	// mutators
 	void setCoords(int r, int c); // Tells me my row and column number
 	void setBoard(GameBoard* gb);	
 	void setPrev(char c);
 	void setSym(char c);
+	void setNeigh(map<std::string, Square*> neigh);
 	// void swapCoords(Square *neighbor);
 	// void swapNeighbors(Square *neighbor);
 };

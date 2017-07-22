@@ -14,8 +14,9 @@ class Square {
 	int col;
 	char symbol;
 	char prev; // in the case of first a dragon hoard, then PC walks over it 
-	map<std::string, Square*> neighbors;
 	GameBoard* theBoard;
+protected:
+	map<std::string, Square*> neighbors;
 	
 public:
 	Square(); // Default constructor

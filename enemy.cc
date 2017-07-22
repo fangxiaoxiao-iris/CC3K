@@ -3,8 +3,8 @@
 
 using namespace std;
 
-static void proper_move(Enemy &e, int r_update, int c_update, int index) {
-	if((e.neighbors[index].get_sym() == '.')) {
+static void proper_move(Enemy &e, string index_nb, string index_p) {
+	if((e.neighbors[index_nb].get_sym() == '.')) {
 		e.setCoords(r_update, c_update);
 		p.swapNeighbors(e.neighbors[index_nb], index_nb, index_p);
 		e.notifyBoard();
@@ -41,36 +41,36 @@ void Enemy::move(){
 			if(random == 0) {
 				r_update = r_coord;
 		        c_update = c_coord-1;
-				proper_move(*this, r_update, c_update, 0, 1);
+				proper_move(*this, r_update, c_update, "no", "so");
 			} else if (random == 1) {
 				r_update = r_coord;
 				c_update = c_coord+1;
-				proper_move(*this, r_update, c_update, 1, 0);
+				proper_move(*this, r_update, c_update, "so", "no");
 			} else if (random == 2) {
 					r_update = r_coord+1;
 					c_update = c_coord;
-					proper_move(*this, r_update, c_update, 2, 3);
+					proper_move(*this, r_update, c_update, "ea", "we");
 			} else if (random == 3) {
 					r_update = r_coord-1;
 					c_update = c_coord;
-					proper_move(*this, r_update, c_update, 3, 2);
+					proper_move(*this, r_update, c_update, "we", "ea");
 			} else if (random == 4) {
 					r_update = r_coord-1;
 					c_update = c_coord+1;
-					proper_move(*this, r_update, c_update, 4, 7);
+					proper_move(*this, r_update, c_update, "ne", "sw");
 			} else if (random == 5) {
 					r_update = r_coord-1;
 					c_update = c_coord-1;
-					proper_move(*this, r_update, c_update, 5, 6);
+					proper_move(*this, r_update, c_update, "nw", "se");
 			} else if (random == 6) {
 					r_update = r_coord+1;
 					c_update = c_coord+1;
-					proper_move(*this, r_update, c_update, 6, 5);
+					proper_move(*this, r_update, c_update, "se", "nw");
 			} else {
 				// random == 7
 					r_update = r_coord+1;
 					c_update = c_coord-1;
-					proper_move(*this, r_update, c_update, 7, 4);
+					proper_move(*this, r_update, c_update, "sw", "ne");
 			}
 		} else {
 		continue;

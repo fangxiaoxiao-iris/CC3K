@@ -13,8 +13,7 @@ void PC::use(Potion &) {
 }
 
 // change PC's coordinates and notify neighbors.
-static void proper_move(PC &p, int r_update, int c_update, 
-	int index_nb, int index_p) {
+static void proper_move(PC &p, string index_nb, string index_p) {
 	if (((p.neighbors[index_nb]).get_sym() == '.') || 
 		((p.neighbors[index_nb]).get_sym() == '#') || 
 		((p.neighbors[index_nb]).get_sym() == '+')) {

@@ -27,9 +27,6 @@ static void proper_move(PC &p, string index_nb, string index_p) {
 
 void PC::move(std::string direction) override {
 	string type = gettype();
-	int r_coord = get_row();
-	int c_coord = get_col();
-	int r_update, c_update;
 	// Troll gains 5HP every move.
 	if (type == "Troll") {
 		int t_cur_hp = gethp();
@@ -38,37 +35,23 @@ void PC::move(std::string direction) override {
 	}
 
 	if (direction == "no") {
-		r_update = r_coord;
-		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, "no", "so");
+		proper_move(*this, "no", "so");
 	} else if (direction == "so") {
-		r_update = r_coord;
-		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, "so", "no");
+		proper_move(*this, "so", "no");
 	} else if (direction == "ea") {
-		r_update = r_coord+1;
-		c_update = c_coord;
-		proper_move(*this, r_update, c_update, "ea", "we");
+		proper_move(*this, "ea", "we");
 	} else if (direction == "we") {
-		r_update = r_coord-1;
-		c_update = c_coord;
-		proper_move(*this, r_update, c_update, "we", "ea");
+		proper_move(*this, "we", "ea");
 	} else if (direction == "ne") {
-		r_update = r_coord-1;
-		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, "ne", "sw");
+		proper_move(*this, "ne", "sw");
 	} else if (direction == "nw") {
-		r_update = r_coord-1;
-		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, "nw", "se");
+		proper_move(*this, "nw", "se");
 	} else if (direction == "se") {
-		r_update = r_coord+1;
-		c_update = c_coord+1;
-		proper_move(*this, r_update, c_update, "se", "nw");
+		proper_move(*this, "se", "nw");
 	} else if (direction == "sw") {
-		r_update = r_coord+1;
-		c_update = c_coord-1;
-		proper_move(*this, r_update, c_update, "sw", "ne");
+//		r_update = r_coord+1;
+//		c_update = c_coord-1;
+		proper_move(*this, "sw", "ne");
 	} else {
 		cout << "Invalid direction. Please choose a valid direction from 
 		no (North), so (South), ea (East), we (West), ne (Northeast), 

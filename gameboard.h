@@ -17,6 +17,7 @@ public:
 	// custom destructor 
 	~GameBoard();
 	void notify(int row, int col, char sym);
+	void changeSym(Square &whoNotified, std::string direction) // change symbol after move
 	friend std::ostream& operator<< (std::ostream& out, const GameBoard& gb);
 };
 

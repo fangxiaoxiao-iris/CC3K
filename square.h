@@ -24,6 +24,7 @@ public:
 	
 	void attach(std::string, Square* s);
 	void notifyBoard();
+	void notifyMove(std::string direction)
 	
 	// accessors
 	int get_row();

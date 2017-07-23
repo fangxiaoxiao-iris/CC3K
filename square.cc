@@ -22,6 +22,10 @@ void Square::notifyBoard() {
 	this->theBoard->notify(r, c, s);
 }
 
+void Square::notifyMove(string direction) {
+	theBoard->changeSym(*this, direction);
+}
+
 // accessors
 int Square::get_row() {
 	return this->row;

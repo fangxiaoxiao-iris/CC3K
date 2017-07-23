@@ -32,6 +32,8 @@ void Dragon::beAttacked(Shade &shade) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
@@ -48,6 +50,8 @@ void Dragon::beAttacked(Drow &drow) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
@@ -68,6 +72,8 @@ void Dragon::beAttacked(Vampire &vampire) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
@@ -86,6 +92,8 @@ void Dragon::beAttacked(Troll &troll){
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);
@@ -105,6 +113,8 @@ void Dragon::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		hoard.setavailable(true);
 		} else {
 		this->setup(Dragon_newhp);

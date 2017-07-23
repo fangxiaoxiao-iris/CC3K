@@ -32,6 +32,8 @@ void Elf::beAttacked(Shade &shade) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Elf_newhp);
 	}
@@ -47,6 +49,8 @@ void Elf::beAttacked(Drow &drow) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Elf_newhp);
 	}
@@ -66,6 +70,8 @@ void Elf::beAttacked(Vampire &vampire) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Elf_newhp);
 	}
@@ -83,6 +89,8 @@ void Elf::beAttacked(Troll &troll){
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Elf_newhp);
 	}
@@ -101,6 +109,8 @@ void Elf::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Elf_newhp);
 	}

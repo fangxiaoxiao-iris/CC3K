@@ -32,6 +32,8 @@ void Dwarf::beAttacked(Shade &shade) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Dwarf_newhp);
 	}
@@ -47,6 +49,8 @@ void Dwarf::beAttacked(Drow &drow) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Dwarf_newhp);
 	}
@@ -68,6 +72,8 @@ void Dwarf::beAttacked(Vampire &vampire) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Dwarf_newhp);
 	}
@@ -93,6 +99,8 @@ void Dwarf::beAttacked(Troll &troll){
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Dwarf_newhp);
 	}
@@ -111,6 +119,8 @@ void Dwarf::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		this->setsym('.');
+		this->notifyBoard();
 		} else {
 		this->setup(Dwarf_newhp);
 	}

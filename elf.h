@@ -6,7 +6,7 @@
 class Elf: public Character {
 public:
 	// default ctor
-	Elf();
+	Elf(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Elf();
 

@@ -4,10 +4,10 @@
 #include "character.h"
 
 class Dragon: public Character {
-	gold &hoard;
+	Gold *hoard;
 public:
 	// default ctor
-	Dragon();
+	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Dragon();
 

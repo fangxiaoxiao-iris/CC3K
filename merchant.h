@@ -7,7 +7,7 @@ class Merchant: public Character {
 	bool isHostile;
 public:
 	// default ctor
-	Merchant();
+	Merchant(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Merchant();
 

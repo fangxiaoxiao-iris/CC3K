@@ -1,5 +1,6 @@
 #ifndef VAMPIRE_H
 #define VAMPIRE_H
+#include "PC.h"
 
 class Vampire: public PC {
 	Vampire(int row, int col, char sym, char prev, GameBoard* theBoard); 

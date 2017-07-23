@@ -1,6 +1,7 @@
 #ifndef GOLD_H
 #define GOLD_H
 #include <string>
+#include "Item.h"
 
 class Gold: public Item {
 	bool available;

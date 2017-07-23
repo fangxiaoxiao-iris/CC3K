@@ -1,6 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
+#include "Square.h"
 
 class Item: public Square {
 	std::string itemType;

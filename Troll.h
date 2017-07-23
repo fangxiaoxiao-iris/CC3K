@@ -1,5 +1,6 @@
 #ifndef TROLL_H
 #define TROLL_H
+#include "PC.h"
 
 class Troll: public PC {
 	Troll(int row, int col, char sym, char prev, GameBoard* theBoard); 

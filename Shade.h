@@ -1,5 +1,6 @@
 #ifndef SHADE_H
 #define SHADE_H
+#include "PC.h"
 
 class Shade: public PC {
 	int maxhp;

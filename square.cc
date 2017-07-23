@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Square::Square(int row, int col, char sym, char prev, map<string, Square*> neighbors, GameBoard* theBoard): 
+Square::Square(int row, int col, char sym, char prev, GameBoard* theBoard): 
 row(row), col(col), sym(sym), prev(prev), theBoard(theBoard) {}
  
 Square::~Square() {}

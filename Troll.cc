@@ -1,6 +1,7 @@
 #include <string>
 #include <cmath>
 #include "Troll.h"
+using namespace std;
 
 Troll::Troll(int row, int col, char sym, char prev, GameBoard* theBoard): 
 PC(row, col, sym, prev, theBoard){

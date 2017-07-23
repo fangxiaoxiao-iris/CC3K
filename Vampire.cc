@@ -1,6 +1,7 @@
 #include <string>
 #include <cmath>
 #include "Vampire.h"
+using namespace std;
 
 Vampire::Vampire(int row, int col, char sym, char prev, GameBoard* theBoard): 
 PC(row, col, sym, prev, theBoard){

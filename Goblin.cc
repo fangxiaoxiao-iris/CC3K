@@ -1,6 +1,7 @@
 #include <string>
 #include <cmath>
 #include "Goblin.h"
+using namespace std;
 
 Goblin::Goblin(int row, int col, char sym, char prev, GameBoard* theBoard): 
 PC(row, col, sym, prev, theBoard){

@@ -1,6 +1,7 @@
 #include <string>
 #include <cmath>
 #include "Shade.h"
+using namespace std;
 
 Shade::Shade(int row, int col, char sym, char prev, GameBoard* theBoard): 
 PC(row, col, sym, prev, theBoard) {

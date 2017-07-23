@@ -19,9 +19,8 @@ public:
 	virtual void beAttacked(Orcs &o) = 0;
 	virtual void beAttacked(Merchant &m) = 0;
 	void use(std::string direction);
-	void pickUp(Gold &g); 
+	void pickUp(std::string direction); 
 	void move(std::string direction);
-	bool isDead() override;
 };
 
 #endif

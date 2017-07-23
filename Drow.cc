@@ -1,6 +1,7 @@
 #include <string>
 #include <cmath>
 #include "Drow.h"
+using namespace std;
 
 Drow::Drow(int row, int col, char sym, char prev, GameBoard* theBoard): 
 PC(row, col, sym, prev, theBoard) {

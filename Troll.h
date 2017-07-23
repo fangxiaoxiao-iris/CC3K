@@ -1,16 +1,14 @@
 #ifndef TROLL_H
 #define TROLL_H
 #include "PC.h"
-
-class GameBoard;
-class Enemy;
-class Dragon;
-class Human;
-class Dwarf;
-class Elf;
-class Halfling;
-class Orcs;
-class Merchant;
+#include "enemy.h"
+#include "dragon.h"
+#include "human.h"
+#include "dwarf.h"
+#include "elf.h"
+#include "halfling.h"
+#include "orcs.h"
+#include "merchant.h"
 
 class Troll: public PC {
 	Troll(int row, int col, char sym, char prev, GameBoard* theBoard); 

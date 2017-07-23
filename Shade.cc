@@ -14,90 +14,69 @@ PC(row, col, sym, prev, theBoard) {
 
 Shade::~Shade(){}
 
-void Shade::attack(Enemy &e) override {
+void Shade::attack(Enemy &e) {
 	e.beAttacked(*this);
 }
 
-void Shade::beAttacked(Human &hu) override {
+void Shade::beAttacked(Human &hu) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int hu_atk = hu.getatk()
+	int hu_atk = hu.getatk();
 	int damage = ceil((100/(100+s_def))*hu_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Dwarf &dw) override {
+void Shade::beAttacked(Dwarf &dw) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int dw_atk = dw.getatk()
+	int dw_atk = dw.getatk();
 	int damage = ceil((100/(100+s_def))*dw_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Elf &el) override {
+void Shade::beAttacked(Elf &el) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int el_atk = el.getatk()
+	int el_atk = el.getatk();
 	int damage = ceil((100/(100+s_def))*el_atk);
 	int s_updated_hp = ((s_cur_hp - 2*damage) > 0) ? (s_cur_hp - 2*damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Orcs &o) override {
+void Shade::beAttacked(Orcs &o) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int o_atk = o.getatk()
+	int o_atk = o.getatk();
 	int damage = ceil((100/(100+s_def))*o_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Merchant &m) override {
+void Shade::beAttacked(Merchant &m) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int m_atk = m.getatk()
+	int m_atk = m.getatk();
 	int damage = ceil((100/(100+s_def))*m_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Dragon &dr) override {
+void Shade::beAttacked(Dragon &dr) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int dr_atk = dr.getatk()
+	int dr_atk = dr.getatk();
 	int damage = ceil((100/(100+s_def))*dr_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }
 
-void Shade::beAttacked(Halfling &ha) override {
+void Shade::beAttacked(Halfling &ha) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
-	int ha_atk = ha.getatk()
+	int ha_atk = ha.getatk();
 	int damage = ceil((100/(100+s_def))*ha_atk);
 	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
 	sethp(s_updated_hp);
-	if (s_updated_hp == 0) {
-		dead();
-	}
 }

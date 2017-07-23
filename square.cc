@@ -66,12 +66,11 @@ void Square::setSym(char c) {
 	this->symbol = c;
 }
 
-<<<<<<< HEAD
 void Square::setNeigh(map<std::string, Square*> neigh) {
 	this->neighbors = neigh;
 }
 
-/*
+
 //swap the coordinates of Character and the coordinates of the position 
 that it is moving towards.
 void Square::swapCoords(Square *neighbor){
@@ -80,11 +79,11 @@ void Square::swapCoords(Square *neighbor){
 }
 //swap the neighbors of the Character and the neighbors of the position
 that it is moving towards.
-void Square::swapNeighbors(Square *neighbor, int pos_nb, int pos_self){
+void Square::swapNeighbors(Square *neighbor, string pos_nb, string pos_self){
 	Square *temp = neighbors[pos_nb];
 	neighbors[pos_nb] = *this;
 	neighbor->neighbors[pos_self] = temp;
 	swap(neighbors, neighbor->neighbors);
 }
-*/
+
 

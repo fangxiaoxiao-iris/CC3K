@@ -15,11 +15,24 @@ Dragon::Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold*
 
 Dragon::~Dragon() {}
 
-void Dragon::attack(PC &defender){
-	int tmp = rand() % 2;
-	if(tmp == 0) {
-	defender.beAttacked(*this);
-}
+// need to implement neighbor exclusive.
+void Dragon::attack(PC &defender) {
+	for(auto n: neighbors) {
+		if (n.second->get_sym() == '@') {
+			int tmp = rand() % 2;
+			if (tmp == 0) {
+				defender.beAttacked(*this);
+			}	
+		}
+	}
+	for(auto m: hoard->getNeigh()) {
+		if (m.second->get_sym() == '@') {
+			int tmp = rand() % 2;
+			if (tmp == 0) {
+				defender.beAttacked(*this);
+			}	
+		}
+	}
 }
 	
 void Dragon::beAttacked(Shade &shade) {
@@ -109,7 +122,7 @@ void Dragon::beAttacked(Goblin &goblin){
 	}
 }
 
-void Dragon::move() {
+/*void Dragon::move() {
 	bool attacked = false;
 
 	for(auto n: neighbors) {
@@ -126,4 +139,4 @@ void Dragon::move() {
 		}
 		}
 	}
-}
+}*/

@@ -488,37 +488,37 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	for (int i = 0; i < 25; i++) {
 		for (int j = 0; j < 79; j++) {
 			if (i - 1 >= 0) {
-				this->theFloor[i][j].attach(&this->theFloor[i - 1][j]);
+				this->theFloor[i][j].attach("no", &this->theFloor[i - 1][j]);
 			}
 			
 			if (i + 1 < 25) {
-				this->theFloor[i][j].attach(&this->theFloor[i + 1][j]);
+				this->theFloor[i][j].attach("so", &this->theFloor[i + 1][j]);
 			}
 			
 			if (j - 1 >= 0) {
-				this->theFloor[i][j].attach(&this->theFloor[i][j - 1]);
+				this->theFloor[i][j].attach("we", &this->theFloor[i][j - 1]);
 			}
 			
 			if (j + 1 < n) {
-				this->theFloor[i][j].attach(&this->theFloor[i][j + 1]);
+				this->theFloor[i][j].attach("ea", &this->theFloor[i][j + 1]);
 			}
 			
 			// that's not enough, adjacent 8 squares
 			
 			if (i - 1 >= 0 && j - 1 >= 0) {
-				this->theFloor[i][j].attach(&this->theFloor[i - 1][j - 1]);
+				this->theFloor[i][j].attach("nw", &this->theFloor[i - 1][j - 1]);
 			}
 			
 			if (i + 1 < 25 && j + 1 < 79) {
-				this->theFloor[i][j].attach(&this->theFloor[i + 1][j + 1]);
+				this->theFloor[i][j].attach("se", &this->theFloor[i + 1][j + 1]);
 			}
 			
 			if (i - 1 >= 0 && j + 1 < 79) {
-				this->theFloor[i][j].attach(&this->theFloor[i - 1][j + 1]);
+				this->theFloor[i][j].attach("ne", &this->theFloor[i - 1][j + 1]);
 			}
 			
 			if (i + 1 < 25 && j - 1 >= 0) {
-				this->theFloor[i][j].attach(&this->theFloor[i + 1][j - 1]);
+				this->theFloor[i][j].attach("sw", &this->theFloor[i + 1][j - 1]);
 			}
 		}
 	}
@@ -1013,6 +1013,12 @@ void Floor::check_enemy() {
 
 bool Floor::at_stair() {
 	return this->player->isOnStair();
+}
+
+void Floor::auto_attack(PC& player) {
+	for (auto e: this->en_arr) {
+		e->attack(player);
+	}
 }
 
 // mutators 

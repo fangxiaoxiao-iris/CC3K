@@ -10,7 +10,7 @@ Elf::Elf(int row, int col, char sym, char prev, GameBoard* theBoard):
 	setdef(10);
 	setmaxhp(140);
 	setgold(0);
-	settype("Elf")
+	settype("Elf");
 }
 
 Elf::~Elf() {}
@@ -58,11 +58,11 @@ void Elf::beAttacked(Vampire &vampire) {
 	int Elf_def = this->getdef();
 	int vampire_atk = vampire.getatk();
 	// Elf is the defender
-	int damagetaken = ceil((100/(100+Elf_def)) * attacker_atk);
+	int damagetaken = ceil((100/(100+Elf_def)) * vampire_atk);
 	int Elf_newhp = Elf_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
-	vampire.sethp(vampire.hp + hp_gained);
+	vampire.sethp(vampire.gethp() + hp_gained);
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
@@ -79,12 +79,12 @@ void Elf::beAttacked(Troll &troll){
 	int damagetaken = ceil((100/(100+Elf_def)) * attacker_atk);
 	int Elf_newhp = Elf_hp - damagetaken;
 	int hp_regain = 5;
-	int troll_newhp = (troll.hp + hp_regain) > troll.maxhp ? troll.maxhp : troll.hp + hp_regain;
+	int troll_newhp = (troll.gethp() + hp_regain) > troll.getmaxhp() ? troll.getmaxhp() : troll.gethp() + hp_regain;
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
 		} else {
-		this->sethp(Elf_newhp);
+		this->sethp(troll_newhp);
 	}
 }
 
@@ -98,7 +98,7 @@ void Elf::beAttacked(Goblin &goblin){
 	if(Elf_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy
 		int goblin_goldgain = 5;
-		goblin.setgold(goblin.getgold += goblin_goldgain);
+		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
 		} else {

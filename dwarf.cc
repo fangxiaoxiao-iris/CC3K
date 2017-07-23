@@ -10,7 +10,7 @@ Dwarf::Dwarf(int row, int col, char sym, char prev, GameBoard* theBoard):
 	setdef(30);
 	setmaxhp(100);
 	setgold(0);
-	settype("Dwarf")
+	settype("Dwarf");
 }
 
 Dwarf::~Dwarf() {}
@@ -62,11 +62,11 @@ void Dwarf::beAttacked(Vampire &vampire) {
 	int Dwarf_def = this->getdef();
 	int vampire_atk = vampire.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
+	int damagetaken = ceil((100/(100+Dwarf_def)) * vampire_atk);
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	// vampire loses 5 hp every successful attack
 	int hp_lost = 5;
-	int vam_newhp = vampire.gethp - hp_lost;
+	int vam_newhp = vampire.gethp() - hp_lost;
 
 	// after attack changes on dwarf
 	if(Dwarf_newhp <= 0){
@@ -79,7 +79,6 @@ void Dwarf::beAttacked(Vampire &vampire) {
 	// after attack changes on vampire
 	if(vam_newhp <= 0) {
 		vampire.sethp(0);
-		vampire.dead();
 	} else {
 		vampire.sethp(vam_newhp);
 	}
@@ -93,12 +92,12 @@ void Dwarf::beAttacked(Troll &troll){
 	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	int hp_regain = 5;
-	int troll_newhp = (troll.hp + hp_regain) > troll.maxhp ? troll.maxhp : troll.hp + hp_regain;
+	int troll_newhp = (troll.gethp() + hp_regain) > troll.getmaxhp() ? troll.getmaxhp() : troll.gethp() + hp_regain;
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
 		} else {
-		this->sethp(Dwarf_newhp);
+		this->sethp(troll_newhp);
 	}
 }
 
@@ -112,7 +111,7 @@ void Dwarf::beAttacked(Goblin &goblin){
 	if(Dwarf_newhp <= 0){
 		// goblin steals 5 gold from every slain Enemy
 		int goblin_goldgain = 5;
-		goblin.setgold(goblin.getgold += goblin_goldgain);
+		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
 		} else {

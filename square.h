@@ -40,7 +40,7 @@ public:
 	void setSym(char c);
 	void setNeigh(std::map<std::string, Square*> neigh);
 	void swapCoords(Square *neighbor);
-	void swapNeighbors(Square *neighbor);
+	void swapNeighbors(Square *neighbor, std::string pos_nb, std::string pos_self);
 };
 
 #endif 

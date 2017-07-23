@@ -2,16 +2,14 @@
 #define DROW_H
 
 #include "PC.h"
-
-class GameBoard;
-class Enemy;
-class Dragon;
-class Human;
-class Dwarf;
-class Elf;
-class Halfling;
-class Orcs;
-class Merchant;
+#include "enemy.h"
+#include "dragon.h"
+#include "human.h"
+#include "dwarf.h"
+#include "elf.h"
+#include "halfling.h"
+#include "orcs.h"
+#include "merchant.h"
 
 class Drow: public PC {
 public:

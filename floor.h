@@ -59,6 +59,7 @@ public:
 	void enemyMove();
 	void check_enemy();
 	bool at_stair();
+	void auto_attack(PC& player);
 		
 	// mutators 
 	

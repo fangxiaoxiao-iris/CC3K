@@ -2,44 +2,103 @@
 #include <fstream>
 
 int main() {
-	string command;
+	string cmd;
+	string race;
+	string full_name;
 	Floor f;
-	bool ismoving = true;
-
-	if(argc == 1) {
-
+	bool move = true;
+	
+	cout << "Please choose a player character from the following races: " << endl;
+	cout << "s - Shade, d - Drow, v - Vampire, t - Troll, g - Goblin." << endl;
+	
+	cin >> race;
+	
+	while (race != "s" && race != "d" && race != "v" && race != "t" && race != "g") {
+		cout << "Please choose a valid race." << endl;
+        cin >> race;
+	}
+	
+	if (race == "s") {
+		full_name = "Shade";
+	} else if (race == "d") {
+		full_name = "Drow";
+	} else if (race == "v") {
+		full_name = "Vampire";
+	} else if (race == "t") {
+		full_name = "Troll";
 	} else {
-		// read in file
+		full_name = "Goblin";
 	}
-
-while (cin >> command) {
-	if(command == "no" || command == "so" || command == "ea" || command == "we"
-		|| command == "ne" || command == "nw" || command == "se" || command == "sw") {
-		if(ismoving == true;) {
-		f.pcMove(command);
-	}
-		f.enemyMove();
-	} else if (command == "u") {
-		cin >> command;
-		if(ismoving == true) {
-		f.enemyMove();
-	}
-		f.pcUse(command);
-	} else if (command == "a") {
-		cin >> command;
-		f.pcAtk(command);
-	} else if (command == "s" || command == "d" || command == "v" || command == "g" || command == "t") {
-		// 
-	} else if (command == "f") {
-		ismoving = (ismoving ==  true) ? false : true;
-	} else if (command == "r") {
-		// f.restart();
-		cout << "restart to be implemented" << endl;
-	} else if (command == "q") {
-		break;
+		
+	// initialize the floor
+	
+	if (argc == 1) {
+		f.init_no_file("cc3kfloor.txt", race);
 	} else {
-		cout << "Invalid Command. Please try again." << endl;
+		string fname = argv[1];
+		f.init_file(fname, race);
 	}
-}
+	
+	while (cin >> cmd) {
+		
+		cout << f;
+		cout << "Race: " << full_name << " Gold: " << f.player->getgold() <<
+			"                                            " << "Floor " << f.getLevel() << endl;
+		cout << "HP: " << f.player->gethp() << endl;
+		cout << "Atk: " << f.player->getatk() << endl;
+		cout << "Def: " << f.player->getdef() << endl;
+		cout << "Action: "; 
+		
+		if(cmd == "no" || cmd == "so" || cmd == "ea" || cmd == "we"
+		|| cmd == "ne" || cmd == "nw" || cmd == "se" || cmd == "sw") {
+			f.pcMove(cmd);
+			if (move == true) {
+				f.enemyMove();	
+			}
+			
+			//check stair 
+			if (f.at_stair()) {
+				if (argc == 1) {
+					f.init_no_file("cc3kfloor.txt", race);
+				} else {
+					string fname = argv[1];
+					f.init_file(fname, race);
+				}
+			}
+			
+			cout << "PC moves." << endl;
+		} else if (cmd == "u") {
+			cin >> cmd;
+			f.pcUse(cmd);
+			if (move == true) {
+				f.enemyMove();
+			}
+			
+			cout << "PC uses potion." << endl;
+		} else if (cmd == "a") {
+			cin >> cmd;
+			f.pcAtk(cmd);
+			
+			// check enemy
+			f.check_enemy();
+			
+			cout << "PC attacks an enemy." << endl;
+		} else if (cmd == "f") {
+			move = (move ==  true) ? false : true;
+			
+			cout << "Enemies change moving state." << endl;
+		} else if (cmd == "r") {
+			// f.restart();
+			cout << "restart to be implemented" << endl;
+			
+		} else if (command == "q") {
+			
+			break;
+			
+		} else {
+			cout << "Invalid Command. Please try again." << endl;
+		}
+		
+	}
 
 }

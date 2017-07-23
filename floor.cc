@@ -1011,6 +1011,10 @@ void Floor::check_enemy() {
 	}
 }
 
+bool Floor::at_stair() {
+	return this->player->isOnStair();
+}
+
 // mutators 
 
 void Floor::setFname(std::string name) {

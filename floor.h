@@ -71,6 +71,7 @@ public:
 	void pcUse(std::string direction);
 	void enemyMove();
 	void check_enemy();
+	bool at_stair();
 		
 	// mutators 
 	

@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Dwarf::Dwarf(): Enemy() {
+Dwarf::Dwarf(int row, int col, char sym, char prev, GameBoard* theBoard): 
+	Enemy(row, col, sym, prev, theBoard) {
 	sethp(100);
 	setatk(20);
 	setdef(30);
@@ -115,5 +116,3 @@ void Dwarf::beAttacked(Goblin &goblin){
 	}
 }
 
-// when Dwarf dies, it drops 2 normal pules of gold
-void Dwarf::dead();

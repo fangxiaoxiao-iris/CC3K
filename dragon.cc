@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Dragon::Dragon(): Enemy() {
+Dragon::Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold* hoard):
+	Enemy(row, col, sym, prev, theBoard), hoard(hoard) {
 	sethp(150);
 	setatk(20);
 	setdef(20);

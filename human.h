@@ -5,8 +5,8 @@
 
 class Human: public Character {
 public:
-	// default ctor
-	Human();
+	// ctor
+	Human(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Human();
 

@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Halfling::Halfling(): Enemy() {
+Halfling::Halfling(int row, int col, char sym, char prev, GameBoard* theBoard):
+	Enemy(row, col, sym, prev, theBoard) {
 	sethp(100);
 	setatk(15);
 	setdef(20);

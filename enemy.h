@@ -5,7 +5,7 @@
 
 class Enemy: public Character {
 public:
-	Enemy();
+	Enemy(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Enemy();
 
 	virtual void move(string direction);

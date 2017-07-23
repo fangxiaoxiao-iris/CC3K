@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Merchant::Merchant(): Enemy() {
-	isHostile = false;
+Merchant::Merchant(int row, int col, char sym, char prev, GameBoard* theBoard): 
+	Enemy(row, col, sym, prev, theBoard), isHostile(false) {
 	sethp(30);
 	setatk(70);
 	setdef(5);

@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Orcs::Orcs(): Enemy() {
+Orcs::Orcs(int row, int col, char sym, char prev, GameBoard* theBoard):
+	 Enemy(row, col, sym, prev, theBoard) {
 	sethp(180);
 	setatk(30);
 	setdef(25);

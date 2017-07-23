@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Elf::Elf(): Enemy() {
+Elf::Elf(int row, int col, char sym, char prev, GameBoard* theBoard): 
+	Enemy(row, col, sym, prev, theBoard) {
 	sethp(140);
 	setatk(30);
 	setdef(10);

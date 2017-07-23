@@ -3,6 +3,11 @@
 
 using namespace std;
 
+Enemy::Enemy(int row, int col, char sym, char prev, GameBoard* theBoard):
+	Character(row, col, sym, prev, theBoard) {}
+
+Enemy::~Enemy() {}
+
 static void proper_move(Enemy &e, string index_nb, string index_p) {
 	if((e.neighbors[index_nb].get_sym() == '.')) {
 		e.setCoords(r_update, c_update);

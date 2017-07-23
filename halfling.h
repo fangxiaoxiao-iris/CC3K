@@ -6,7 +6,7 @@
 class Halfling: public Character {
 public:
 	// default ctor
-	Halfling();
+	Halfling(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Halfling();
 

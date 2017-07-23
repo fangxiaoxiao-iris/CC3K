@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Human::Human(): Enemy() {
+Human::Human(int row, int col, char sym, char prev, GameBoard* theBoard): 
+	Enemy(row, col, sym, prev, theBoard) {
 	sethp(140);
 	setatk(20);
 	setdef(20);

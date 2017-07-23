@@ -2,7 +2,8 @@
 #include "Gold.h"
 using namespace std;
 
-Gold::Gold(string type, int value):Item(){
+Gold::Gold(int row, int col, char sym, char prev, GameBoard* theBoard, 
+	string type, int value):Item(row, col, sym, prev, theBoard){
 	setItemType(type);
 	setItemValue(value);
 }

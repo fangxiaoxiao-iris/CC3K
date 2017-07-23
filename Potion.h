@@ -4,7 +4,8 @@
 
 class Potion: public Item {
 public:
-	Potion(std::string type);
+	Potion(int row, int col, char sym, char prev, GameBoard* theBoard, 
+		std::string type);
 	~Potion();
 	void used(PC &P);
 }

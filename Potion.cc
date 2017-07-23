@@ -2,7 +2,8 @@
 #include "Potion.h"
 using namespace std;
 
-Potion::Potion(string type):Item(){
+Potion::Potion(int row, int col, char sym, char prev, GameBoard* theBoard, 
+	string type): Item(row, col, sym, prev, theBoard){
 	setItemType(type);
 }
 

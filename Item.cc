@@ -2,7 +2,8 @@
 #include "Item.h"
 using namespace std;
 
-Item::Item(): Square(), itemType(""), itemValue(0){}
+Item::Item(int row, int col, char sym, char prev, GameBoard* theBoard): 
+Square(row, col, sym, prev, theBoard), itemType(""), itemValue(0){}
 
 Item::~Item(){}
 

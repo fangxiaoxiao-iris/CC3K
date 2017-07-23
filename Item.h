@@ -6,7 +6,7 @@ class Item: public Square {
 	std::string itemType;
 	std::int itemValue;
 public:
-	Item();
+	Item(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Item();
 
 	// getters:

@@ -4,7 +4,8 @@
 
 class Gold: public Item {
 public:
-	Gold(std::string type, int value);
+	Gold(int row, int col, char sym, char prev, GameBoard* theBoard,
+		std::string type, int value);
 	~Gold();
 	void picked(PC &P);
 }

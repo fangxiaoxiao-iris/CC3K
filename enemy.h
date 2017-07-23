@@ -14,7 +14,7 @@ public:
 	Enemy(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Enemy();
 
-	virtual void move(string direction);
+	virtual void move();
 
 	virtual void attack(PC &defender)=0;
 

@@ -35,10 +35,8 @@ void Merchant::beAttacked(Shade &shade) {
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Merchant_newhp);
+		this->sethp(Merchant_newhp);
 	}
 }
 
@@ -53,10 +51,8 @@ void Merchant::beAttacked(Drow &drow) {
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Merchant_newhp);
+		this->sethp(Merchant_newhp);
 	}
 }
 
@@ -75,10 +71,8 @@ void Merchant::beAttacked(Vampire &vampire) {
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Merchant_newhp);
+		this->sethp(Merchant_newhp);
 	}
 }
 
@@ -95,10 +89,8 @@ void Merchant::beAttacked(Troll &troll){
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Merchant_newhp);
+		this->sethp(Merchant_newhp);
 	}
 }
 
@@ -116,9 +108,7 @@ void Merchant::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Merchant_newhp);
+		this->sethp(Merchant_newhp);
 	}
 }

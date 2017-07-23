@@ -35,9 +35,8 @@ void Halfling::beAttacked(Shade &shade) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
 		} else {
-		this->setup(Halfling_newhp);
+		this->sethp(Halfling_newhp);
 	}
 }
 }
@@ -54,9 +53,8 @@ void Halfling::beAttacked(Drow &drow) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
 		} else {
-		this->setup(Halfling_newhp);
+		this->sethp(Halfling_newhp);
 	}
 }
 }
@@ -77,9 +75,8 @@ void Halfling::beAttacked(Vampire &vampire) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
 		} else {
-		this->setup(Halfling_newhp);
+		this->sethp(Halfling_newhp);
 	}
 }
 }
@@ -98,9 +95,8 @@ void Halfling::beAttacked(Troll &troll){
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
 		} else {
-		this->setup(Halfling_newhp);
+		this->sethp(Halfling_newhp);
 	}
 }
 }
@@ -120,9 +116,8 @@ void Halfling::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
 		} else {
-		this->setup(Halfling_newhp);
+		this->sethp(Halfling_newhp);
 	}
 }
 }

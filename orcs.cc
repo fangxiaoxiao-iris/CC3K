@@ -32,10 +32,8 @@ void Orcs::beAttacked(Shade &shade) {
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Orcs_newhp);
+		this->sethp(Orcs_newhp);
 	}
 }
 
@@ -49,10 +47,8 @@ void Orcs::beAttacked(Drow &drow) {
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Orcs_newhp);
+		this->sethp(Orcs_newhp);
 	}
 }
 
@@ -70,10 +66,8 @@ void Orcs::beAttacked(Vampire &vampire) {
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Orcs_newhp);
+		this->sethp(Orcs_newhp);
 	}
 }
 
@@ -89,10 +83,8 @@ void Orcs::beAttacked(Troll &troll){
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Orcs_newhp);
+		this->sethp(Orcs_newhp);
 	}
 }
 
@@ -109,9 +101,7 @@ void Orcs::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold += goblin_goldgain);
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
 		} else {
-		this->setup(Orcs_newhp);
+		this->sethp(Orcs_newhp);
 	}
 }

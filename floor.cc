@@ -992,6 +992,25 @@ void Floor::pcUse(string direction) {
 	this->player->use(direction);
 }
 
+void Floor::enemyMove() {
+	int size = this->en_arr.size();
+	
+	for (int i = 0; i < size; i++) {
+		this->en_arr[i].move();
+	}
+}
+
+void Floor::check_enemy() {
+	int size = this->en_arr.size();
+	
+	for (int i = 0; i < size; i++) {
+		if (this->en_arr.isDead()) {
+			this->en_arr.erase(this->en_arr.begin() + i);
+		}
+		break;
+	}
+}
+
 // mutators 
 
 void Floor::setFname(std::string name) {

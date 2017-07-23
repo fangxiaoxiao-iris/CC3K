@@ -38,9 +38,9 @@ class Floor {
 	
 	// manage the floor
 	
-	std::vector<Enemy*> en_arr; // 20 enemies on a floor 
-	std::vector<Potion*> po_arr; // 10 potions on a floor
-	std::vector<Gold*> gold_arr; // 10 golds on a floor
+	std::vector<Enemy> en_arr; // 20 enemies on a floor 
+	std::vector<Potion> po_arr; // 10 potions on a floor
+	std::vector<Gold> gold_arr; // 10 golds on a floor
 	
 	// any need to record the 5 rooms?
 	
@@ -69,6 +69,8 @@ public:
 	void pcMove(std::string direction);
 	void pcAtk(std::string direction);
 	void pcUse(std::string direction);
+	void enemyMove();
+	void check_enemy();
 		
 	// mutators 
 	

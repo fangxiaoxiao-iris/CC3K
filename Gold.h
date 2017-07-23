@@ -3,11 +3,14 @@
 #include <string>
 
 class Gold: public Item {
+	bool available;
 public:
 	Gold(int row, int col, char sym, char prev, GameBoard* theBoard,
-		std::string type, int value);
+		std::string type, int value, bool available);
 	~Gold();
 	void picked(PC &P);
+	bool getavailable();
+	void setavailable(bool available);
 }
 
 #endif

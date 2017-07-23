@@ -3,7 +3,8 @@
 using namespace std;
 
 Gold::Gold(int row, int col, char sym, char prev, GameBoard* theBoard, 
-	string type, int value):Item(row, col, sym, prev, theBoard){
+	string type, int value, bool available):
+Item(row, col, sym, prev, theBoard), available(available){
 	setItemType(type);
 	setItemValue(value);
 }
@@ -16,4 +17,12 @@ void Gold::picked(PC &p) {
 	int p_update_gold = p_cur_gold + value;
 	p.setgold(p_update_gold);
 	setSym('.');
+}
+
+bool getavailable() {
+	return available;
+}
+
+void Gold::setavailable(bool available) {
+	available = false;
 }

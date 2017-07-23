@@ -22,11 +22,15 @@ static void proper_move(PC &p, string index_nb, string index_p) {
 			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
 			p.notifyMove(index_nb);
 		} else if ((p.neighbors[index_nb]).get_sym() == 'G') {
-			p.swapCoords(p.neighbors[index_nb]);
-			p.pickUp(index_nb);
-			p.setPrev((p.neighbors[index_nb]).get_sym());
-			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
-			p.notifyMove(index_nb);
+			if ((p.neighbors[index_nb]).getavailable()) {
+				p.swapCoords(p.neighbors[index_nb]);
+				p.pickUp(index_nb);
+				p.setPrev((p.neighbors[index_nb]).get_sym());
+				p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
+				p.notifyMove(index_nb);
+			} else {
+				cout << "You have to kill the Dragon first." << endl;
+			}
 		} else {
 			cout << "Invalid direction. 
 			You are heading to a dead end." << endl;

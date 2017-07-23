@@ -10,7 +10,7 @@ Merchant::Merchant(int row, int col, char sym, char prev, GameBoard* theBoard):
 	setdef(5);
 	setmaxhp(30);
 	setgold(0);
-	settype("Merchant")
+	settype("Merchant");
 }
 
 Merchant::~Merchant() {}
@@ -60,13 +60,13 @@ void Merchant::beAttacked(Drow &drow) {
 void Merchant::beAttacked(Vampire &vampire) {
 	int Merchant_hp = this->gethp();
 	int Merchant_def = this->getdef();
-	int vampire_atk = vampire.getatk();
+	int attacker_atk = vampire.getatk();
 	// Merchant is the defender
 	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
-	vampire.sethp(vampire.hp + hp_gained);
+	vampire.sethp(vampire.gethp() + hp_gained);
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
@@ -83,8 +83,6 @@ void Merchant::beAttacked(Troll &troll){
 	// Merchant is the defender
 	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
 	int Merchant_newhp = Merchant_hp - damagetaken;
-	int hp_regain = 5;
-	int troll_newhp = (troll.hp + hp_regain) > troll.maxhp ? troll.maxhp : troll.hp + hp_regain;
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){
 		this->sethp(0);
@@ -105,7 +103,7 @@ void Merchant::beAttacked(Goblin &goblin){
 	if(Merchant_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy
 		int goblin_goldgain = 5;
-		goblin.setgold(goblin.getgold += goblin_goldgain);
+		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
 		} else {

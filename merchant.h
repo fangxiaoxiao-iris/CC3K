@@ -1,14 +1,15 @@
 #ifndef _MERCHANT_H_
 #define _MERCHANT_H_
 
-#include "enemy.h"
 
-class PC;
-class Shade;
-class Drow;
-class Vampire;
-class Troll;
-class Goblin;
+#include "enemy.h"
+#include "PC.h"
+#include "Shade.h"
+#include "Drow.h"
+#include "Vampire.h"
+#include "Troll.h"
+#include "Goblin.h"
+#include "Gold.h"
 
 class Merchant: public Enemy {
 	bool isHostile;

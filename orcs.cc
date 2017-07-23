@@ -10,7 +10,7 @@ Orcs::Orcs(int row, int col, char sym, char prev, GameBoard* theBoard):
 	setdef(25);
 	setmaxhp(180);
 	setgold(0);
-	settype("Orcs")
+	settype("Orcs");
 }
 
 Orcs::~Orcs() {}
@@ -56,13 +56,13 @@ void Orcs::beAttacked(Drow &drow) {
 void Orcs::beAttacked(Vampire &vampire) {
 	int Orcs_hp = this->gethp();
 	int Orcs_def = this->getdef();
-	int vampire_atk = vampire.getatk();
+	int attacker_atk = vampire.getatk();
 	// Orcs is the defender
 	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
-	vampire.sethp(vampire.hp + hp_gained);
+	vampire.sethp(vampire.gethp() + hp_gained);
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
@@ -78,8 +78,6 @@ void Orcs::beAttacked(Troll &troll){
 	// Orcs is the defender
 	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
 	int Orcs_newhp = Orcs_hp - damagetaken;
-	int hp_regain = 5;
-	int troll_newhp = (troll.hp + hp_regain) > troll.maxhp ? troll.maxhp : troll.hp + hp_regain;
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
 		this->dead();
@@ -98,7 +96,7 @@ void Orcs::beAttacked(Goblin &goblin){
 	if(Orcs_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy
 		int goblin_goldgain = 5;
-		goblin.setgold(goblin.getgold += goblin_goldgain);
+		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
 		} else {

@@ -30,6 +30,7 @@ public:
 	void use(std::string direction);
 	void pickUp(std::string direction); 
 	void move(std::string direction);
+	bool isOnStair();
 };
 
 #endif

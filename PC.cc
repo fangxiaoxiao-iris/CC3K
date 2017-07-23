@@ -31,6 +31,13 @@ static void proper_move(PC &p, string index_nb, string index_p) {
 			} else {
 				cout << "You have to kill the Dragon first." << endl;
 			}
+		} else if ((p.neighbors[index_nb]).get_sym() == '\\') {
+			p.swapCoords(p.neighbors[index_nb]);
+			char p_prev_sym = p.get_prev();
+			p.setPrev(p.neighbors[index_nb]);
+			(p.neighbors[index_nb]).setSym(p_prev_sym);
+			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
+			p.notifyMove(index_nb);
 		} else {
 			cout << "Invalid direction. 
 			You are heading to a dead end." << endl;
@@ -113,4 +120,12 @@ void PC::use(string direction) {
 
 void PC::pickUp(string direction) {
 	neighbors[direction]->picked(*this);
+}
+
+bool PC::isOnStair() {
+	if (get_prev() == "\\") {
+		return true;
+	} else {
+		return false;
+	}
 }

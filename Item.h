@@ -1,11 +1,11 @@
 #ifndef ITEM_H
 #define ITEM_H
 #include <string>
-#include "Square.h"
+#include "square.h"
 
 class Item: public Square {
 	std::string itemType;
-	std::int itemValue;
+	int itemValue;
 public:
 	Item(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Item();
@@ -17,6 +17,6 @@ public:
 	//mutators:
 	void setItemType(std::string type);
 	void setItemValue(int value);
-}
+};
 
 #endif

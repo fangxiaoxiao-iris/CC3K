@@ -2,6 +2,16 @@
 #define VAMPIRE_H
 #include "PC.h"
 
+class GameBoard;
+class Enemy;
+class Dragon;
+class Human;
+class Dwarf;
+class Elf;
+class Halfling;
+class Orcs;
+class Merchant;
+
 class Vampire: public PC {
 	Vampire(int row, int col, char sym, char prev, GameBoard* theBoard); 
 	// defualt ctor

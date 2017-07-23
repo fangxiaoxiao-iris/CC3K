@@ -10,7 +10,7 @@ Dragon::Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold*
 	setdef(20);
 	setmaxhp(150);
 	setgold(0);
-	settype("Dragon")
+	settype("Dragon");
 }
 
 Dragon::~Dragon() {}
@@ -32,11 +32,9 @@ void Dragon::beAttacked(Shade &shade) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
-		hoard.setavailable(true);
+		hoard->setavailable(true);
 		} else {
-		this->setup(Dragon_newhp);
+		this->sethp(Dragon_newhp);
 	}
 }
 
@@ -50,11 +48,9 @@ void Dragon::beAttacked(Drow &drow) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
-		hoard.setavailable(true);
+		hoard->setavailable(true);
 		} else {
-		this->setup(Dragon_newhp);
+		this->sethp(Dragon_newhp);
 	}
 }
 
@@ -64,19 +60,17 @@ void Dragon::beAttacked(Vampire &vampire) {
 	int Dragon_def = this->getdef();
 	int vampire_atk = vampire.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
+	int damagetaken = ceil((100/(100+Dragon_def)) * vampire_atk);
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
-	vampire.sethp(vampire.hp + hp_gained);
+	vampire.sethp(vampire.gethp() + hp_gained);
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
-		hoard.setavailable(true);
+		hoard->setavailable(true);
 		} else {
-		this->setup(Dragon_newhp);
+		this->sethp(Dragon_newhp);
 	}
 }
 
@@ -87,16 +81,12 @@ void Dragon::beAttacked(Troll &troll){
 	// Dragon is the defender
 	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
 	int Dragon_newhp = Dragon_hp - damagetaken;
-	int hp_regain = 5;
-	int troll_newhp = (troll.hp + hp_regain) > troll.maxhp ? troll.maxhp : troll.hp + hp_regain;
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
-		hoard.setavailable(true);
+		hoard->setavailable(true);
 		} else {
-		this->setup(Dragon_newhp);
+		this->sethp(Dragon_newhp);
 	}
 }
 
@@ -110,14 +100,12 @@ void Dragon::beAttacked(Goblin &goblin){
 	if(Dragon_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy
 		int goblin_goldgain = 5;
-		goblin.setgold(goblin.getgold += goblin_goldgain);
+		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
-		this->setsym('.');
-		this->notifyBoard();
-		hoard.setavailable(true);
+		hoard->setavailable(true);
 		} else {
-		this->setup(Dragon_newhp);
+		this->sethp(Dragon_newhp);
 	}
 }
 
@@ -125,15 +113,15 @@ void Dragon::move() {
 	bool attacked = false;
 
 	for(auto n: neighbors) {
-		if(n->get_sym() == '@') {
-			attack(*n);
+		if(n.second->get_sym() == '@') {
+			n.second->beAttacked(*this);
 			attacked = true;
 		}
 	}
 	for(auto m: hoard->neighbors) {
-		if(m->get_sym() == '@') {
+		if(m.second->get_sym() == '@') {
 			if(attacked == false) {
-			attack(*n);
+			n.second->beAttacked(*this);
 			attacked = true;
 		}
 		}

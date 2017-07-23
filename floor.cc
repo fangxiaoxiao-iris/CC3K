@@ -1035,6 +1035,10 @@ int Floor::getScore() {
 	}
 }
 
+PC* Floor::getPC() {
+	return player;	
+}
+
 friend std::ostream &operator<<(std::ostream &out, const Floor &f) {
 	out << *f.Board;
 	return out;

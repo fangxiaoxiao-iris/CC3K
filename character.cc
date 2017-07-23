@@ -52,9 +52,9 @@ int Character::getmaxhp(){
 int Character::getgold(){
 	return this->gold;
 }
-int Character::gettype(){
+string Character::gettype(){
 	return this->type;
 }
 bool Character::isDead() {
-	return this->gethp <= 0;
+	return this->gethp() <= 0;
 }

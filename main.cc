@@ -1,7 +1,7 @@
 #include "floor.h"
 #include <fstream>
 
-int main() {
+int main(int argc, char* argv[]) {
 	string cmd;
 	string race;
 	string full_name;
@@ -42,11 +42,11 @@ int main() {
 	while (cin >> cmd) {
 		
 		cout << f;
-		cout << "Race: " << full_name << " Gold: " << f.player->getgold() <<
+		cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
 			"                                            " << "Floor " << f.getLevel() << endl;
-		cout << "HP: " << f.player->gethp() << endl;
-		cout << "Atk: " << f.player->getatk() << endl;
-		cout << "Def: " << f.player->getdef() << endl;
+		cout << "HP: " << f.getPC()->gethp() << endl;
+		cout << "Atk: " << f.getPC()->getatk() << endl;
+		cout << "Def: " << f.getPC()->getdef() << endl;
 		cout << "Action: "; 
 		
 		if(cmd == "no" || cmd == "so" || cmd == "ea" || cmd == "we"
@@ -91,7 +91,7 @@ int main() {
 			// f.restart();
 			cout << "restart to be implemented" << endl;
 			
-		} else if (command == "q") {
+		} else if (cmd == "q") {
 			
 			break;
 			

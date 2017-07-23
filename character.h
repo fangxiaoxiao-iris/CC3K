@@ -7,8 +7,6 @@
 
 using namespace std;
 
-class Square;
-
 class Character: public Square {
 protected:
 	int hp;
@@ -32,7 +30,7 @@ public:
 	int getatk();
 	int getdef();
 	int getmaxhp();
-	int getgold(int gold);
+	int getgold();
 	string gettype();
 	bool isDead();
 };

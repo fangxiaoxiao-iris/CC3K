@@ -2,15 +2,16 @@
 #define PC_H
 #include <vector>
 #include <string>
-#include "Character.h"
-#include "enemy.h"
-#include "dragon.h"
-#include "human.h"
-#include "dwarf.h"
-#include "elf.h"
-#include "halfling.h"
-#include "orcs.h"
-#include "merchant.h"
+#include "character.h"
+
+class Enemy;
+class Dragon;
+class Human;
+class Dwarf;
+class Elf;
+class Halfling;
+class Orcs;
+class Merchant;
 
 class PC: public Character {
 	std::vector<std::string> knownPotions;

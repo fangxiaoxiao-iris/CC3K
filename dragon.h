@@ -1,29 +1,34 @@
 #ifndef _DRAGON_H_
 #define _DRAGON_H_
 
-#include "character.h"
 #include "enemy.h"
+#include "PC.h"
+#include "Shade.h"
+#include "Drow.h"
+#include "Vampire.h"
+#include "Troll.h"
+#include "Goblin.h"
+#include "Gold.h"
 
-class Dragon: public Character {
+class Dragon: public Enemy {
 	Gold *hoard;
 public:
 	// default ctor
-	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard);
+	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold* hoard);
 	// dtor
 	~Dragon();
 
 	// method for attack
-	virtual void attack(PC &defender) override;
+	void attack(PC &defender) override;
 
 	// methods for beAttacked by PC 
 	// PC is the attacker and Dragon is the defender
-	virtual void beAttacked(Shade &shade) override;
-	virtual void beAttacked(Drow &drow) override;
-	virtual void beAttacked(Vampire &vampire) override;
-	virtual void beAttacked(Troll &troll) override;
-	virtual void beAttacked(Goblin &goblin) override;
+	void beAttacked(Shade &shade) override;
+	void beAttacked(Drow &drow) override;
+	void beAttacked(Vampire &vampire) override;
+	void beAttacked(Troll &troll) override;
+	void beAttacked(Goblin &goblin) override;
 	void move() override;
-    void dead() override;
 };
 
 #endif

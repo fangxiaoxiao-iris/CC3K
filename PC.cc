@@ -80,7 +80,7 @@ void PC::move(std::string direction) override {
 	}
 
 	for (auto nb: neighbors) {
-		if (nb->get_sym() == 'P') {
+		if (nb.second->get_sym() == 'P') {
 			string type = nb->getItemType();
 			bool known = false;
 			for (auto p: knownPotions) {

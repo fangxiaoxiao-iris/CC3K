@@ -2,12 +2,14 @@
 #define _ENEMY_H_
 
 #include "character.h"
-#include "square.h"
-#include "PC.h"
-#include "Shade.h"
-#include "Vampire.h"
-#include "Troll.h"
-#include "Goblin.h"
+
+class GameBoard;
+class PC;
+class Shade;
+class Drow;
+class Vampire;
+class Troll;
+class Goblin;
 
 class Enemy: public Character {
 public:

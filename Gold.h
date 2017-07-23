@@ -2,6 +2,7 @@
 #define GOLD_H
 #include <string>
 #include "Item.h"
+#include "PC.h"
 
 class Gold: public Item {
 	bool available;
@@ -12,6 +13,6 @@ public:
 	void picked(PC &P);
 	bool getavailable();
 	void setavailable(bool available);
-}
+};
 
 #endif

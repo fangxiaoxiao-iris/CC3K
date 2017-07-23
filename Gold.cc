@@ -19,7 +19,7 @@ void Gold::picked(PC &p) {
 	setSym('.');
 }
 
-bool getavailable() {
+bool Gold::getavailable() {
 	return available;
 }
 

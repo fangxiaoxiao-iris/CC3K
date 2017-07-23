@@ -1,6 +1,17 @@
 #ifndef DROW_H
 #define DROW_H
+
 #include "PC.h"
+
+class GameBoard;
+class Enemy;
+class Dragon;
+class Human;
+class Dwarf;
+class Elf;
+class Halfling;
+class Orcs;
+class Merchant;
 
 class Drow: public PC {
 public:

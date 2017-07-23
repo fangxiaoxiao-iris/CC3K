@@ -75,6 +75,7 @@ void Enemy::move(){
 }
 
 void Enemy::dead() override {
-	notifyBoard();
+	this->setSym('.');
+	this->notifyBoard();
 }
 

@@ -1,3 +1,3 @@
 struct Room {
-	std::vector<std::pair> pos;
+	std::vector<std::pair<int, int>> pos;
 };

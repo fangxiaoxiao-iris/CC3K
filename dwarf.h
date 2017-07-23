@@ -1,10 +1,16 @@
 #ifndef _DWARF_H_
 #define _DWARF_H_
 
-#include "character.h"
 #include "enemy.h"
 
-class Dwarf: public Character {
+class PC;
+class Shade;
+class Drow;
+class Vampire;
+class Troll;
+class Goblin;
+
+class Dwarf: public Enemy {
 public:
 	// default ctor
 	Dwarf(int row, int col, char sym, char prev, GameBoard* theBoard);
@@ -12,15 +18,15 @@ public:
 	~Dwarf();
 
 	// method for attack
-	virtual void attack(PC &defender) override;
+	void attack(PC &defender) override;
 
 	// methods for beAttacked by PC 
 	// PC is the attacker and dwarf is the defender
-	virtual void beAttacked(Shade &shade) override;
-	virtual void beAttacked(Drow &drow) override;
-	virtual void beAttacked(Vampire &vampire) override;
-	virtual void beAttacked(Troll &troll) override;
-	virtual void beAttacked(Goblin &goblin) override;
+	void beAttacked(Shade &shade) override;
+	void beAttacked(Drow &drow) override;
+	void beAttacked(Vampire &vampire) override;
+	void beAttacked(Troll &troll) override;
+	void beAttacked(Goblin &goblin) override;
 };
 
 #endif

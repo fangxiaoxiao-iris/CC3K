@@ -1,39 +1,24 @@
 #ifndef __FLOOR_H__
-#define __FLOOR_H_
+#define __FLOOR_H__
 
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <string>
 
-#include "character.h"
-#include "dragon.h"
-#include "Drow.h"
-#include "dwarf.h"
-#include "elf.h"
 #include "enemy.h"
-#include "floor.h"
 #include "gameboard.h"
-#include "Goblin.h"
 #include "Gold.h"
-#include "halfling.h"
-#include "human.h"
-#include "Item.h"
-#include "merchant.h"
-#include "orcs.h"
-#include "PC.h"
 #include "Potion.h"
 #include "room.h"
 #include "Shade.h"
 #include "square.h"
-#include "Troll.h"
-#include "Vampire.h"
+
 
 class Floor {
 	std::vector<vector<Square>> theFloor; 
 	
 	GameBoard* Board;
-	PC* player;
 	int level;
 	
 	// manage the floor
@@ -41,10 +26,12 @@ class Floor {
 	std::vector<Enemy> en_arr; // 20 enemies on a floor 
 	std::vector<Potion> po_arr; // 10 potions on a floor
 	std::vector<Gold> gold_arr; // 10 golds on a floor
+	std::vector<Room> theRoom;
 	
 	// any need to record the 5 rooms?
 	
 	std::string fname; // optional command line argument
+	PC* player;
 	
 public:
 	Floor();
@@ -82,6 +69,7 @@ public:
 	int getLevel();
 	int getScore();
 	
+	PC* getPC();
 	friend std::ostream &operator<<(std::ostream &out, const Floor &f);	
 };
 

@@ -1,4 +1,5 @@
 #include <string>
+#include <cmath>
 #include "Potion.h"
 using namespace std;
 
@@ -18,7 +19,7 @@ void Potion::used(PC &p) {
 	int p_max_hp = p.getmaxhp();
 	int p_update_hp, p_update_atk, p_update_def;
 
-	if (p.get_type() == "drow") {
+	if (p.gettype() == "drow") {
 		if (itemType == "RH") {
 			p_update_hp = ((p_cur_hp + 10*1.5) <= p_max_hp) ? 
 			(p_cur_hp + 10*1.5) : p_max_hp;
@@ -66,5 +67,5 @@ void Potion::used(PC &p) {
 	}
 
 	setSym('.');
-	notifyboard();
+	notifyBoard();
 }

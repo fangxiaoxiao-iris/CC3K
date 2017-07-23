@@ -2,6 +2,16 @@
 #define SHADE_H
 #include "PC.h"
 
+class GameBoard;
+class Enemy;
+class Dragon;
+class Human;
+class Dwarf;
+class Elf;
+class Halfling;
+class Orcs;
+class Merchant;
+
 class Shade: public PC {
 	int maxhp;
 public:

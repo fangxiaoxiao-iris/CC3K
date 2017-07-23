@@ -6,11 +6,28 @@
 #include <cstdlib>
 #include <string>
 
-#include "grid.h"
-// include nearly all the .h files :(
-
-
-
+#include "character.h"
+#include "dragon.h"
+#include "Drow.h"
+#include "dwarf.h"
+#include "elf.h"
+#include "enemy.h"
+#include "floor.h"
+#include "gameboard.h"
+#include "Goblin.h"
+#include "Gold.h"
+#include "halfling.h"
+#include "human.h"
+#include "Item.h"
+#include "merchant.h"
+#include "orcs.h"
+#include "PC.h"
+#include "Potion.h"
+#include "room.h"
+#include "Shade.h"
+#include "square.h"
+#include "Troll.h"
+#include "Vampire.h"
 
 class Floor {
 	std::vector<vector<Square>> theFloor; 
@@ -37,41 +54,32 @@ public:
 	bool GameWin();
 	void clearFloor();
 	
-	void init_no_file(std::string name); 
-	void init_file(std::string name);  // initialize the floor with the file
+	void init_no_file(std::string name, std::string race); 
+	void init_file(std::string name, std::string race);  // initialize the floor with the file
 	void restart();
-	void clear();
 	
 	// generate a series of things :(
 	
-	void make_player();
-	void make_stair();
+	int make_player();
+	void make_stair(int player_room);
 	void make_potion();
 	void make_gold();
 	void make_enemy();
 	
 	void pcMove(std::string direction);
 	void pcAtk(std::string direction);
-	
-	// use potion? pick up gold?
-	
-	
-	
-	
+	void pcUse(std::string direction);
+		
 	// mutators 
 	
 	void setFname(std::string name);
-	
-	
-	
+		
 	// accessors 
 	
 	int getLevel();
 	int getScore();
 	
-	friend std::ostream &operator<<(std::ostream &out, const Floor *f);
-	
-	
+	friend std::ostream &operator<<(std::ostream &out, const Floor &f);	
 };
 
 #endif 

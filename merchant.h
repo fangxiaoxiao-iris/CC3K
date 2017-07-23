@@ -2,6 +2,7 @@
 #define _MERCHANT_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Merchant: public Character {
 	bool isHostile;

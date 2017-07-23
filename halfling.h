@@ -2,6 +2,7 @@
 #define _HALFLING_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Halfling: public Character {
 public:

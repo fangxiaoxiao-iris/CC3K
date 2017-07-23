@@ -2,6 +2,12 @@
 #define _ENEMY_H_
 
 #include "character.h"
+#include "square.h"
+#include "PC.h"
+#include "Shade.h"
+#include "Vampire.h"
+#include "Troll.h"
+#include "Goblin.h"
 
 class Enemy: public Character {
 public:

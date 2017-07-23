@@ -2,6 +2,7 @@
 #define _HUMAN_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Human: public Character {
 public:

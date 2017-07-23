@@ -1,5 +1,4 @@
 #include "character.h"
-#include "square.h"
 
 using namespace std;
 

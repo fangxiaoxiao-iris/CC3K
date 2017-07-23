@@ -2,6 +2,7 @@
 #define _DRAGON_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Dragon: public Character {
 	Gold *hoard;

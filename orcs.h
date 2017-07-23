@@ -2,6 +2,7 @@
 #define _ORCS_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Orcs: public Character {
 public:

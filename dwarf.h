@@ -2,6 +2,7 @@
 #define _DWARF_H_
 
 #include "character.h"
+#include "enemy.h"
 
 class Dwarf: public Character {
 public:

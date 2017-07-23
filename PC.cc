@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include "Square.h"
 #include "PC.h"
 using namespace std;
 
@@ -12,39 +11,39 @@ Character(row, col, sym, prev, theBoard) {
 
 // change PC's coordinates and notify neighbors.
 static void proper_move(PC &p, string index_nb, string index_p) {
-	if (((p.neighbors[index_nb]).get_sym() == '.') || 
-		((p.neighbors[index_nb]).get_sym() == '#') || 
-		((p.neighbors[index_nb]).get_sym() == '+')) {
-			p.swapCoords(p.neighbors[index_nb]);
+	if (((p.getNeigh()[index_nb])->get_sym() == '.') || 
+		((p.getNeigh()[index_nb])->get_sym() == '#') || 
+		((p.getNeigh()[index_nb])->get_sym() == '+')) {
+			p.swapCoords(p.getNeigh()[index_nb]);
 			char p_prev_sym = p.get_prev();
-			p.setPrev(p.neighbors[index_nb]);
-			(p.neighbors[index_nb]).setSym(p_prev_sym);
-			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
+			p.setPrev(p.getNeigh()[index_nb]->get_sym());
+			(p.getNeigh()[index_nb])->setSym(p_prev_sym);
+			p.swapNeighbors(p.getNeigh()[index_nb], index_nb, index_p);
 			p.notifyMove(index_nb);
-		} else if ((p.neighbors[index_nb]).get_sym() == 'G') {
-			if ((p.neighbors[index_nb]).getavailable()) {
-				p.swapCoords(p.neighbors[index_nb]);
+		} else if ((p.getNeigh()[index_nb])->get_sym() == 'G') {
+			if ((p.getNeigh()[index_nb])->getavailable()) {
+				p.swapCoords(p.getNeigh()[index_nb]);
 				p.pickUp(index_nb);
-				p.setPrev((p.neighbors[index_nb]).get_sym());
-				p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
+				p.setPrev((p.getNeigh()[index_nb])->get_sym());
+				p.swapNeighbors(p.getNeigh()[index_nb], index_nb, index_p);
 				p.notifyMove(index_nb);
 			} else {
 				cout << "You have to kill the Dragon first." << endl;
 			}
-		} else if ((p.neighbors[index_nb]).get_sym() == '\\') {
-			p.swapCoords(p.neighbors[index_nb]);
+		} else if ((p.getNeigh()[index_nb])->get_sym() == '\\') {
+			p.swapCoords(p.getNeigh()[index_nb]);
 			char p_prev_sym = p.get_prev();
-			p.setPrev(p.neighbors[index_nb]);
-			(p.neighbors[index_nb]).setSym(p_prev_sym);
-			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
+			p.setPrev(p.getNeigh()[index_nb]->get_sym());
+			(p.getNeigh()[index_nb])->setSym(p_prev_sym);
+			p.swapNeighbors(p.getNeigh()[index_nb], index_nb, index_p);
 			p.notifyMove(index_nb);
 		} else {
-			cout << "Invalid direction. 
-			You are heading to a dead end." << endl;
+			cout << "Invalid direction. " <<
+			"You are heading to a dead end." << endl;
 		}
 }
 
-void PC::move(std::string direction) override {
+void PC::move(std::string direction) {
 	string type = gettype();
 	// Troll gains 5HP every move.
 	if (type == "Troll") {
@@ -74,14 +73,14 @@ void PC::move(std::string direction) override {
 //		c_update = c_coord-1;
 		proper_move(*this, "sw", "ne");
 	} else {
-		cout << "Invalid direction. Please choose a valid direction from 
-		no (North), so (South), ea (East), we (West), ne (Northeast), 
-		nw (Northwest), se (Southeast), sw (Southwest)" << endl;
+		cout << "Invalid direction. Please choose a valid direction from " <<
+		"no (North), so (South), ea (East), we (West), ne (Northeast), " <<
+		"nw (Northwest), se (Southeast), sw (Southwest)." << endl;
 	}
 
 	for (auto nb: neighbors) {
 		if (nb.second->get_sym() == 'P') {
-			string type = nb->getItemType();
+			string type = nb.second->gettype();
 			bool known = false;
 			for (auto p: knownPotions) {
 				if (p == type) {
@@ -113,8 +112,8 @@ void PC::use(string direction) {
 		neighbors[direction]->used(*this);
 		knownPotions.emplace_back(neighbors[direction]->getItemType());
 	} else {
-		cout << "No Potion available in this direction. 
-		Please enter a valid direction." << endl;
+		cout << "No Potion available in this direction. " <<
+		"Please enter a valid direction." << endl;
 	}
 }
 
@@ -123,7 +122,7 @@ void PC::pickUp(string direction) {
 }
 
 bool PC::isOnStair() {
-	if (get_prev() == "\\") {
+	if (get_prev() == '\\') {
 		return true;
 	} else {
 		return false;

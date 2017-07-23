@@ -2,6 +2,7 @@
 #define PC_H
 #include <vector>
 #include <string>
+#include "square.h"
 #include "character.h"
 
 class Enemy;

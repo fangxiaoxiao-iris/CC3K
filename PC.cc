@@ -20,13 +20,13 @@ static void proper_move(PC &p, string index_nb, string index_p) {
 			p.setPrev(p.neighbors[index_nb]);
 			(p.neighbors[index_nb]).setSym(p_prev_sym);
 			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
-			p.notifyBoard();
+			p.notifyMove(index_nb);
 		} else if ((p.neighbors[index_nb]).get_sym() == 'G') {
 			p.swapCoords(p.neighbors[index_nb]);
 			p.pickUp(index_nb);
 			p.setPrev((p.neighbors[index_nb]).get_sym());
 			p.swapNeighbors(p.neighbors[index_nb], index_nb, index_p);
-			p.notifyBoard();
+			p.notifyMove(index_nb);
 		} else {
 			cout << "Invalid direction. 
 			You are heading to a dead end." << endl;

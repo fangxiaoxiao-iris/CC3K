@@ -16,15 +16,15 @@
 
 
 class Floor {
-	std::vector<std::vector<Square>> theFloor; 
+	std::vector<std::vector<Square*>> theFloor; 
 	
 	GameBoard* Board;
 	int level;
 	
 	// manage the floor
 	
-	Enemy* en_arr[20]; // 20 enemies on a floor 
-	std::vector<Potion> po_arr; // 10 potions on a floor
+	std::vector<Enemy*> en_arr; // 20 enemies on a floor 
+	std::vector<Potion*> po_arr; // 10 potions on a floor
 	std::vector<Gold*> gold_arr; // 10 golds on a floor
 	std::vector<std::vector<std::pair<int,int>>> theRoom;
 	

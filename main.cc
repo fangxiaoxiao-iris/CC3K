@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 			if (move == true) {
 				f.enemyMove();	
 			}
-			
+			f.auto_attack(*(f.getPC()));
 			//check stair 
 			if (f.at_stair()) {
 				int HP_record = f.getPC()->gethp();

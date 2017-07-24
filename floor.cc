@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <memory>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ bool Floor::GameWin() {
 
 void Floor::clearFloor() {	
 	theFloor.clear();
-	//en_arr.clear();
+	en_arr.clear();
 	po_arr.clear();
 	gold_arr.clear();
 }
@@ -38,7 +39,7 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	//int HP_record = this->player->gethp();
 	this->clearFloor(); // clearFloor: remains player, level and fname
 
-	int en_count = 0;
+	//int en_count = 0;
 	// set fname field
 	this->fname = name;
 	
@@ -227,160 +228,182 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	// set theFloor field	
 	for (int i = 0; i < 25; i++) {
 		
-		vector<Square> square_arr;
+		vector<Square*> square_arr;
 		for (int j = 0; j < 79; j++) {
 			
 			char c = in_file[i][j];
 			// if we encounter special cases: num, letter
 			if (c == '@') {  // player character 
 				if (race == "s") {
-					Shade temp{i, j, '@', '.', gb};
+					Shade *temp = new Shade{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "d") {
-					Drow temp{i, j, '@', '.', gb};
+					//Drow temp{i, j, '@', '.', gb};
+					Drow *temp = new Drow{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "v") {
-					Vampire temp{i, j, '@', '.', gb};
+					//Vampire temp{i, j, '@', '.', gb};
+					Vampire *temp = new Vampire{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "g") {
-					Goblin temp{i, j, '@', '.', gb};
+					//Goblin temp{i, j, '@', '.', gb};
+					Goblin *temp = new Goblin{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else {
-					Troll temp{i, j, '@', '.', gb};
+					//Troll temp{i, j, '@', '.', gb};
+					Troll *temp = new Troll{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				}
 			} else if (c == 'H') {    // all types of enemies :(
 
-				Human temp{i, j, 'H', '.', gb};	
-				Human *ph;
-				ph = &temp;		
+				//Human temp{i, j, 'H', '.', gb};
+				Human *temp = new Human{i, j, 'H', '.', gb};
+				//Human *ph;
+				//ph = &temp;		
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(ph);
-				en_arr[en_count] = ph;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = ph;
+				//en_count ++;
 			} else if (c == 'W') {
-				Dwarf temp{i, j, 'W', '.', gb};	
-				Dwarf *pd;
-				pd = &temp;	
+				//Dwarf temp{i, j, 'W', '.', gb};	
+				Dwarf *temp = new Dwarf{i, j, 'W', '.', gb};
+				//Dwarf *pd;
+				//pd = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(pd);
-				en_arr[en_count] = pd;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pd;
+				//en_count ++;
 			} else if (c == 'E') {
-				Elf temp{i, j, 'E', '.', gb};
-				Elf *pe;
-				pe = &temp;	
+				//Elf temp{i, j, 'E', '.', gb};
+				Elf *temp = new Elf{i, j, 'E', '.', gb};
+				//Elf *pe;
+				//pe = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(pe);
-				en_arr[en_count] = pe;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pe;
+				//en_count ++;
 			} else if (c == 'O') {
 
-				Orcs temp{i, j, 'O', '.', gb};
-				Orcs *po;
-				po = &temp;	
+				//Orcs temp{i, j, 'O', '.', gb};
+				Orcs *temp = new Orcs{i, j, 'O', '.', gb};
+				//Orcs *po;
+				//po = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(po);
-				en_arr[en_count] = po;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = po;
+				//en_count ++;
 			} else if (c == 'M') {
-				Merchant temp{i, j, 'M', '.', gb};	
-				Merchant *pm;
-				pm = &temp;	
+				//Merchant temp{i, j, 'M', '.', gb};	
+				Merchant *temp = new Merchant{i, j, 'M', '.', gb};
+				//Merchant *pm;
+				//pm = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(pm);
-				en_arr[en_count] = pm;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pm;
+				//en_count ++;
 			} else if (c == 'D') {
-				Dragon temp{i, j, 'D', '.', gb};
-				Dragon *pdr;
-				pdr = &temp;	
+				//Dragon temp{i, j, 'D', '.', gb};
+				Dragon *temp = new Dragon{i, j, 'D', '.', gb};
+				//Dragon *pdr;
+				//pdr = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(pdr);
-				en_arr[en_count] = pdr;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pdr;
+				//en_count ++;
 			} else if (c == 'L') {
-				Halfling temp{i, j, 'L', '.', gb};
-				Halfling *pha;
-				pha = &temp;	
+				//Halfling temp{i, j, 'L', '.', gb};
+				Halfling *temp = new Halfling{i, j, 'L', '.', gb};
+				//Halfling *pha;
+				//pha = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.push_back(pha);
-				en_arr[en_count] = pha;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pha;
+				//en_count ++;
 			} else if (c == '0') {   // Potion: RH
-				Potion temp{i, j, 'P', '.', gb, "RH"};			
+				//Potion temp{i, j, 'P', '.', gb, "RH"};	
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "RH"};	
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '1') {  // Potion: BA
-				Potion temp{i, j, 'P', '.', gb, "BA"};
-				square_arr.emplace_back(temp);	
+				//Potion temp{i, j, 'P', '.', gb, "BA"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "BA"};	
+				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '2') { // Potion: BD
-				Potion temp{i, j, 'P', '.', gb, "BD"};			
+				//Potion temp{i, j, 'P', '.', gb, "BD"};			
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "BD"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '3') { // Potion: PH
-				Potion temp{i, j, 'P', '.', gb, "PH"};
+				//Potion temp{i, j, 'P', '.', gb, "PH"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "PH"};	
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '4') { // Potion: WA
-				Potion temp{i, j, 'P', '.', gb, "WA"};
+				//Potion temp{i, j, 'P', '.', gb, "WA"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "WA"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '5') { // Potion: WD
-				Potion temp{i, j, 'P', '.', gb, "WD"};
+				//Potion temp{i, j, 'P', '.', gb, "WD"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "WD"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '6') { // normal gold pile
-				Gold temp{i, j, 'G', '.', gb, "normal", 2, true};
+				//Gold temp{i, j, 'G', '.', gb, "normal", 2, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "normal", 2, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '7') { // small hoard 
-				Gold temp{i, j, 'G', '.', gb, "small", 1, true};
+				//Gold temp{i, j, 'G', '.', gb, "small", 1, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "small", 1, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '8') { // merchant hoard
-				Gold temp{i, j, 'G', '.', gb, "merchant_h", 4, true};
+				//Gold temp{i, j, 'G', '.', gb, "merchant_h", 4, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "merchant_h", 4, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '9') { // dragon hoard 
-				Gold temp{i, j, 'G', '.', gb, "dragon_h", 6, false};	
+				//Gold temp{i, j, 'G', '.', gb, "dragon_h", 6, false};	
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "dragon_h", 6, false};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else { // other stuff: wall, doorway, floor tile, passage
-				Square temp{i, j, c, '.', gb};
+				Square *temp = new Square{i, j, c, c, gb};
+				//Square temp{i, j, c, '.', gb};
 				square_arr.emplace_back(temp);				
 			}			 
 		}		
 		this->theFloor.emplace_back(square_arr);
 		cout << "--------------------" << endl;
 		cout << "inside bracket" << endl;
-		for (int i = 0; i < en_count; ++i) {
+		for (int i = 0; i < en_arr.size(); ++i) {
 			int r = this->en_arr[i]->get_row();
 			int c = this->en_arr[i]->get_col();
 			cout << r << " " << c << endl;
@@ -399,54 +422,55 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	for (int i = 0; i < 25; i++) {
 		for (int j = 0; j < 79; j++) {
 			if (i - 1 >= 0) {
-				this->theFloor[i][j].attach("no", &this->theFloor[i - 1][j]);
+				this->theFloor[i][j]->attach("no", this->theFloor[i - 1][j]);
 			}
 			
 			if (i + 1 < 25) {
-				this->theFloor[i][j].attach("so", &this->theFloor[i + 1][j]);
+				this->theFloor[i][j]->attach("so", this->theFloor[i + 1][j]);
 			}
 			
 			if (j - 1 >= 0) {
-				this->theFloor[i][j].attach("we", &this->theFloor[i][j - 1]);
+				this->theFloor[i][j]->attach("we", this->theFloor[i][j - 1]);
 			}
 			
 			if (j + 1 < 79) {
-				this->theFloor[i][j].attach("ea", &this->theFloor[i][j + 1]);
+				this->theFloor[i][j]->attach("ea", this->theFloor[i][j + 1]);
 			}
 			
 			// that's not enough, adjacent 8 squares
 			
 			if (i - 1 >= 0 && j - 1 >= 0) {
-				this->theFloor[i][j].attach("nw", &this->theFloor[i - 1][j - 1]);
+				this->theFloor[i][j]->attach("nw", this->theFloor[i - 1][j - 1]);
 			}
 			
 			if (i + 1 < 25 && j + 1 < 79) {
-				this->theFloor[i][j].attach("se", &this->theFloor[i + 1][j + 1]);
+				this->theFloor[i][j]->attach("se", this->theFloor[i + 1][j + 1]);
 			}
 			
 			if (i - 1 >= 0 && j + 1 < 79) {
-				this->theFloor[i][j].attach("ne", &this->theFloor[i - 1][j + 1]);
+				this->theFloor[i][j]->attach("ne", this->theFloor[i - 1][j + 1]);
 			}
 			
 			if (i + 1 < 25 && j - 1 >= 0) {
-				this->theFloor[i][j].attach("sw", &this->theFloor[i + 1][j - 1]);
+				this->theFloor[i][j]->attach("sw", this->theFloor[i + 1][j - 1]);
 			}
 		}
 	}
 		
 	// set player neighbors
-	this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()].getNeigh());	
+	//this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
 	// remain the HP of the player
 	
 	// set potion neighbors
+	/*
 	for (int i = 0; i < 10; i++) {
-		this->po_arr[i].setNeigh(theFloor[this->po_arr[i].get_row()][this->po_arr[i].get_col()].getNeigh());
+		this->po_arr[i].setNeigh(theFloor[this->po_arr[i].get_row()][this->po_arr[i].get_col()]->getNeigh());
 	}
 	
 	// set enemy neighbors
 	for (int i = 0; i < 20; i++) {
-		this->en_arr[i]->setNeigh(theFloor[this->en_arr[i]->get_row()][this->en_arr[i]->get_col()].getNeigh());
-	}
+		this->en_arr[i]->setNeigh(theFloor[this->en_arr[i]->get_row()][this->en_arr[i]->get_col()]->getNeigh());
+	}*/
 }
 
 
@@ -455,7 +479,7 @@ void Floor::init_file(string name, string race) {
 	this->clearFloor();
 	
 	// set the size of the en_arr
-	int en_count = 0;
+	//int en_count = 0;
 	
 	// set fname field
 	this->fname = name;
@@ -472,7 +496,7 @@ void Floor::init_file(string name, string race) {
 	
 	for (int i = 0; i < 25; i++) {
 		
-		vector<Square> square_arr;
+		vector<Square*> square_arr;
 		string line;
 		getline(file, line);
 		
@@ -483,147 +507,171 @@ void Floor::init_file(string name, string race) {
 			if (c == '@') {  // player character 
 				
 				if (race == "s") {
-					Shade temp{i, j, '@', '.', gb};
+					Shade *temp = new Shade{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "d") {
-					Drow temp{i, j, '@', '.', gb};
+					//Drow temp{i, j, '@', '.', gb};
+					Drow *temp = new Drow{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "v") {
-					Vampire temp{i, j, '@', '.', gb};
+					//Vampire temp{i, j, '@', '.', gb};
+					Vampire *temp = new Vampire{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				} else if (race == "g") {
-					Goblin temp{i, j, '@', '.', gb};
+					//Goblin temp{i, j, '@', '.', gb};
+					Goblin *temp = new Goblin{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
-				} else if (race == "t") {
-					Troll temp{i, j, '@', '.', gb};
+				} else {
+					//Troll temp{i, j, '@', '.', gb};
+					Troll *temp = new Troll{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
-					PC* p = &temp;
+					PC* p = temp;
 					this->player = p;
 					
 				}
 			} else if (c == 'H') {    // all types of enemies :(
-				Human temp{i, j, 'H', '.', gb};	
-				Human *ph;
-				ph = &temp;		
+
+				//Human temp{i, j, 'H', '.', gb};
+				Human *temp = new Human{i, j, 'H', '.', gb};
+				//Human *ph;
+				//ph = &temp;		
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(ph);
-				en_arr[en_count] = ph;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = ph;
+				//en_count ++;
 			} else if (c == 'W') {
-				Dwarf temp{i, j, 'W', '.', gb};	
-				Dwarf *pd;
-				pd = &temp;	
+				//Dwarf temp{i, j, 'W', '.', gb};	
+				Dwarf *temp = new Dwarf{i, j, 'W', '.', gb};
+				//Dwarf *pd;
+				//pd = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(pd);
-				en_arr[en_count] = pd;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pd;
+				//en_count ++;
 			} else if (c == 'E') {
-				Elf temp{i, j, 'E', '.', gb};
-				Elf *pe;
-				pe = &temp;	
+				//Elf temp{i, j, 'E', '.', gb};
+				Elf *temp = new Elf{i, j, 'E', '.', gb};
+				//Elf *pe;
+				//pe = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(pe);
-				en_arr[en_count] = pe;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pe;
+				//en_count ++;
 			} else if (c == 'O') {
-				Orcs temp{i, j, 'O', '.', gb};
-				Orcs *po;
-				po = &temp;	
+
+				//Orcs temp{i, j, 'O', '.', gb};
+				Orcs *temp = new Orcs{i, j, 'O', '.', gb};
+				//Orcs *po;
+				//po = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(po);
-				en_arr[en_count] = po;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = po;
+				//en_count ++;
 			} else if (c == 'M') {
-				Merchant temp{i, j, 'M', '.', gb};	
-				Merchant *pm;
-				pm = &temp;	
+				//Merchant temp{i, j, 'M', '.', gb};	
+				Merchant *temp = new Merchant{i, j, 'M', '.', gb};
+				//Merchant *pm;
+				//pm = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(pm);
-				en_arr[en_count] = pm;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pm;
+				//en_count ++;
 			} else if (c == 'D') {
-				Dragon temp{i, j, 'D', '.', gb};
-				Dragon *pdr;
-				pdr = &temp;	
+				//Dragon temp{i, j, 'D', '.', gb};
+				Dragon *temp = new Dragon{i, j, 'D', '.', gb};
+				//Dragon *pdr;
+				//pdr = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(pdr);
-				en_arr[en_count] = pdr;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pdr;
+				//en_count ++;
 			} else if (c == 'L') {
-				Halfling temp{i, j, 'L', '.', gb};
-				Halfling *pha;
-				pha = &temp;	
+				//Halfling temp{i, j, 'L', '.', gb};
+				Halfling *temp = new Halfling{i, j, 'L', '.', gb};
+				//Halfling *pha;
+				//pha = &temp;	
 				square_arr.emplace_back(temp);
-				//en_arr.emplace_back(pha);
-				en_arr[en_count] = pha;
-				en_count ++;
+				en_arr.push_back(temp);
+				//en_arr[en_count] = pha;
+				//en_count ++;
 			} else if (c == '0') {   // Potion: RH
-				Potion temp{i, j, 'P', '.', gb, "RH"};			
+				//Potion temp{i, j, 'P', '.', gb, "RH"};	
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "RH"};	
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '1') {  // Potion: BA
-				Potion temp{i, j, 'P', '.', gb, "BA"};
-				square_arr.emplace_back(temp);	
+				//Potion temp{i, j, 'P', '.', gb, "BA"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "BA"};	
+				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '2') { // Potion: BD
-				Potion temp{i, j, 'P', '.', gb, "BD"};			
+				//Potion temp{i, j, 'P', '.', gb, "BD"};			
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "BD"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '3') { // Potion: PH
-				Potion temp{i, j, 'P', '.', gb, "PH"};
+				//Potion temp{i, j, 'P', '.', gb, "PH"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "PH"};	
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '4') { // Potion: WA
-				Potion temp{i, j, 'P', '.', gb, "WA"};
+				//Potion temp{i, j, 'P', '.', gb, "WA"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "WA"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '5') { // Potion: WD
-				Potion temp{i, j, 'P', '.', gb, "WD"};
+				//Potion temp{i, j, 'P', '.', gb, "WD"};
+				Potion *temp = new Potion{i, j, 'P', '.', gb, "WD"};		
 				square_arr.emplace_back(temp);
 				po_arr.emplace_back(temp);
 			} else if (c == '6') { // normal gold pile
-				Gold temp{i, j, 'G', '.', gb, "normal", 2, true};
+				//Gold temp{i, j, 'G', '.', gb, "normal", 2, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "normal", 2, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '7') { // small hoard 
-				Gold temp{i, j, 'G', '.', gb, "small", 1, true};
+				//Gold temp{i, j, 'G', '.', gb, "small", 1, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "small", 1, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '8') { // merchant hoard
-				Gold temp{i, j, 'G', '.', gb, "merchant_h", 4, true};
+				//Gold temp{i, j, 'G', '.', gb, "merchant_h", 4, true};
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "merchant_h", 4, true};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else if (c == '9') { // dragon hoard 
-				Gold temp{i, j, 'G', '.', gb, "dragon_h", 6, false};	
+				//Gold temp{i, j, 'G', '.', gb, "dragon_h", 6, false};	
+				Gold *temp = new Gold{i, j, 'G', '.', gb, "dragon_h", 6, false};
 				square_arr.emplace_back(temp);
-				gold_arr.emplace_back(&temp);
+				gold_arr.emplace_back(temp);
 			} else { // other stuff: wall, doorway, floor tile, passage
-				Square temp{i, j, c, '.', gb};
+				Square *temp = new Square{i, j, c, c, gb};
+				//Square temp{i, j, c, '.', gb};
 				square_arr.emplace_back(temp);				
 			}			 
-		}		
+		}			
 		this->theFloor.emplace_back(square_arr);
 	}	
 	
@@ -631,42 +679,42 @@ void Floor::init_file(string name, string race) {
 	for (int i = 0; i < 25; i++) {
 		for (int j = 0; j < 79; j++) {
 			if (i - 1 >= 0) {
-				this->theFloor[i][j].attach("no", &this->theFloor[i - 1][j]);
+				this->theFloor[i][j]->attach("no", this->theFloor[i - 1][j]);
 			}
 			
 			if (i + 1 < 25) {
-				this->theFloor[i][j].attach("so", &this->theFloor[i + 1][j]);
+				this->theFloor[i][j]->attach("so", this->theFloor[i + 1][j]);
 			}
 			
 			if (j - 1 >= 0) {
-				this->theFloor[i][j].attach("we", &this->theFloor[i][j - 1]);
+				this->theFloor[i][j]->attach("we", this->theFloor[i][j - 1]);
 			}
 			
 			if (j + 1 < 79) {
-				this->theFloor[i][j].attach("ea", &this->theFloor[i][j + 1]);
+				this->theFloor[i][j]->attach("ea", this->theFloor[i][j + 1]);
 			}
 			
 			// that's not enough, adjacent 8 squares
 			
 			if (i - 1 >= 0 && j - 1 >= 0) {
-				this->theFloor[i][j].attach("nw", &this->theFloor[i - 1][j - 1]);
+				this->theFloor[i][j]->attach("nw", this->theFloor[i - 1][j - 1]);
 			}
 			
 			if (i + 1 < 25 && j + 1 < 79) {
-				this->theFloor[i][j].attach("se", &this->theFloor[i + 1][j + 1]);
+				this->theFloor[i][j]->attach("se", this->theFloor[i + 1][j + 1]);
 			}
 			
 			if (i - 1 >= 0 && j + 1 < 79) {
-				this->theFloor[i][j].attach("ne", &this->theFloor[i - 1][j + 1]);
+				this->theFloor[i][j]->attach("ne", this->theFloor[i - 1][j + 1]);
 			}
 			
 			if (i + 1 < 25 && j - 1 >= 0) {
-				this->theFloor[i][j].attach("sw", &this->theFloor[i + 1][j - 1]);
+				this->theFloor[i][j]->attach("sw", this->theFloor[i + 1][j - 1]);
 			}
 		}
 	}
 	// set player neighbors
-	this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()].getNeigh());	
+	this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
 	// remain the HP of the player
 
 }
@@ -777,8 +825,8 @@ void Floor::pcMove(string direction) {
 			int col = nb.second->get_col();
 			string pType;
 			for (auto p: this->po_arr) {
-				if (p.get_row() == row && p.get_col() == col) {
-					pType = p.getItemType();
+				if (p->get_row() == row && p->get_col() == col) {
+					pType = p->getItemType();
 				}
 			}
 			
@@ -821,7 +869,7 @@ void Floor::pcAtk(string direction) {
 	(this->player->getNeigh()[direction]->get_sym() == 'L')) {
 		int row = this->player->getNeigh()[direction]->get_row();
 		int col = this->player->getNeigh()[direction]->get_col();
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < en_arr.size(); i++) {
 			if (row == this->en_arr[i]->get_row() && col == this->en_arr[i]->get_col()) {
 				this->player->attack(*this->en_arr[i]);
 				break;
@@ -841,14 +889,14 @@ void Floor::pcUse(string direction) {
 		cout << row << " " << col << endl;
 		cout << po_arr.size() << endl;
 		for (int i = 0; i < this->po_arr.size(); i++) {
-			int r = this->po_arr[i].get_row();
-			int c = this->po_arr[i].get_col();
+			int r = this->po_arr[i]->get_row();
+			int c = this->po_arr[i]->get_col();
 			cout << r << " " << c << endl;
-			if (row == this->po_arr[i].get_row() && col == this->po_arr[i].get_col()) {
+			if (row == this->po_arr[i]->get_row() && col == this->po_arr[i]->get_col()) {
 				cout << "if" << endl;
-				this->player->use((this->po_arr[i]));
-				this->player->getNeigh()[direction]->setSym('.');
-				this->player->setKnownPotions(this->po_arr[i].getItemType());
+				this->player->use(*(this->po_arr[i]));
+				//this->player->getNeigh()[direction]->setSym('.');
+				this->player->setKnownPotions(this->po_arr[i]->getItemType());
 				break;
 			}
 		}
@@ -861,7 +909,7 @@ void Floor::pcUse(string direction) {
 void Floor::enemyMove() {
 	//int size = this->en_arr.size();
 	
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < en_arr.size(); i++) {
 		//cout << "enemove" << endl;
 		if (!en_arr[i]->isDead()) {
 			this->en_arr[i]->move();
@@ -888,7 +936,7 @@ bool Floor::at_stair() {
 }
 
 void Floor::auto_attack(PC& player) {
-	for (int i = 0; i < 20; ++i) {
+	for (int i = 0; i < en_arr.size(); ++i) {
 		if (!en_arr[i]->isDead()) {
 			en_arr[i]->attack(player);
 		}

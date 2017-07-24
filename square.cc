@@ -84,10 +84,18 @@ void Square::swapCoords(Square *neighbor){
 //swap the neighbors of the Character and the neighbors of the position
 //that it is moving towards.
 void Square::swapNeighbors(Square *neighbor, string pos_nb, string pos_self){
-	Square *temp = neighbors[pos_nb];
-	neighbors[pos_nb] = this;
+	Square *temp = this->neighbors[pos_nb];
+	this->neighbors[pos_nb] = this;
 	neighbor->neighbors[pos_self] = temp;
 	swap(neighbors, neighbor->neighbors);
+	/*
+	for(auto nb: this->neighbors) {
+		cout << nb.first << " " << nb.second->get_sym() << endl;
+	}
+	for(auto nb: neighbor->neighbors) {
+		cout << nb.first << " " << nb.second->get_sym() << endl;
+	}
+	*/
 }
 
 

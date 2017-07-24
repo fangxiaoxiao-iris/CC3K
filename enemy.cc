@@ -11,11 +11,8 @@ Enemy::~Enemy() {}
 static void proper_move(Enemy &e, string index_nb, string index_p) {
 	if(((e.getNeigh())[index_nb]->get_sym() == '.')) {
 			e.swapCoords((e.getNeigh())[index_nb]);
-			char e_prev_sym = e.get_prev();
-			e.setPrev('.');
-			((e.getNeigh())[index_nb])->setSym(e_prev_sym);
-			e.swapNeighbors((e.getNeigh())[index_nb], index_nb, index_p);
 			e.notifyMove(index_nb);
+			e.swapNeighbors((e.getNeigh())[index_nb], index_nb, index_p);
 	}
 } 
 
@@ -32,8 +29,11 @@ void Enemy::move() {
 	bool propermove = false;
 	bool stationary = true;
 	string randDirec;
+	
+	cout << neighbors.size() << endl;
 
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
+		//cout << "iammoving" << endl;
 		if(n.second->get_sym() == '.') {
 			stationary = false;
 		}

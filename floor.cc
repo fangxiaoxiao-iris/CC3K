@@ -28,7 +28,7 @@ bool Floor::GameWin() {
 
 void Floor::clearFloor() {	
 	theFloor.clear();
-	en_arr.clear();
+	//en_arr.clear();
 	po_arr.clear();
 	gold_arr.clear();
 }
@@ -36,9 +36,9 @@ void Floor::clearFloor() {
 void Floor::init_no_file(string name, string race) {  // parameter name is always the default name
 	// record the HP of player in this game
 	//int HP_record = this->player->gethp();
-		
 	this->clearFloor(); // clearFloor: remains player, level and fname
 
+	int en_count = 0;
 	// set fname field
 	this->fname = name;
 	
@@ -226,6 +226,7 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 
 	// set theFloor field	
 	for (int i = 0; i < 25; i++) {
+		
 		vector<Square> square_arr;
 		for (int j = 0; j < 79; j++) {
 			
@@ -264,7 +265,7 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 					PC* p = &temp;
 					this->player = p;
 					
-				} else if (race == "t") {
+				} else {
 					Troll temp{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
@@ -274,33 +275,63 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 					
 				}
 			} else if (c == 'H') {    // all types of enemies :(
-				Human temp{i, j, 'H', '.', gb};				
+
+				Human temp{i, j, 'H', '.', gb};	
+				Human *ph;
+				ph = &temp;		
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(ph);
+				en_arr[en_count] = ph;
+				en_count ++;
 			} else if (c == 'W') {
 				Dwarf temp{i, j, 'W', '.', gb};	
+				Dwarf *pd;
+				pd = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(pd);
+				en_arr[en_count] = pd;
+				en_count ++;
 			} else if (c == 'E') {
 				Elf temp{i, j, 'E', '.', gb};
+				Elf *pe;
+				pe = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(pe);
+				en_arr[en_count] = pe;
+				en_count ++;
 			} else if (c == 'O') {
+
 				Orcs temp{i, j, 'O', '.', gb};
+				Orcs *po;
+				po = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(po);
+				en_arr[en_count] = po;
+				en_count ++;
 			} else if (c == 'M') {
 				Merchant temp{i, j, 'M', '.', gb};	
+				Merchant *pm;
+				pm = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(pm);
+				en_arr[en_count] = pm;
+				en_count ++;
 			} else if (c == 'D') {
 				Dragon temp{i, j, 'D', '.', gb};
+				Dragon *pdr;
+				pdr = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(pdr);
+				en_arr[en_count] = pdr;
+				en_count ++;
 			} else if (c == 'L') {
-				Halfling temp{i, j, 'L', '.', gb};	
+				Halfling temp{i, j, 'L', '.', gb};
+				Halfling *pha;
+				pha = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.push_back(pha);
+				en_arr[en_count] = pha;
+				en_count ++;
 			} else if (c == '0') {   // Potion: RH
 				Potion temp{i, j, 'P', '.', gb, "RH"};			
 				square_arr.emplace_back(temp);
@@ -347,12 +378,23 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 			}			 
 		}		
 		this->theFloor.emplace_back(square_arr);
+		cout << "--------------------" << endl;
+		cout << "inside bracket" << endl;
+		for (int i = 0; i < en_count; ++i) {
+			int r = this->en_arr[i]->get_row();
+			int c = this->en_arr[i]->get_col();
+			cout << r << " " << c << endl;
+		}
+		cout << "end bracket" << endl;
+		cout << "---------------------" << endl;
 	}
-	for (int i = 0; i < po_arr.size(); ++i) {
-		int r = this->po_arr[i].get_row();
-		int c = this->po_arr[i].get_col();
+	/*cout << "------------------" << endl;
+	for (int i = 0; i < en_arr.size(); ++i) {
+		int r = this->en_arr[i]->get_row();
+		int c = this->en_arr[i]->get_col();
 		cout << r << " " << c << endl;
-	}
+	}*/
+	
 	// attach neighbors 
 	for (int i = 0; i < 25; i++) {
 		for (int j = 0; j < 79; j++) {
@@ -400,15 +442,20 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	for (int i = 0; i < 10; i++) {
 		this->po_arr[i].setNeigh(theFloor[this->po_arr[i].get_row()][this->po_arr[i].get_col()].getNeigh());
 	}
+	
+	// set enemy neighbors
+	for (int i = 0; i < 20; i++) {
+		this->en_arr[i]->setNeigh(theFloor[this->en_arr[i]->get_row()][this->en_arr[i]->get_col()].getNeigh());
+	}
 }
 
 
 void Floor::init_file(string name, string race) {
 	
-	// record the HP of player in this game
-	//int HP_record = this->player->gethp();
-	
 	this->clearFloor();
+	
+	// set the size of the en_arr
+	int en_count = 0;
 	
 	// set fname field
 	this->fname = name;
@@ -477,33 +524,61 @@ void Floor::init_file(string name, string race) {
 					
 				}
 			} else if (c == 'H') {    // all types of enemies :(
-				Human temp{i, j, 'H', '.', gb};				
+				Human temp{i, j, 'H', '.', gb};	
+				Human *ph;
+				ph = &temp;		
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(ph);
+				en_arr[en_count] = ph;
+				en_count ++;
 			} else if (c == 'W') {
 				Dwarf temp{i, j, 'W', '.', gb};	
+				Dwarf *pd;
+				pd = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(pd);
+				en_arr[en_count] = pd;
+				en_count ++;
 			} else if (c == 'E') {
 				Elf temp{i, j, 'E', '.', gb};
+				Elf *pe;
+				pe = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(pe);
+				en_arr[en_count] = pe;
+				en_count ++;
 			} else if (c == 'O') {
 				Orcs temp{i, j, 'O', '.', gb};
+				Orcs *po;
+				po = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(po);
+				en_arr[en_count] = po;
+				en_count ++;
 			} else if (c == 'M') {
 				Merchant temp{i, j, 'M', '.', gb};	
+				Merchant *pm;
+				pm = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(pm);
+				en_arr[en_count] = pm;
+				en_count ++;
 			} else if (c == 'D') {
 				Dragon temp{i, j, 'D', '.', gb};
+				Dragon *pdr;
+				pdr = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(pdr);
+				en_arr[en_count] = pdr;
+				en_count ++;
 			} else if (c == 'L') {
-				Halfling temp{i, j, 'L', '.', gb};	
+				Halfling temp{i, j, 'L', '.', gb};
+				Halfling *pha;
+				pha = &temp;	
 				square_arr.emplace_back(temp);
-				en_arr.emplace_back(&temp);
+				//en_arr.emplace_back(pha);
+				en_arr[en_count] = pha;
+				en_count ++;
 			} else if (c == '0') {   // Potion: RH
 				Potion temp{i, j, 'P', '.', gb, "RH"};			
 				square_arr.emplace_back(temp);
@@ -746,7 +821,7 @@ void Floor::pcAtk(string direction) {
 	(this->player->getNeigh()[direction]->get_sym() == 'L')) {
 		int row = this->player->getNeigh()[direction]->get_row();
 		int col = this->player->getNeigh()[direction]->get_col();
-		for (int i = 0; i < this->en_arr.size(); i++) {
+		for (int i = 0; i < 20; i++) {
 			if (row == this->en_arr[i]->get_row() && col == this->en_arr[i]->get_col()) {
 				this->player->attack(*this->en_arr[i]);
 				break;
@@ -784,10 +859,14 @@ void Floor::pcUse(string direction) {
 }
 
 void Floor::enemyMove() {
-	int size = this->en_arr.size();
+	//int size = this->en_arr.size();
 	
-	for (int i = 0; i < size; i++) {
-		this->en_arr[i]->move();
+	for (int i = 0; i < 20; i++) {
+		//cout << "enemove" << endl;
+		if (!en_arr[i]->isDead()) {
+			this->en_arr[i]->move();
+		}
+		//cout << "movvv" << endl;
 	}
 }
 
@@ -809,8 +888,10 @@ bool Floor::at_stair() {
 }
 
 void Floor::auto_attack(PC& player) {
-	for (int i = 0; i < this->en_arr.size(); ++i) {
-		en_arr[i]->attack(player);
+	for (int i = 0; i < 20; ++i) {
+		if (!en_arr[i]->isDead()) {
+			en_arr[i]->attack(player);
+		}
 	}
 }
 

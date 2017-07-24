@@ -2,12 +2,13 @@
 #define __GAMEBOARD_H__
 #include <vector>
 #include <iostream>
+#include "square.h"
 
 extern int width;
 extern int height;
 
 
-class Square;
+
 
 class GameBoard {
 	std::vector<std::vector<char>> theGameBoard;

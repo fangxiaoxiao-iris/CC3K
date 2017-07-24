@@ -13,6 +13,8 @@ class Elf;
 class Halfling;
 class Orcs;
 class Merchant;
+class Gold;
+class Potion;
 
 class PC: public Character {
 	std::vector<std::string> knownPotions;
@@ -20,7 +22,8 @@ class PC: public Character {
 public:
 	PC(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~PC();
-	void setKnownPotions(std::string pName); 
+	std::vector<std::string> &getKnownPotions();
+	void setKnownPotions(std::string pName);
 	virtual void attack(Enemy &e) = 0;
 	virtual void beAttacked(Human &hu) = 0;
 	virtual void beAttacked(Dwarf &dw) = 0;
@@ -29,8 +32,9 @@ public:
 	virtual void beAttacked(Halfling &ha) = 0;
 	virtual void beAttacked(Orcs &o) = 0;
 	virtual void beAttacked(Merchant &m) = 0;
-	void use(std::string direction);
-	void pickUp(std::string direction); 
+	void use(Potion &p);
+	void pickUp(Gold &g); 
+	void proper_move(std::string index_nb, std::string index_p);
 	void move(std::string direction);
 	bool isOnStair();
 };

@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++14 -Wall -Werror=vla -MMD
-OBJECTS=main.o Item.o Potion.o Gold.o character.o dragon.o Drow.o dwarf.o elf.o Goblin.o Shade.o Troll.o Vampire.o halfling.o human.o merchant.o orcs.o PC.o enemy.o floor.o gameboard.o square.o
+OBJECTS=main.o Item.o Potion.o Gold.o character.o dragon.o Drow.o dwarf.o elf.o Goblin.o Shade.o Troll.o Vampire.o PC.o halfling.o human.o merchant.o orcs.o enemy.o floor.o gameboard.o square.o 
 DEPENDS=${OBJECTS:.o=.d}
 EXEC=CC3K
 ${EXEC}: ${OBJECTS}

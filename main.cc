@@ -33,14 +33,8 @@ int main(int argc, char* argv[]) {
 	// initialize the floor
 	
 	if (argc == 1) {
+		cout << "arg" << endl;
 		f.init_no_file("cc3kfloor.txt", race);
-	} else {
-		string fname = argv[1];
-		f.init_file(fname, race);
-	}
-	
-	while (cin >> cmd) {
-		
 		cout << f;
 		cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
 			"                                            " << "Floor " << f.getLevel() << endl;
@@ -48,7 +42,20 @@ int main(int argc, char* argv[]) {
 		cout << "Atk: " << f.getPC()->getatk() << endl;
 		cout << "Def: " << f.getPC()->getdef() << endl;
 		cout << "Action: "; 
-		
+	} else {
+		string fname = argv[1];
+		f.init_file(fname, race);
+		cout << f;
+		cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+			"                                            " << "Floor " << f.getLevel() << endl;
+		cout << "HP: " << f.getPC()->gethp() << endl;
+		cout << "Atk: " << f.getPC()->getatk() << endl;
+		cout << "Def: " << f.getPC()->getdef() << endl;
+		cout << "Action: " << endl; 
+	}
+	
+	while (cin >> cmd) {
+		// PC moves
 		if(cmd == "no" || cmd == "so" || cmd == "ea" || cmd == "we"
 		|| cmd == "ne" || cmd == "nw" || cmd == "se" || cmd == "sw") {
 			f.pcMove(cmd);
@@ -58,14 +65,23 @@ int main(int argc, char* argv[]) {
 			
 			//check stair 
 			if (f.at_stair()) {
+				int HP_record = f.getPC()->gethp();
 				if (argc == 1) {
 					f.init_no_file("cc3kfloor.txt", race);
 				} else {
 					string fname = argv[1];
 					f.init_file(fname, race);
 				}
+				f.getPC()->sethp(HP_record);
 			}
 			
+			cout << f;
+			cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+				"                                            " << "Floor " << f.getLevel() << endl;
+			cout << "HP: " << f.getPC()->gethp() << endl;
+			cout << "Atk: " << f.getPC()->getatk() << endl;
+			cout << "Def: " << f.getPC()->getdef() << endl;
+			cout << "Action: "; 
 			cout << "PC moves." << endl;
 		} else if (cmd == "u") {
 			cin >> cmd;
@@ -74,14 +90,28 @@ int main(int argc, char* argv[]) {
 				f.enemyMove();
 			}
 			
+			cout << f;
+			cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+				"                                            " << "Floor " << f.getLevel() << endl;
+			cout << "HP: " << f.getPC()->gethp() << endl;
+			cout << "Atk: " << f.getPC()->getatk() << endl;
+			cout << "Def: " << f.getPC()->getdef() << endl;
+			cout << "Action: "; 
 			cout << "PC uses potion." << endl;
 		} else if (cmd == "a") {
 			cin >> cmd;
 			f.pcAtk(cmd);
 			
 			// check enemy
-			f.check_enemy();
+			//f.check_enemy();
 			
+			cout << f;
+			cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+				"                                            " << "Floor " << f.getLevel() << endl;
+			cout << "HP: " << f.getPC()->gethp() << endl;
+			cout << "Atk: " << f.getPC()->getatk() << endl;
+			cout << "Def: " << f.getPC()->getdef() << endl;
+			cout << "Action: "; 
 			cout << "PC attacks an enemy." << endl;
 		} else if (cmd == "f") {
 			move = (move ==  true) ? false : true;

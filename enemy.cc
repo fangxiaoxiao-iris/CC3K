@@ -27,11 +27,11 @@ static bool isproper(Enemy &e, string index) {
 	}
 }
 
-void Enemy::move(){
-
-	int random;
-	bool propermove;
+void Enemy::move() {
+ 	int random;
+	bool propermove = false;
 	bool stationary = true;
+	string randDirec;
 
 	for(auto n: neighbors) {
 		if(n.second->get_sym() == '.') {
@@ -40,41 +40,63 @@ void Enemy::move(){
 	}
 
 	if(stationary == false) {
-		random = rand() % 8;
-		propermove = isproper(*this, random);
-	while(propermove == true) {
-			if(random == 0) {
-				proper_move(*this, "no", "so");
-			} else if (random == 1) {
-				proper_move(*this, "so", "no");
-			} else if (random == 2) {
+		
+		for (auto nb: getNeigh()) {
+			if (isproper(*this, nb.first)) {
+				propermove = true;
+			}
+		}
+		
+		if (propermove) {
+			do {
+				random = rand() % 8;
+				if(random == 0) {
+					randDirec = "no";
+				} else if (random == 1) {
+					randDirec = "so";
+				} else if (random == 2) {
+					randDirec = "we";
+				} else if (random == 3) {
+					randDirec = "ea";
+				} else if (random == 4) {
+					randDirec = "ne";
+				} else if (random == 5) {
+					randDirec = "nw";
+				} else if (random == 6) {
+					randDirec = "se";
+				} else {
+					// random == 7
+					randDirec = "sw";
+				}
+			} while (!isproper(*this, randDirec));
+			
+			if(randDirec == "no") {
+				   proper_move(*this, "no", "so");
+			} else if (randDirec == "so") {
+				   proper_move(*this, "so", "no");
+			} else if (randDirec == "ea") {
 					proper_move(*this, "ea", "we");
-			} else if (random == 3) {
+			} else if (randDirec == "we") {
 					proper_move(*this, "we", "ea");
-			} else if (random == 4) {
+			} else if (randDirec == "ne") {
 					proper_move(*this, "ne", "sw");
-			} else if (random == 5) {
+			} else if (randDirec == "nw") {
 					proper_move(*this, "nw", "se");
-			} else if (random == 6) {
+			} else if (randDirec == "se") {
 					proper_move(*this, "se", "nw");
 			} else {
 				// random == 7
 					proper_move(*this, "sw", "ne");
 			}
 		}
-}
-}
-}
-	for(auto n: neighbors) {
-		if(n->get_sym() == '@') {
-			attack(*n);
-		}
 	}
-
 }
 
-void Enemy::dead() override {
+void Enemy::dead() {
 	this->setSym('.');
 	this->notifyBoard();
 }
 
+int Enemy::test() {
+	return 1;
+}

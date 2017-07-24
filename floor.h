@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <utility>
 #include <cstdlib>
 #include <string>
 
@@ -10,23 +11,22 @@
 #include "gameboard.h"
 #include "Gold.h"
 #include "Potion.h"
-#include "room.h"
 #include "Shade.h"
 #include "square.h"
 
 
 class Floor {
-	std::vector<vector<Square>> theFloor; 
+	std::vector<std::vector<Square>> theFloor; 
 	
 	GameBoard* Board;
 	int level;
 	
 	// manage the floor
 	
-	std::vector<Enemy> en_arr; // 20 enemies on a floor 
+	std::vector<Enemy*> en_arr; // 20 enemies on a floor 
 	std::vector<Potion> po_arr; // 10 potions on a floor
-	std::vector<Gold> gold_arr; // 10 golds on a floor
-	std::vector<Room> theRoom;
+	std::vector<Gold*> gold_arr; // 10 golds on a floor
+	std::vector<std::vector<std::pair<int,int>>> theRoom;
 	
 	// any need to record the 5 rooms?
 	
@@ -47,11 +47,11 @@ public:
 	
 	// generate a series of things :(
 	
-	int make_player();
-	void make_stair(int player_room);
-	void make_potion();
-	void make_gold();
-	void make_enemy();
+	int make_player(std::vector<std::vector<char>> &in_file);
+	void make_stair(int player_room, std::vector<std::vector<char>> &in_file);
+	void make_potion(int type, std::vector<std::vector<char>> &in_file);
+	void make_gold(int type, std::vector<std::vector<char>> &in_file);
+	void make_enemy(char type, std::vector<std::vector<char>> &in_file);
 	
 	void pcMove(std::string direction);
 	void pcAtk(std::string direction);

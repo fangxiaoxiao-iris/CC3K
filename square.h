@@ -15,10 +15,11 @@ class Square {
 	char symbol;
 	char prev; // in the case of first a dragon hoard, then PC walks over it 
 	GameBoard* theBoard;
-protected:
-	std::map<std::string, Square*> neighbors;
+	//protected:
+	//std::map<std::string, Square*> neighbors;
 	
 public:
+	std::map<std::string, Square*> neighbors;
 	Square(int row, int col, char sym, char prev, GameBoard* theBoard); // Default constructor
 	virtual ~Square();
 	
@@ -31,7 +32,7 @@ public:
 	int get_col();
 	char get_sym();
 	char get_prev();
-	std::map<std::string, Square*> getNeigh();
+	std::map<std::string, Square*> &getNeigh();
 	
 	// mutators
 	void setCoords(int r, int c); // Tells me my row and column number

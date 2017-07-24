@@ -11,6 +11,7 @@
 #include "merchant.h"
 
 class Troll: public PC {
+public:
 	Troll(int row, int col, char sym, char prev, GameBoard* theBoard); 
 	// defualt ctor
 	~Troll(); // dtors

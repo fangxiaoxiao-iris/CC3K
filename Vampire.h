@@ -11,6 +11,7 @@
 #include "merchant.h"
 
 class Vampire: public PC {
+public:
 	Vampire(int row, int col, char sym, char prev, GameBoard* theBoard); 
 	// defualt ctor
 	~Vampire(); // dtors

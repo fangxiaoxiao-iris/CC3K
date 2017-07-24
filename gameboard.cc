@@ -54,16 +54,16 @@ void GameBoard::changeSym(Square &whoNotified, string direction) {
 	} else if (direction == "we") {
 		prev_row = cur_row;
 		prev_col = cur_col+1;
-	} else if (direction = "ne") {
+	} else if (direction == "ne") {
 		prev_row = cur_row+1;
 		prev_col = cur_col-1;
-	} else if (direction = "nw") {
+	} else if (direction == "nw") {
 		prev_row = cur_row+1;
 		prev_col = cur_col+1;
-	} else if (direction = "se") {
+	} else if (direction == "se") {
 		prev_row = cur_row-1;
 		prev_col = cur_col-1;
-	} else if (direction = "sw") {
+	} else {
 		prev_row = cur_row-1;
 		prev_col = cur_col+1;
 	}
@@ -73,11 +73,10 @@ void GameBoard::changeSym(Square &whoNotified, string direction) {
 }
 
 ostream& operator<<(ostream& out, const GameBoard& gb) {
-	for (int i = 0; i < height; i++) {
-		int j = 0;
-		for (int j = 0; j < width; j++) {
+	for (int i = 0; i < 25; i++) {
+		for (int j = 0; j < 79; j++) {
 			out << gb.theGameBoard[i][j];
-			if (j = 78) {
+			if (j == 78) {
 				// print a newline at the end of every row
 				out << endl;
 			}

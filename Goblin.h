@@ -11,6 +11,7 @@
 #include "merchant.h"
 
 class Goblin: public PC {
+public:
 	Goblin(int row, int col, char sym, char prev, GameBoard* theBoard); 
 	// defualt ctor
 	~Goblin(); // dtors

@@ -16,8 +16,8 @@ public:
 	Enemy(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Enemy();
 
-	virtual void move();
-
+	void move();
+	int test();
 	virtual void attack(PC &defender)=0;
 
 	virtual void beAttacked(Shade &shade)=0;
@@ -26,7 +26,7 @@ public:
 	virtual void beAttacked(Troll &troll)=0;
 	virtual void beAttacked(Goblin &goblin)=0;
 
-	virtual void dead();
+	void dead();
 };
 
 #endif

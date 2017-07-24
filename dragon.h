@@ -14,7 +14,7 @@ class Dragon: public Enemy {
 	Gold *hoard;
 public:
 	// default ctor
-	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold* hoard);
+	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard);
 	// dtor
 	~Dragon();
 
@@ -28,7 +28,7 @@ public:
 	void beAttacked(Vampire &vampire) override;
 	void beAttacked(Troll &troll) override;
 	void beAttacked(Goblin &goblin) override;
-	void move() override;
+	//void move() override;
 };
 
 #endif

@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Dragon::Dragon(int row, int col, char sym, char prev, GameBoard* theBoard, Gold* hoard):
-	Enemy(row, col, sym, prev, theBoard), hoard(hoard) {
+Dragon::Dragon(int row, int col, char sym, char prev, GameBoard* theBoard):
+	Enemy(row, col, sym, prev, theBoard) {
 	sethp(150);
 	setatk(20);
 	setdef(20);
@@ -24,7 +24,7 @@ void Dragon::attack(PC &defender) {
 				defender.beAttacked(*this);
 			}	
 		}
-	}
+	}/*
 	for(auto m: hoard->getNeigh()) {
 		if (m.second->get_sym() == '@') {
 			int tmp = rand() % 2;
@@ -32,7 +32,7 @@ void Dragon::attack(PC &defender) {
 				defender.beAttacked(*this);
 			}	
 		}
-	}
+	}*/
 }
 	
 void Dragon::beAttacked(Shade &shade) {

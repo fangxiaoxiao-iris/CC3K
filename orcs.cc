@@ -16,10 +16,14 @@ Orcs::Orcs(int row, int col, char sym, char prev, GameBoard* theBoard):
 Orcs::~Orcs() {}
 
 void Orcs::attack(PC &defender){
-	int tmp = rand() % 2;
-	if(tmp == 0) {
-	defender.beAttacked(*this);
-}
+	for(auto n: neighbors) {
+		if (n.second->get_sym() == '@') {
+			int tmp = rand() % 2;
+			if (tmp == 0) {
+				defender.beAttacked(*this);
+			}	
+		}
+	}
 }
 	
 void Orcs::beAttacked(Shade &shade) {

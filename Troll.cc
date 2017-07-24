@@ -25,8 +25,9 @@ void Troll::beAttacked(Human &hu) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int hu_atk = hu.getatk();
-	int damage = ceil((100/(100+t_def))*hu_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*hu_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -34,8 +35,9 @@ void Troll::beAttacked(Dwarf &dw) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int dw_atk = dw.getatk();
-	int damage = ceil((100/(100+t_def))*dw_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*dw_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -43,8 +45,9 @@ void Troll::beAttacked(Elf &el) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int el_atk = el.getatk();
-	int damage = ceil((100/(100+t_def))*el_atk);
-	int t_updated_hp = ((t_cur_hp - 2*damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*el_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - 2*d) > 0) ? (t_cur_hp - 2*d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -52,8 +55,9 @@ void Troll::beAttacked(Orcs &o) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int o_atk = o.getatk();
-	int damage = ceil((100/(100+t_def))*o_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*o_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -61,8 +65,9 @@ void Troll::beAttacked(Merchant &m) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int m_atk = m.getatk();
-	int damage = ceil((100/(100+t_def))*m_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*m_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -70,8 +75,9 @@ void Troll::beAttacked(Dragon &dr) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int dr_atk = dr.getatk();
-	int damage = ceil((100/(100+t_def))*dr_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*dr_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }
 
@@ -79,7 +85,8 @@ void Troll::beAttacked(Halfling &ha) {
 	int t_cur_hp = gethp();
 	int t_def = getdef();
 	int ha_atk = ha.getatk();
-	int damage = ceil((100/(100+t_def))*ha_atk);
-	int t_updated_hp = ((t_cur_hp - damage) > 0) ? (t_cur_hp - damage) : 0;
+	float damage = (float)(100*ha_atk)/(float)(100+t_def);
+	int d = ceil(damage);
+	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
 }

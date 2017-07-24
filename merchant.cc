@@ -16,11 +16,20 @@ Merchant::Merchant(int row, int col, char sym, char prev, GameBoard* theBoard):
 Merchant::~Merchant() {}
 
 void Merchant::attack(PC &defender){
+	for(auto n: neighbors) {
+		if (n.second->get_sym() == '@') {
+			int tmp = rand() % 2;
+			if (tmp == 0 && this->isHostile == true) {
+				defender.beAttacked(*this);
+			}	
+		}
+	}
+	/*
 	int tmp = rand() % 2;
 	// when merchant is hostile it will attack pc
 	if(tmp == 0 && this->isHostile == true) {
 	defender.beAttacked(*this);
-}
+}*/
 }
 
 // once merchant was attacked, set time filed isHostile to true	

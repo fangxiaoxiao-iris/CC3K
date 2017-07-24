@@ -16,10 +16,14 @@ Halfling::Halfling(int row, int col, char sym, char prev, GameBoard* theBoard):
 Halfling::~Halfling() {}
 
 void Halfling::attack(PC &defender){
-	int tmp = rand() % 2;
-	if(tmp == 0) {
-	defender.beAttacked(*this);
-}
+	for(auto n: neighbors) {
+		if (n.second->get_sym() == '@') {
+			int tmp = rand() % 2;
+			if (tmp == 0) {
+				defender.beAttacked(*this);
+			}	
+		}
+	}
 }
 
 // halfling has a 50% chance to cause the pc to miss in combat

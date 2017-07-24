@@ -22,8 +22,9 @@ void Shade::beAttacked(Human &hu) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int hu_atk = hu.getatk();
-	int damage = ceil((100/(100+s_def))*hu_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*hu_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -31,8 +32,9 @@ void Shade::beAttacked(Dwarf &dw) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int dw_atk = dw.getatk();
-	int damage = ceil((100/(100+s_def))*dw_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*dw_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -40,8 +42,9 @@ void Shade::beAttacked(Elf &el) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int el_atk = el.getatk();
-	int damage = ceil((100/(100+s_def))*el_atk);
-	int s_updated_hp = ((s_cur_hp - 2*damage) > 0) ? (s_cur_hp - 2*damage) : 0;
+	float damage = (float)(100*el_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - 2*d) > 0) ? (s_cur_hp - 2*d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -49,8 +52,9 @@ void Shade::beAttacked(Orcs &o) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int o_atk = o.getatk();
-	int damage = ceil((100/(100+s_def))*o_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*o_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -58,8 +62,9 @@ void Shade::beAttacked(Merchant &m) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int m_atk = m.getatk();
-	int damage = ceil((100/(100+s_def))*m_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*m_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -67,8 +72,9 @@ void Shade::beAttacked(Dragon &dr) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int dr_atk = dr.getatk();
-	int damage = ceil((100/(100+s_def))*dr_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*dr_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }
 
@@ -76,7 +82,8 @@ void Shade::beAttacked(Halfling &ha) {
 	int s_cur_hp = gethp();
 	int s_def = getdef();
 	int ha_atk = ha.getatk();
-	int damage = ceil((100/(100+s_def))*ha_atk);
-	int s_updated_hp = ((s_cur_hp - damage) > 0) ? (s_cur_hp - damage) : 0;
+	float damage = (float)(100*ha_atk)/(float)(100+s_def);
+	int d = ceil(damage);
+	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
 }

@@ -199,7 +199,7 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	for (int i = 0; i < 10; i++) {
 		// 0-4: normal: 6, 5: dragon hoard: 9, 6-7: small hoard: 8
 		int g_num = rand() % 8;
-		if (g_num >= 0 & g_num <= 4) {
+		if (g_num >= 0 && g_num <= 4) {
 			make_gold(6, in_file);
 		} else if (g_num == 5) {
 			make_gold(9, in_file);
@@ -272,9 +272,18 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 					PC* p = temp;
 					this->player = p;
 					
-				} else {
+				} else if (race == "t"){
 					//Troll temp{i, j, '@', '.', gb};
 					Troll *temp = new Troll{i, j, '@', '.', gb};
+					square_arr.emplace_back(temp);
+					
+					// set player field
+					PC* p = temp;
+					this->player = p;
+					
+				} else {
+					// Fairy
+					Fairy *temp = new Fairy{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
@@ -514,9 +523,18 @@ void Floor::init_file(string name, string race) {
 					PC* p = temp;
 					this->player = p;
 					
-				} else {
+				} else if (race == "t"){
 					//Troll temp{i, j, '@', '.', gb};
 					Troll *temp = new Troll{i, j, '@', '.', gb};
+					square_arr.emplace_back(temp);
+					
+					// set player field
+					PC* p = temp;
+					this->player = p;
+					
+				} else {
+					// Fairy
+					Fairy *temp = new Fairy{i, j, '@', '.', gb};
 					square_arr.emplace_back(temp);
 					
 					// set player field
@@ -708,8 +726,8 @@ int Floor::make_player(vector<vector<char>> &in_file) {
 	
 	int row = this->theRoom[room_num][index_num].first;
 	int col = this->theRoom[room_num][index_num].second;
-	
-    in_file[row][col] = '@';
+		
+	in_file[row][col] = '@';
 	this->Board->notify(row, col, '@');
 	
 	// erase the occupied pos

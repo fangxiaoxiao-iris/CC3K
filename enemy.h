@@ -10,6 +10,7 @@ class Drow;
 class Vampire;
 class Troll;
 class Goblin;
+class Fairy;
 
 class Enemy: public Character {
 public:
@@ -23,6 +24,7 @@ public:
 	virtual void beAttacked(Vampire &vampire)=0;
 	virtual void beAttacked(Troll &troll)=0;
 	virtual void beAttacked(Goblin &goblin)=0;
+	virtual void beAttacked(Fairy &fairy)=0;
 	void dead();
 };
 

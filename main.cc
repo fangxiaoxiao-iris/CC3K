@@ -21,11 +21,11 @@ int main(int argc, char* argv[]) {
 	}
 		
 	cout << "Please choose a player character from the following races: " << endl;
-	cout << "s - Shade, d - Drow, v - Vampire, t - Troll, g - Goblin." << endl;
+	cout << "s - Shade, d - Drow, v - Vampire, t - Troll, g - Goblin, f - Fariy." << endl;
 	
 	cin >> race;
 	
-	while (race != "s" && race != "d" && race != "v" && race != "t" && race != "g") {
+	while (race != "s" && race != "d" && race != "v" && race != "t" && race != "g" && race != "f") {
 		cout << "Please choose a valid race." << endl;
         cin >> race;
 	}
@@ -38,8 +38,10 @@ int main(int argc, char* argv[]) {
 		full_name = "Vampire";
 	} else if (race == "t") {
 		full_name = "Troll";
-	} else {
+	} else if (race == "g") {
 		full_name = "Goblin";
+	} else {
+		full_name = "Fairy";
 	}
 		
 	// initialize the floor
@@ -89,13 +91,19 @@ int main(int argc, char* argv[]) {
 			//check stair 
 			if (f.at_stair()) {
 				int HP_record = f.getPC()->gethp();
+				vector<string> &knownPotions = f.getPC()->getKnownPotions();
 				if (argc == 1) {
 					f.init_no_file("cc3kfloor.txt", race);
 				} else {
 					string fname = argv[1];
 					f.init_file(fname, race);
 				}
+				
 				f.getPC()->sethp(HP_record);
+				for(auto p: knownPotions) {
+					f.getPC()->setKnownPotions(p);
+				}
+				
 				++level;
 				if (level == 6) {
 					ifstream file ("youwon.txt");
@@ -106,6 +114,7 @@ int main(int argc, char* argv[]) {
 						}
 						cout << endl;
 					}
+					break;
 				}
 			}
 			
@@ -157,11 +166,11 @@ int main(int argc, char* argv[]) {
 			// f.restart();
 			level = 1;
 			cout << "Please choose a player character from the following races: " << endl;
-			cout << "s - Shade, d - Drow, v - Vampire, t - Troll, g - Goblin." << endl;
+			cout << "s - Shade, d - Drow, v - Vampire, t - Troll, g - Goblin, f - Fariy." << endl;
 	
 			cin >> race;
 	
-			while (race != "s" && race != "d" && race != "v" && race != "t" && race != "g") {
+			while (race != "s" && race != "d" && race != "v" && race != "t" && race != "g" && race != "f") {
 				cout << "Please choose a valid race." << endl;
 		        cin >> race;
 			}
@@ -174,9 +183,12 @@ int main(int argc, char* argv[]) {
 				full_name = "Vampire";
 			} else if (race == "t") {
 				full_name = "Troll";
-			} else {
+			} else if (race == "g") {
 				full_name = "Goblin";
+			} else {
+				full_name = "Fairy";
 			}
+			
 			if (argc == 1) {
 				f.init_no_file("cc3kfloor.txt", race);
 				cout << f;
@@ -202,6 +214,37 @@ int main(int argc, char* argv[]) {
 			
 			break;
 			
+		} else if (cmd == "b") {
+			cin >> cmd;
+			if ((f.getPC()->getNeigh()[cmd])->get_sym() == 'M') {
+				cin >> cmd;
+				if (cmd == "RH") {
+					int cur_hp = f.getPC()->gethp();
+					int max_hp = f.getPC()->getmaxhp();
+					int update_hp = ((cur_hp + 10) <= max_hp) ? (cur_hp + 10) : max_hp;
+					f.getPC()->sethp(update_hp);
+				} else if (cmd == "BA") {
+					int cur_atk = f.getPC()->getatk();
+					int update_atk = cur_atk + 5;
+					f.getPC()->setatk(update_atk);
+				} else if (cmd == "BD") {
+					int cur_def = f.getPC()->getdef();
+					int update_def = cur_def + 5;
+					f.getPC()->setdef(update_def);
+				} else {
+					cout << "I don't sell this kind of Potion. I only sell RH, BA, BD." << endl;
+				}
+				cout << f;
+				cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+					"                                            " << "Floor " << level << endl;
+				cout << "HP: " << f.getPC()->gethp() << endl;
+				cout << "Atk: " << f.getPC()->getatk() << endl;
+				cout << "Def: " << f.getPC()->getdef() << endl;
+				cout << "Action: "; 
+				cout << "PC buys Potion from Merchant." << endl;
+			} else {
+				cout << "No Merchant on this direction." << endl;
+			}
 		} else {
 			cout << "Invalid Command. Please try again." << endl;
 		}

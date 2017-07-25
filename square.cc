@@ -84,36 +84,6 @@ void Square::swapCoords(Square *neighbor){
 //swap the neighbors of the Character and the neighbors of the position
 //that it is moving towards.
 void Square::swapNeighbors(Square *dest, string pos_nb, string pos_self){
-	/*
-	string direction;
-
-	for (auto n : this->neighbors) {
-		if(n.first != pos_nb) {
-			for(auto m : n.second->neighbors) {
-				if(m.second == this) {
-					direction = m.first;
-				}
-			}
-			n.second->neighbors[direction] = dest;
-		}
-	}
-
-	for(auto n: dest->neighbors) {
-		if(n.second != this) {
-			for(auto j : n.second->neighbors) {
-				if(j.second == dest) {
-					direction = j.first;
-				}
-			}
-			n.second->neighbors[direction] = this;
-		}
-	}
-	
-	*/
-	
-	
-	
-	
 	if (pos_nb == "no") {
 		(this->neighbors["ea"])->neighbors["we"] = dest;
 		(this->neighbors["we"])->neighbors["ea"] = dest;
@@ -255,9 +225,6 @@ void Square::swapNeighbors(Square *dest, string pos_nb, string pos_self){
 		
 		
 	}
-	
-	
-
 	Square *temp = this->neighbors[pos_nb];
 	this->neighbors[pos_nb] = this;
 	dest->neighbors[pos_self] = temp;

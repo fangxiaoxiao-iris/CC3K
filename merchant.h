@@ -10,6 +10,7 @@
 #include "Troll.h"
 #include "Goblin.h"
 #include "Gold.h"
+#include "Fairy.h"
 
 class Merchant: public Enemy {
 	bool isHostile;
@@ -29,7 +30,7 @@ public:
 	void beAttacked(Vampire &vampire) override;
 	void beAttacked(Troll &troll) override;
 	void beAttacked(Goblin &goblin) override;
+	void beAttacked(Fairy &fairy) override;
 };
 
 #endif
-

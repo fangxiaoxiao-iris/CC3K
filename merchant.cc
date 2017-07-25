@@ -129,3 +129,21 @@ void Merchant::beAttacked(Goblin &goblin){
 		this->sethp(Merchant_newhp);
 	}
 }
+
+void Merchant::beAttacked(Fairy &fairy) {
+	int Merchant_hp = this->gethp();
+	int Merchant_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// Merchant is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+
+	int Merchant_newhp = Merchant_hp - damagetaken;
+	this->isHostile = true;
+	if(Merchant_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		} else {
+		this->sethp(Merchant_newhp);
+	}
+}

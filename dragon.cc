@@ -158,5 +158,27 @@ void Dragon::beAttacked(Goblin &goblin){
 	}
 }
 
+void Dragon::beAttacked(Fairy &fairy) {
+	int Dragon_hp = this->gethp();
+	int Dragon_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// Dragon is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+
+	int Dragon_newhp = Dragon_hp - damagetaken;
+	if(Dragon_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
+		this->sethp(Dragon_newhp);
+	}
+}
+
 void Dragon::move() {
 }

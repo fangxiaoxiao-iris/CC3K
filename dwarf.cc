@@ -149,3 +149,23 @@ void Dwarf::beAttacked(Goblin &goblin){
 	}
 }
 
+void Dwarf::beAttacked(Fairy &fairy) {
+	int Dwarf_hp = this->gethp();
+	int Dwarf_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// Dwarf is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+
+	int Dwarf_newhp = Dwarf_hp - damagetaken;
+	if(Dwarf_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		fairy.setgold(fairy.getgold() + goldnum);
+		} else {
+		this->sethp(Dwarf_newhp);
+	}
+}

@@ -129,3 +129,21 @@ void Human::beAttacked(Goblin &goblin){
 }
 
 // when human dies, it drops 2 normal pules of gold
+void Human::beAttacked(Fairy &fairy) {
+	int human_hp = this->gethp();
+	int human_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// human is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
+	int human_newhp = human_hp - damagetaken;
+	if(human_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		int cur_gold = fairy.getgold();
+		fairy.setgold(cur_gold+4);
+		} else {
+		this->sethp(human_newhp);
+	}
+}

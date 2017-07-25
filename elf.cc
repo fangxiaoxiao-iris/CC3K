@@ -137,3 +137,24 @@ void Elf::beAttacked(Goblin &goblin){
 		this->sethp(Elf_newhp);
 	}
 }
+
+void Elf::beAttacked(Fairy &fairy) {
+	int Elf_hp = this->gethp();
+	int Elf_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// Elf is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Elf_def);
+	int damagetaken = ceil(d);
+
+	int Elf_newhp = Elf_hp - damagetaken;
+	if(Elf_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		fairy.setgold(fairy.getgold() + goldnum);
+		} else {
+		this->sethp(Elf_newhp);
+	}
+}

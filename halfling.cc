@@ -152,3 +152,26 @@ void Halfling::beAttacked(Goblin &goblin){
 }
 }
 
+void Halfling::beAttacked(Fairy &fairy) {
+	int tmp = rand() % 2;
+	if(tmp == 0) {
+	int Halfling_hp = this->gethp();
+	int Halfling_def = this->getdef();
+	int attacker_atk = fairy.getatk();
+	// Halfling is the defender
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Halfling_def);
+	int damagetaken = ceil(d);
+
+	int Halfling_newhp = Halfling_hp - damagetaken;
+	if(Halfling_newhp <= 0){
+		this->sethp(0);
+		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		fairy.setgold(fairy.getgold() + goldnum);
+		} else {
+		this->sethp(Halfling_newhp);
+	}
+}
+}

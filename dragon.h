@@ -11,7 +11,6 @@
 #include "Gold.h"
 
 class Dragon: public Enemy {
-	Gold *hoard;
 public:
 	// default ctor
 	Dragon(int row, int col, char sym, char prev, GameBoard* theBoard);
@@ -28,7 +27,7 @@ public:
 	void beAttacked(Vampire &vampire) override;
 	void beAttacked(Troll &troll) override;
 	void beAttacked(Goblin &goblin) override;
-	//void move() override;
+	void move() override;
 };
 
 #endif

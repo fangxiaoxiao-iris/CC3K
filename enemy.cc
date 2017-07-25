@@ -8,19 +8,14 @@ Enemy::Enemy(int row, int col, char sym, char prev, GameBoard* theBoard):
 
 Enemy::~Enemy() {}
 
-void Enemy::proper_move(string index_nb, string index_p) {
-		swapCoords((neighbors)[index_nb]);
-		notifyMove(index_nb);
-		//char p_prev_sym = get_prev();
-		//setPrev(neighbors[index_nb]->get_sym());
-		//neighbors[index_nb]->setSym(p_prev_sym);
-		swapNeighbors((neighbors)[index_nb], index_nb, index_p);
-		cout << get_sym() << endl;
-		cout << "end first move" << endl;
+static void proper_move(Enemy &e, string index_nb, string index_p) {
+		e.swapCoords(e.getNeigh()[index_nb]);
+		e.notifyMove(index_nb);
+		e.swapNeighbors(e.getNeigh()[index_nb], index_nb, index_p);
 } 
 
-bool Enemy::isproper(string index) {
-	if((neighbors)[index]->get_sym() == '.') {
+static bool isproper(Enemy &e, string index) {
+	if(e.getNeigh()[index]->get_sym() == '.') {
 		return true;
 	} else {
 		return false;
@@ -32,22 +27,14 @@ void Enemy::move() {
 	bool stationary = true;
 	string randDirec;
 	
-	//cout << neighbors.size() << endl;
-
-	for(auto n: neighbors) {
-		//cout << "iammoving" << endl;
+	for(auto n: getNeigh()) {
 		if(n.second->get_sym() == '.') {
 			stationary = false;
 		}
 	}
 
 	if(stationary == false) {
-		/*
-		for (auto nb: getNeigh()) {
-			if (isproper(*this, nb.first)) {
-				propermove = true;
-			}
-		}*/
+		
 		do {
 			random = rand() % 8;
 			if(random == 0) {
@@ -67,24 +54,24 @@ void Enemy::move() {
 			} else {
 				randDirec = "sw";
 			}
-		} while (!isproper(randDirec));
+		} while (!isproper(*this, randDirec));
 		
 		if(randDirec == "no") {
-			proper_move("no", "so");
+			proper_move(*this, "no", "so");
 		} else if (randDirec == "so") {
-			proper_move("so", "no");
+			proper_move(*this, "so", "no");
 		} else if (randDirec == "ea") {
-			proper_move("ea", "we");
+			proper_move(*this, "ea", "we");
 		} else if (randDirec == "we") {
-			proper_move("we", "ea");
+			proper_move(*this, "we", "ea");
 		} else if (randDirec == "ne") {
-			proper_move("ne", "sw");
+			proper_move(*this, "ne", "sw");
 		} else if (randDirec == "nw") {
-			proper_move("nw", "se");
+			proper_move(*this, "nw", "se");
 		} else if (randDirec == "se") {
-			proper_move("se", "nw");
+			proper_move(*this, "se", "nw");
 		} else {
-			proper_move("sw", "ne");
+			proper_move(*this, "sw", "ne");
 		}
 	}
 }
@@ -92,8 +79,4 @@ void Enemy::move() {
 void Enemy::dead() {
 	this->setSym('.');
 	this->notifyBoard();
-}
-
-int Enemy::test() {
-	return 1;
 }

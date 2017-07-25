@@ -17,22 +17,28 @@ Dragon::~Dragon() {}
 
 // need to implement neighbor exclusive.
 void Dragon::attack(PC &defender) {
-	for(auto n: neighbors) {
+	bool attacked = false;
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0) {
 				defender.beAttacked(*this);
-			}	
+			}
+			attacked = true;	
 		}
-	}/*
-	for(auto m: hoard->getNeigh()) {
-		if (m.second->get_sym() == '@') {
-			int tmp = rand() % 2;
-			if (tmp == 0) {
-				defender.beAttacked(*this);
-			}	
+	}
+	for(auto m: getNeigh()) {
+		if (m.second->getItemType() == "dragon_h") {
+			for (auto i: m.second->getNeigh()) {
+				if (i.second->get_sym() == '@' && attacked != true) {
+					int tmp = rand() % 2;
+					if (tmp == 0) {
+						defender.beAttacked(*this);
+					}
+				}	
+			}		
 		}
-	}*/
+	}
 }
 	
 void Dragon::beAttacked(Shade &shade) {
@@ -47,8 +53,12 @@ void Dragon::beAttacked(Shade &shade) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		hoard->setavailable(true);
-		} else {
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
 		this->sethp(Dragon_newhp);
 	}
 }
@@ -65,8 +75,12 @@ void Dragon::beAttacked(Drow &drow) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		hoard->setavailable(true);
-		} else {
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
 		this->sethp(Dragon_newhp);
 	}
 }
@@ -87,8 +101,12 @@ void Dragon::beAttacked(Vampire &vampire) {
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		hoard->setavailable(true);
-		} else {
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
 		this->sethp(Dragon_newhp);
 	}
 }
@@ -105,8 +123,12 @@ void Dragon::beAttacked(Troll &troll){
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		hoard->setavailable(true);
-		} else {
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
 		this->sethp(Dragon_newhp);
 	}
 }
@@ -126,27 +148,15 @@ void Dragon::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
-		hoard->setavailable(true);
-		} else {
+		for(auto m: getNeigh()) {
+			if (m.second->getItemType() == "dragon_h") {
+				m.second->setavailable(true);		
+			}
+		}
+	} else {
 		this->sethp(Dragon_newhp);
 	}
 }
 
-/*void Dragon::move() {
-	bool attacked = false;
-
-	for(auto n: neighbors) {
-		if(n.second->get_sym() == '@') {
-			n.second->beAttacked(*this);
-			attacked = true;
-		}
-	}
-	for(auto m: hoard->neighbors) {
-		if(m.second->get_sym() == '@') {
-			if(attacked == false) {
-			n.second->beAttacked(*this);
-			attacked = true;
-		}
-		}
-	}
-}*/
+void Dragon::move() {
+}

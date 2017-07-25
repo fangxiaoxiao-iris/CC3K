@@ -16,7 +16,7 @@ Halfling::Halfling(int row, int col, char sym, char prev, GameBoard* theBoard):
 Halfling::~Halfling() {}
 
 void Halfling::attack(PC &defender){
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0) {
@@ -41,6 +41,10 @@ void Halfling::beAttacked(Shade &shade) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
 	}
@@ -61,6 +65,10 @@ void Halfling::beAttacked(Drow &drow) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
 	}
@@ -85,6 +93,10 @@ void Halfling::beAttacked(Vampire &vampire) {
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
 	}
@@ -105,6 +117,10 @@ void Halfling::beAttacked(Troll &troll){
 	if(Halfling_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		troll.setgold(troll.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
 	}
@@ -126,6 +142,10 @@ void Halfling::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
 	}

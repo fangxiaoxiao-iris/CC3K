@@ -11,7 +11,7 @@ public:
 	~Item();
 
 	// getters:
-	std::string getItemType();
+	std::string getItemType() override;
 	int getItemValue();
 
 	//mutators:

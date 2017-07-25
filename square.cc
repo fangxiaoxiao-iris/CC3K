@@ -84,6 +84,7 @@ void Square::swapCoords(Square *neighbor){
 //swap the neighbors of the Character and the neighbors of the position
 //that it is moving towards.
 void Square::swapNeighbors(Square *dest, string pos_nb, string pos_self){
+	/*
 	string direction;
 
 	for (auto n : this->neighbors) {
@@ -98,23 +99,176 @@ void Square::swapNeighbors(Square *dest, string pos_nb, string pos_self){
 	}
 
 	for(auto n: dest->neighbors) {
-		for(auto m : this->neighbors) {
-			if(n.second != m.second && n.second != this) {
-				for(auto j : n.second->neighbors) {
-					if(j.second == dest) {
-						direction = j.first;
-					}
+		if(n.second != this) {
+			for(auto j : n.second->neighbors) {
+				if(j.second == dest) {
+					direction = j.first;
 				}
-				n.second->neighbors[direction] = this;
 			}
+			n.second->neighbors[direction] = this;
 		}
 	}
+	
+	*/
+	
+	
+	
+	
+	if (pos_nb == "no") {
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else if (pos_nb == "so") {
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+		
+	} else if (pos_nb == "ea") {
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else if (pos_nb == "we") {
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else if (pos_nb == "ne") {
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else if (pos_nb == "nw") {
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else if (pos_nb == "se") {
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["sw"])->neighbors["ne"] = dest;
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["ne"])->neighbors["sw"] = this;
+		
+	} else {
+		// pos_nb == "sw"
+		(this->neighbors["ea"])->neighbors["we"] = dest;
+		(this->neighbors["we"])->neighbors["ea"] = dest;
+		(this->neighbors["ne"])->neighbors["sw"] = dest;
+		(this->neighbors["nw"])->neighbors["se"] = dest;
+		(this->neighbors["no"])->neighbors["so"] = dest;
+		(this->neighbors["se"])->neighbors["nw"] = dest;
+		(this->neighbors["so"])->neighbors["no"] = dest;
+		
+		(dest->neighbors["no"])->neighbors["so"] = this;
+		(dest->neighbors["ea"])->neighbors["we"] = this;
+		(dest->neighbors["we"])->neighbors["ea"] = this;
+		(dest->neighbors["se"])->neighbors["nw"] = this;
+		(dest->neighbors["nw"])->neighbors["se"] = this;
+		(dest->neighbors["sw"])->neighbors["ne"] = this;
+		(dest->neighbors["so"])->neighbors["no"] = this;
+		
+		
+		
+	}
+	
+	
 
 	Square *temp = this->neighbors[pos_nb];
 	this->neighbors[pos_nb] = this;
 	dest->neighbors[pos_self] = temp;
 	swap(neighbors, dest->neighbors);
+	
 
 }
 
+string Square::getItemType() {
+	return "";
+}
 
+void Square::setavailable(bool available) {
+}

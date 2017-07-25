@@ -25,5 +25,5 @@ bool Gold::getavailable() {
 }
 
 void Gold::setavailable(bool available) {
-	available = false;
+	this->available = available;
 }

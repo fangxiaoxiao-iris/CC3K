@@ -16,19 +16,13 @@ public:
 	Enemy(int row, int col, char sym, char prev, GameBoard* theBoard);
 	~Enemy();
 
-	void move();
-	int test();
+	virtual void move();
 	virtual void attack(PC &defender)=0;
-
 	virtual void beAttacked(Shade &shade)=0;
 	virtual void beAttacked(Drow &drow)=0;
 	virtual void beAttacked(Vampire &vampire)=0;
 	virtual void beAttacked(Troll &troll)=0;
 	virtual void beAttacked(Goblin &goblin)=0;
-	void proper_move(string index_nb, string index_p);
-	bool isproper(string index);
-
-
 	void dead();
 };
 

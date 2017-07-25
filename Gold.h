@@ -12,7 +12,7 @@ public:
 	~Gold();
 	void picked(PC &P);
 	bool getavailable();
-	void setavailable(bool available);
+	void setavailable(bool available) override;
 };
 
 #endif

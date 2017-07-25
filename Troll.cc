@@ -15,10 +15,10 @@ PC(row, col, sym, prev, theBoard){
 Troll::~Troll(){}
 
 void Troll::attack(Enemy &e) {
-	e.beAttacked(*this);
 	int t_cur_hp = gethp();
-	int t_updated_hp = ((t_cur_hp + 5) < 120) ? (t_cur_hp) : 120;
+	int t_updated_hp = ((t_cur_hp + 5) < 120) ? (t_cur_hp + 5) : 120;
 	sethp(t_updated_hp);
+	e.beAttacked(*this);
 }
 
 void Troll::beAttacked(Human &hu) {

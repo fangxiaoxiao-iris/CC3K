@@ -16,7 +16,7 @@ Elf::Elf(int row, int col, char sym, char prev, GameBoard* theBoard):
 Elf::~Elf() {}
 
 void Elf::attack(PC &defender){
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0) {
@@ -38,6 +38,10 @@ void Elf::beAttacked(Shade &shade) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Elf_newhp);
 	}
@@ -55,6 +59,10 @@ void Elf::beAttacked(Drow &drow) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Elf_newhp);
 	}
@@ -76,6 +84,10 @@ void Elf::beAttacked(Vampire &vampire) {
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Elf_newhp);
 	}
@@ -90,13 +102,15 @@ void Elf::beAttacked(Troll &troll){
 	int damagetaken = ceil(d);
 
 	int Elf_newhp = Elf_hp - damagetaken;
-	int hp_regain = 5;
-	int troll_newhp = (troll.gethp() + hp_regain) > troll.getmaxhp() ? troll.getmaxhp() : troll.gethp() + hp_regain;
 	if(Elf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		troll.setgold(troll.getgold() + goldnum);
 		} else {
-		this->sethp(troll_newhp);
+		this->sethp(Elf_newhp);
 	}
 }
 
@@ -115,6 +129,10 @@ void Elf::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Elf_newhp);
 	}

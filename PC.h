@@ -32,10 +32,9 @@ public:
 	virtual void beAttacked(Halfling &ha) = 0;
 	virtual void beAttacked(Orcs &o) = 0;
 	virtual void beAttacked(Merchant &m) = 0;
+	void move(std::string);
 	void use(Potion &p);
-	void pickUp(Gold &g); 
-	void proper_move(std::string index_nb, std::string index_p);
-	void move(std::string direction);
+	void pickUp(Gold &g);
 	bool isOnStair();
 };
 

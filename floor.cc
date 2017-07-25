@@ -15,7 +15,11 @@ Floor::Floor() {}
 
 Floor::~Floor() {
 	delete Board;
-	delete player;
+	for (auto row: this->theFloor) {
+		for (auto col: row) {
+			delete col;
+		}
+	}	
 }
 
 bool Floor::GameOver() {
@@ -186,7 +190,6 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 	
 	// generate potions
 	for (int i = 0; i < 10; i++) {
-		cout << "makePotion" << endl;
 		// 0: RH, 1: BA, 2: BD, 3: PH, 4: WA, 5: WD
 		int p_num = rand() % 6;
 		make_potion(p_num, in_file);		
@@ -400,24 +403,7 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 				square_arr.emplace_back(temp);				
 			}			 
 		}		
-		this->theFloor.emplace_back(square_arr);
-		cout << "--------------------" << endl;
-		cout << "inside bracket" << endl;
-		for (int i = 0; i < en_arr.size(); ++i) {
-			int r = this->en_arr[i]->get_row();
-			int c = this->en_arr[i]->get_col();
-			cout << r << " " << c << endl;
-		}
-		cout << "end bracket" << endl;
-		cout << "---------------------" << endl;
-	}
-	cout << "------------------" << endl;
-	for (int i = 0; i < en_arr.size(); ++i) {
-		int r = this->en_arr[i]->get_row();
-		int c = this->en_arr[i]->get_col();
-		char charhhh = this->en_arr[i]->get_sym();
-		string type = this->en_arr[i]->gettype();
-		cout << r << " " << c << " "<< charhhh << type << endl;
+		this->theFloor.emplace_back(square_arr);		
 	}
 	
 	// attach neighbors 
@@ -458,30 +444,6 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 			}
 		}
 	}
-
-
-	for (auto m:this->en_arr[12]->getNeigh()) {
-		cout << m.first << " " << m.second->get_sym() << endl;
-	}
-
-	cout << en_arr[12]->get_row() << " " << en_arr[12]->get_col() << " " << en_arr[12]->get_sym() << " " 
-	<< en_arr[12]->gettype() << endl;  
-
-		
-	// set player neighbors
-	//this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
-	// remain the HP of the player
-	
-	// set potion neighbors
-	/*
-	for (int i = 0; i < 10; i++) {
-		this->po_arr[i].setNeigh(theFloor[this->po_arr[i].get_row()][this->po_arr[i].get_col()]->getNeigh());
-	}
-	
-	// set enemy neighbors
-	for (int i = 0; i < 20; i++) {
-		this->en_arr[i]->setNeigh(theFloor[this->en_arr[i]->get_row()][this->en_arr[i]->get_col()]->getNeigh());
-	}*/
 }
 
 
@@ -685,21 +647,6 @@ void Floor::init_file(string name, string race) {
 		}			
 		this->theFloor.emplace_back(square_arr);
 	}	
-	/*
-	for (int i = 0; i < 1; i++) {
-		//cout << "enemove" << endl;
-	cout << this->en_arr[0]->getNeigh()->;
-	*/
-
-	/*
-    
-	for (auto m:this->en_arr[0]->getNeigh()) {
-		cout << m.second->get_sym() << endl;
-	}
-
-	*/
-	
-
 
 	// attach neighbors 
 	for (int i = 0; i < 25; i++) {
@@ -742,11 +689,6 @@ void Floor::init_file(string name, string race) {
 	// set player neighbors
 	this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
 	// remain the HP of the player
-
-	for (auto m:this->en_arr[0]->getNeigh()) {
-		cout << m.second->get_sym() << endl;
-	}
-
 }
 
 
@@ -798,35 +740,112 @@ void Floor::make_stair(int player_room, vector<vector<char>> &in_file) {
 
 void Floor::make_potion(int type, vector<vector<char>> &in_file) {
 	
-	int room_num = rand() % 5;
-	int size = this->theRoom[room_num].size();
+		int room_num = rand() % 5;
+		int size = this->theRoom[room_num].size();
 	
-	int index_num = rand() % size;
+		int index_num = rand() % size;
 	
-	int row = this->theRoom[room_num][index_num].first;
-	int col = this->theRoom[room_num][index_num].second;
+		int row = this->theRoom[room_num][index_num].first;
+		int col = this->theRoom[room_num][index_num].second;
 	
-	in_file[row][col] = type + 48;
-	this->Board->notify(row, col, 'P');
+		in_file[row][col] = type + 48;
+		this->Board->notify(row, col, 'P');
 	
-	// erase the occupied pos
-	this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);		
+		// erase the occupied pos
+		this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);	
+		
 }
 
 void Floor::make_gold(int type, vector<vector<char>> &in_file) {
-	int room_num = rand() % 5;
-	int size = this->theRoom[room_num].size();
 	
-	int index_num = rand() % size;
+	if (type == 9) {
+		
+		// when the gold type is 9, should also make a dragon enemy
+		
+		int room_num = rand() % 5;
+		int size = this->theRoom[room_num].size();
 	
-	int row = this->theRoom[room_num][index_num].first;
-	int col = this->theRoom[room_num][index_num].second;
+		int index_num = rand() % size;
 	
-	in_file[row][col] = type + 48;
-	this->Board->notify(row, col, 'G');
+		int row = this->theRoom[room_num][index_num].first;
+		int col = this->theRoom[room_num][index_num].second;
 	
-	// erase the occupied pos
-	this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);			
+		in_file[row][col] = type + 48;
+		this->Board->notify(row, col, 'G');
+	
+		// erase the occupied pos
+		this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);		
+		
+		// when the gold type is 9, should also make a dragon enemy, beside the dragon hoard 
+		
+		/*room_num = rand() % 5;
+		size = this->theRoom[room_num].size();
+		
+		index_num = rand() % size;
+		
+		row = this->theRoom[room_num][index_num].first;
+		col = this->theRoom[room_num][index_num].second;
+		
+		in_file[row][col] = 'D';
+		this->Board->notify(row, col, 'D');
+	
+		// erase the occupied pos
+		this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);		
+		*/
+		
+		int dragon_r, dragon_c;
+		do {
+			int random = rand() % 8;
+			if(random == 0) {
+				dragon_r = row-1;
+				dragon_c = col;
+			} else if (random == 1) {
+				dragon_r = row+1;
+				dragon_c = col;
+			} else if (random == 2) {
+				dragon_r = row;
+				dragon_c = col-1;
+			} else if (random == 3) {
+				dragon_r = row;
+				dragon_c = col+1;
+			} else if (random == 4) {
+				dragon_r = row-1;
+				dragon_c = col+1;
+			} else if (random == 5) {
+				dragon_r = row-1;
+				dragon_c = col-1;
+			} else if (random == 6) {
+				dragon_r = row+1;
+				dragon_c = col+1;
+			} else {
+				dragon_r = row+1;
+				dragon_c = col-1;
+			}
+		} while (in_file[dragon_r][dragon_c] != '.');
+		
+		in_file[dragon_r][dragon_c] = 'D';
+		this->Board->notify(dragon_r, dragon_c, 'D');
+	
+		// erase the occupied pos
+		this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);	
+		
+		
+		
+	}	else {
+		int room_num = rand() % 5;
+		int size = this->theRoom[room_num].size();
+	
+		int index_num = rand() % size;
+	
+		int row = this->theRoom[room_num][index_num].first;
+		int col = this->theRoom[room_num][index_num].second;
+	
+		in_file[row][col] = type + 48;
+		this->Board->notify(row, col, 'G');
+	
+		// erase the occupied pos
+		this->theRoom[room_num].erase(this->theRoom[room_num].begin() + index_num);	
+	}
 }
 
 void Floor::make_enemy(char type, vector<vector<char>> &in_file) {
@@ -875,9 +894,12 @@ void Floor::pcMove(string direction) {
 		}
 	}
 	if (this->player->get_prev() == 'G') {
+		cout << "prev" << endl;
 		for (int i = 0; i < this->gold_arr.size(); ++i) {
 			if (row == this->gold_arr[i]->get_row() && col == this->gold_arr[i]->get_col()) {
+				cout << "loop" << endl;
 				if (this->gold_arr[i]->getavailable()) {
+					cout << "pick up" << endl;
 					this->player->pickUp(*(this->gold_arr[i]));
 					this->player->setPrev('.');
 				} else {
@@ -914,17 +936,11 @@ void Floor::pcAtk(string direction) {
 
 void Floor::pcUse(string direction) {
 	if (this->player->getNeigh()[direction]->get_sym() == 'P') {
-		cout << "P" << endl;
 		int row = this->player->getNeigh()[direction]->get_row();
 		int col = this->player->getNeigh()[direction]->get_col();
-		cout << row << " " << col << endl;
-		cout << po_arr.size() << endl;
+	
 		for (int i = 0; i < this->po_arr.size(); i++) {
-			int r = this->po_arr[i]->get_row();
-			int c = this->po_arr[i]->get_col();
-			cout << r << " " << c << endl;
 			if (row == this->po_arr[i]->get_row() && col == this->po_arr[i]->get_col()) {
-				cout << "if" << endl;
 				this->player->use(*(this->po_arr[i]));
 				//this->player->getNeigh()[direction]->setSym('.');
 				this->player->setKnownPotions(this->po_arr[i]->getItemType());
@@ -941,27 +957,11 @@ void Floor::enemyMove() {
 	//int size = this->en_arr.size();
 	
 	for (int i = 0; i < en_arr.size(); i++) {
-		//cout << "enemove" << endl;
 		if (!en_arr[i]->isDead()) {
 			this->en_arr[i]->move();
 		}
-		//cout << "movvv" << endl;
 	}
 }
-
-
-/*
-void Floor::check_enemy() {
-	int size = this->en_arr.size();
-	
-	for (int i = 0; i < size; i++) {
-		if (this->en_arr[i].isDead()) {
-			this->en_arr.erase(this->en_arr.begin() + i);
-		}
-		break;
-	}
-}
-*/
 
 bool Floor::at_stair() {
 	return this->player->isOnStair();

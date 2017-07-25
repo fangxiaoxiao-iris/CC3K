@@ -22,24 +22,24 @@ void PC::setKnownPotions(std::string pName) {
 }
 
 // change PC's coordinates and notify neighbors.
-void PC::proper_move(string index_nb, string index_p) {
-	if (((neighbors[index_nb])->get_sym() == '.') || 
-		((neighbors[index_nb])->get_sym() == '#') || 
-		((neighbors[index_nb])->get_sym() == '+') ||
-		((neighbors[index_nb])->get_sym() == 'G')) {
-			swapCoords(neighbors[index_nb]);
-			notifyMove(index_nb);
-			char p_prev_sym = get_prev();
-			setPrev(neighbors[index_nb]->get_sym());
-			neighbors[index_nb]->setSym(p_prev_sym);
-			swapNeighbors(neighbors[index_nb], index_nb, index_p);
-		} else if ((neighbors[index_nb])->get_sym() == '\\') {
-			swapCoords(neighbors[index_nb]);
-			notifyMove(index_nb);
-			char p_prev_sym = get_prev();
-			setPrev(neighbors[index_nb]->get_sym());
-			(neighbors[index_nb])->setSym(p_prev_sym);
-			swapNeighbors(neighbors[index_nb], index_nb, index_p);
+static void proper_move(PC &p, string index_nb, string index_p) {
+	if (((p.getNeigh()[index_nb])->get_sym() == '.') || 
+		((p.getNeigh()[index_nb])->get_sym() == '#') || 
+		((p.getNeigh()[index_nb])->get_sym() == '+') ||
+		((p.getNeigh()[index_nb])->get_sym() == 'G')) {
+			p.swapCoords(p.getNeigh()[index_nb]);
+			p.notifyMove(index_nb);
+			char p_prev_sym = p.get_prev();
+			p.setPrev(p.getNeigh()[index_nb]->get_sym());
+			p.getNeigh()[index_nb]->setSym(p_prev_sym);
+			p.swapNeighbors(p.getNeigh()[index_nb], index_nb, index_p);
+		} else if ((p.getNeigh()[index_nb])->get_sym() == '\\') {
+			p.swapCoords(p.getNeigh()[index_nb]);
+			p.notifyMove(index_nb);
+			char p_prev_sym = p.get_prev();
+			p.setPrev(p.getNeigh()[index_nb]->get_sym());
+			p.getNeigh()[index_nb]->setSym(p_prev_sym);
+			p.swapNeighbors(p.getNeigh()[index_nb], index_nb, index_p);
 		} else {
 			cout << "Invalid direction. " <<
 			"You are heading to a dead end." << endl;
@@ -58,23 +58,23 @@ void PC::move(std::string direction) {
 	}
 
 	if (direction == "no") {
-		proper_move("no", "so");
+		proper_move(*this, "no", "so");
 	} else if (direction == "so") {
-		proper_move("so", "no");
+		proper_move(*this, "so", "no");
 	} else if (direction == "ea") {
-		proper_move("ea", "we");
+		proper_move(*this, "ea", "we");
 	} else if (direction == "we") {
-		proper_move("we", "ea");
+		proper_move(*this, "we", "ea");
 	} else if (direction == "ne") {
-		proper_move("ne", "sw");
+		proper_move(*this, "ne", "sw");
 	} else if (direction == "nw") {
-		proper_move("nw", "se");
+		proper_move(*this, "nw", "se");
 	} else if (direction == "se") {
-		proper_move("se", "nw");
+		proper_move(*this, "se", "nw");
 	} else if (direction == "sw") {
 //		r_update = r_coord+1;
 //		c_update = c_coord-1;
-		proper_move("sw", "ne");
+		proper_move(*this, "sw", "ne");
 	} else {
 		cout << "Invalid direction. Please choose a valid direction from " <<
 		"no (North), so (South), ea (East), we (West), ne (Northeast), " <<

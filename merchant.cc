@@ -16,7 +16,7 @@ Merchant::Merchant(int row, int col, char sym, char prev, GameBoard* theBoard):
 Merchant::~Merchant() {}
 
 void Merchant::attack(PC &defender){
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0 && this->isHostile == true) {

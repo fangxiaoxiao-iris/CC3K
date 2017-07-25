@@ -16,7 +16,7 @@ Dwarf::Dwarf(int row, int col, char sym, char prev, GameBoard* theBoard):
 Dwarf::~Dwarf() {}
 
 void Dwarf::attack(PC &defender){
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0) {
@@ -38,6 +38,10 @@ void Dwarf::beAttacked(Shade &shade) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
 	}
@@ -55,6 +59,10 @@ void Dwarf::beAttacked(Drow &drow) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
 	}
@@ -78,6 +86,10 @@ void Dwarf::beAttacked(Vampire &vampire) {
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
 	}
@@ -104,6 +116,10 @@ void Dwarf::beAttacked(Troll &troll){
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		troll.setgold(troll.getgold() + goldnum);
 		} else {
 		this->sethp(troll_newhp);
 	}
@@ -124,6 +140,10 @@ void Dwarf::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goblin_goldgain);
 		this->sethp(0);
 		this->dead();
+		int goldnum;
+		goldnum = rand() % 2;
+		++goldnum;
+		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
 	}

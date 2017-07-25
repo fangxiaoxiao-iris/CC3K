@@ -16,7 +16,7 @@ Human::Human(int row, int col, char sym, char prev, GameBoard* theBoard):
 Human::~Human() {}
 
 void Human::attack(PC &defender){
-	for(auto n: neighbors) {
+	for(auto n: getNeigh()) {
 		if (n.second->get_sym() == '@') {
 			int tmp = rand() % 2;
 			if (tmp == 0) {
@@ -38,7 +38,6 @@ void Human::beAttacked(Shade &shade) {
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
-		cout << "Enemy: Human has " << this->gethp() << "HP" << endl;
 		int cur_gold = shade.getgold();
 		shade.setgold(cur_gold+4);
 		} else {

@@ -17,6 +17,7 @@ void Gold::picked(PC &p) {
 	int p_update_gold = p_cur_gold + value;
 	p.setgold(p_update_gold);
 	setSym('.');
+	notifyBoard();
 }
 
 bool Gold::getavailable() {

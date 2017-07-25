@@ -25,6 +25,9 @@ public:
 	virtual void beAttacked(Vampire &vampire)=0;
 	virtual void beAttacked(Troll &troll)=0;
 	virtual void beAttacked(Goblin &goblin)=0;
+	void proper_move(string index_nb, string index_p);
+	bool isproper(string index);
+
 
 	void dead();
 };

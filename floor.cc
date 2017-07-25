@@ -458,6 +458,15 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 			}
 		}
 	}
+
+
+	for (auto m:this->en_arr[12]->getNeigh()) {
+		cout << m.first << " " << m.second->get_sym() << endl;
+	}
+
+	cout << en_arr[12]->get_row() << " " << en_arr[12]->get_col() << " " << en_arr[12]->get_sym() << " " 
+	<< en_arr[12]->gettype() << endl;  
+
 		
 	// set player neighbors
 	//this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
@@ -676,7 +685,22 @@ void Floor::init_file(string name, string race) {
 		}			
 		this->theFloor.emplace_back(square_arr);
 	}	
+	/*
+	for (int i = 0; i < 1; i++) {
+		//cout << "enemove" << endl;
+	cout << this->en_arr[0]->getNeigh()->;
+	*/
+
+	/*
+    
+	for (auto m:this->en_arr[0]->getNeigh()) {
+		cout << m.second->get_sym() << endl;
+	}
+
+	*/
 	
+
+
 	// attach neighbors 
 	for (int i = 0; i < 25; i++) {
 		for (int j = 0; j < 79; j++) {
@@ -718,6 +742,10 @@ void Floor::init_file(string name, string race) {
 	// set player neighbors
 	this->player->setNeigh(theFloor[this->player->get_row()][this->player->get_col()]->getNeigh());	
 	// remain the HP of the player
+
+	for (auto m:this->en_arr[0]->getNeigh()) {
+		cout << m.second->get_sym() << endl;
+	}
 
 }
 
@@ -851,6 +879,7 @@ void Floor::pcMove(string direction) {
 			if (row == this->gold_arr[i]->get_row() && col == this->gold_arr[i]->get_col()) {
 				if (this->gold_arr[i]->getavailable()) {
 					this->player->pickUp(*(this->gold_arr[i]));
+					this->player->setPrev('.');
 				} else {
 					cout << "You have to kill the Dragon first." << endl;
 				}
@@ -911,16 +940,13 @@ void Floor::pcUse(string direction) {
 void Floor::enemyMove() {
 	//int size = this->en_arr.size();
 	
-	/*for (int i = 0; i < en_arr.size(); i++) {
+	for (int i = 0; i < en_arr.size(); i++) {
 		//cout << "enemove" << endl;
 		if (!en_arr[i]->isDead()) {
 			this->en_arr[i]->move();
 		}
 		//cout << "movvv" << endl;
-	} */
-
-this->en_arr[0]->move();
-this->en_arr[3]->gettype();
+	}
 }
 
 

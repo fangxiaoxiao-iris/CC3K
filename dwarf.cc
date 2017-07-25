@@ -31,7 +31,9 @@ void Dwarf::beAttacked(Shade &shade) {
 	int Dwarf_def = this->getdef();
 	int attacker_atk = shade.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
@@ -46,7 +48,9 @@ void Dwarf::beAttacked(Drow &drow) {
 	int Dwarf_def = this->getdef();
 	int attacker_atk = drow.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	if(Dwarf_newhp <= 0){
 		this->sethp(0);
@@ -60,9 +64,11 @@ void Dwarf::beAttacked(Drow &drow) {
 void Dwarf::beAttacked(Vampire &vampire) {
 	int Dwarf_hp = this->gethp();
 	int Dwarf_def = this->getdef();
-	int vampire_atk = vampire.getatk();
+	int attacker_atk = vampire.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * vampire_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	// vampire loses 5 hp every successful attack
 	int hp_lost = 5;
@@ -89,7 +95,9 @@ void Dwarf::beAttacked(Troll &troll){
 	int Dwarf_def = this->getdef();
 	int attacker_atk = troll.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	int hp_regain = 5;
 	int troll_newhp = (troll.gethp() + hp_regain) > troll.getmaxhp() ? troll.getmaxhp() : troll.gethp() + hp_regain;
@@ -106,7 +114,9 @@ void Dwarf::beAttacked(Goblin &goblin){
 	int Dwarf_def = this->getdef();
 	int attacker_atk = goblin.getatk();
 	// Dwarf is the defender
-	int damagetaken = ceil((100/(100+Dwarf_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dwarf_def);
+	int damagetaken = ceil(d);
+	
 	int Dwarf_newhp = Dwarf_hp - damagetaken;
 	if(Dwarf_newhp <= 0){
 		// goblin steals 5 gold from every slain Enemy

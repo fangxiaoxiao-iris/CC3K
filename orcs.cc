@@ -31,7 +31,9 @@ void Orcs::beAttacked(Shade &shade) {
 	int Orcs_def = this->getdef();
 	int attacker_atk = shade.getatk();
 	// Orcs is the defender
-	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Orcs_def);
+	int damagetaken = ceil(d);
+
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
@@ -46,7 +48,9 @@ void Orcs::beAttacked(Drow &drow) {
 	int Orcs_def = this->getdef();
 	int attacker_atk = drow.getatk();
 	// Orcs is the defender
-	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Orcs_def);
+	int damagetaken = ceil(d);
+
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
@@ -62,7 +66,9 @@ void Orcs::beAttacked(Vampire &vampire) {
 	int Orcs_def = this->getdef();
 	int attacker_atk = vampire.getatk();
 	// Orcs is the defender
-	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Orcs_def);
+	int damagetaken = ceil(d);
+
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
@@ -80,7 +86,9 @@ void Orcs::beAttacked(Troll &troll){
 	int Orcs_def = this->getdef();
 	int attacker_atk = troll.getatk();
 	// Orcs is the defender
-	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Orcs_def);
+	int damagetaken = ceil(d);
+
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	if(Orcs_newhp <= 0){
 		this->sethp(0);
@@ -95,7 +103,9 @@ void Orcs::beAttacked(Goblin &goblin){
 	int Orcs_def = this->getdef();
 	int attacker_atk = goblin.getatk();
 	// Orcs is the defender
-	int damagetaken = ceil((100/(100+Orcs_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Orcs_def);
+	int damagetaken = ceil(d);
+	
 	int Orcs_newhp = Orcs_hp - damagetaken;
 	if(Orcs_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy

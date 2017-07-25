@@ -16,6 +16,8 @@ static void proper_move(Enemy &e, string index_nb, string index_p) {
 			e.setPrev(e.getNeigh()[index_nb]->get_sym());
 			e.getNeigh()[index_nb]->setSym(p_prev_sym);
 			e.swapNeighbors((e.getNeigh())[index_nb], index_nb, index_p);
+			cout << e.get_sym() << " " << e.get_col() << endl;
+			cout << "end first move" << endl;
 	}
 } 
 

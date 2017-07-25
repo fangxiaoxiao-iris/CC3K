@@ -38,7 +38,9 @@ void Merchant::beAttacked(Shade &shade) {
 	int Merchant_def = this->getdef();
 	int attacker_atk = shade.getatk();
 	// Merchant is the defender
-	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){
@@ -54,7 +56,9 @@ void Merchant::beAttacked(Drow &drow) {
 	int Merchant_def = this->getdef();
 	int attacker_atk = drow.getatk();
 	// Merchant is the defender
-	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){
@@ -71,7 +75,9 @@ void Merchant::beAttacked(Vampire &vampire) {
 	int Merchant_def = this->getdef();
 	int attacker_atk = vampire.getatk();
 	// Merchant is the defender
-	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
@@ -90,7 +96,9 @@ void Merchant::beAttacked(Troll &troll){
 	int Merchant_def = this->getdef();
 	int attacker_atk = troll.getatk();
 	// Merchant is the defender
-	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){
@@ -106,7 +114,9 @@ void Merchant::beAttacked(Goblin &goblin){
 	int Merchant_def = this->getdef();
 	int attacker_atk = goblin.getatk();
 	// Merchant is the defender
-	int damagetaken = ceil((100/(100+Merchant_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Merchant_def);
+	int damagetaken = ceil(d);
+	
 	int Merchant_newhp = Merchant_hp - damagetaken;
 	this->isHostile = true;
 	if(Merchant_newhp <= 0){

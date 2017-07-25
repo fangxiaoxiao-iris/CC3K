@@ -31,11 +31,14 @@ void Human::beAttacked(Shade &shade) {
 	int human_def = this->getdef();
 	int attacker_atk = shade.getatk();
 	// human is the defender
-	int damagetaken = ceil((100/(100+human_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
 	int human_newhp = human_hp - damagetaken;
 	if(human_newhp <= 0){
 		this->sethp(0);
 		this->dead();
+		cout << "Enemy: Human has " << this->gethp() << "HP" << endl;
 		int cur_gold = shade.getgold();
 		shade.setgold(cur_gold+4);
 		} else {
@@ -48,7 +51,9 @@ void Human::beAttacked(Drow &drow) {
 	int human_def = this->getdef();
 	int attacker_atk = drow.getatk();
 	// human is the defender
-	int damagetaken = ceil((100/(100+human_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
 	int human_newhp = human_hp - damagetaken;
 	if(human_newhp <= 0){
 		this->sethp(0);
@@ -64,9 +69,11 @@ void Human::beAttacked(Drow &drow) {
 void Human::beAttacked(Vampire &vampire) {
 	int human_hp = this->gethp();
 	int human_def = this->getdef();
-	int vampire_atk = vampire.getatk();
+	int attacker_atk = vampire.getatk();
 	// human is the defender
-	int damagetaken = ceil((100/(100+human_def)) * vampire_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
 	int human_newhp = human_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
@@ -86,7 +93,9 @@ void Human::beAttacked(Troll &troll){
 	int human_def = this->getdef();
 	int attacker_atk = troll.getatk();
 	// human is the defender
-	int damagetaken = ceil((100/(100+human_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
 	int human_newhp = human_hp - damagetaken;
 	if(human_newhp <= 0){
 		this->sethp(0);
@@ -103,7 +112,9 @@ void Human::beAttacked(Goblin &goblin){
 	int human_def = this->getdef();
 	int attacker_atk = goblin.getatk();
 	// human is the defender
-	int damagetaken = ceil((100/(100+human_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + human_def);
+	int damagetaken = ceil(d);
+
 	int human_newhp = human_hp - damagetaken;
 	if(human_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy

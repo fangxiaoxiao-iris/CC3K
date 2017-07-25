@@ -411,12 +411,14 @@ void Floor::init_no_file(string name, string race) {  // parameter name is alway
 		cout << "end bracket" << endl;
 		cout << "---------------------" << endl;
 	}
-	/*cout << "------------------" << endl;
+	cout << "------------------" << endl;
 	for (int i = 0; i < en_arr.size(); ++i) {
 		int r = this->en_arr[i]->get_row();
 		int c = this->en_arr[i]->get_col();
-		cout << r << " " << c << endl;
-	}*/
+		char charhhh = this->en_arr[i]->get_sym();
+		string type = this->en_arr[i]->gettype();
+		cout << r << " " << c << " "<< charhhh << type << endl;
+	}
 	
 	// attach neighbors 
 	for (int i = 0; i < 25; i++) {
@@ -909,14 +911,18 @@ void Floor::pcUse(string direction) {
 void Floor::enemyMove() {
 	//int size = this->en_arr.size();
 	
-	for (int i = 0; i < en_arr.size(); i++) {
+	/*for (int i = 0; i < en_arr.size(); i++) {
 		//cout << "enemove" << endl;
 		if (!en_arr[i]->isDead()) {
 			this->en_arr[i]->move();
 		}
 		//cout << "movvv" << endl;
-	}
+	} */
+
+this->en_arr[0]->move();
+this->en_arr[3]->gettype();
 }
+
 
 /*
 void Floor::check_enemy() {

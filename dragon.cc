@@ -40,7 +40,9 @@ void Dragon::beAttacked(Shade &shade) {
 	int Dragon_def = this->getdef();
 	int attacker_atk = shade.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
@@ -56,7 +58,9 @@ void Dragon::beAttacked(Drow &drow) {
 	int Dragon_def = this->getdef();
 	int attacker_atk = drow.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
@@ -71,9 +75,11 @@ void Dragon::beAttacked(Drow &drow) {
 void Dragon::beAttacked(Vampire &vampire) {
 	int Dragon_hp = this->gethp();
 	int Dragon_def = this->getdef();
-	int vampire_atk = vampire.getatk();
+	int attacker_atk = vampire.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * vampire_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	// vampire gains 5 hp every successful attack
 	int hp_gained = 5;
@@ -92,7 +98,9 @@ void Dragon::beAttacked(Troll &troll){
 	int Dragon_def = this->getdef();
 	int attacker_atk = troll.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	if(Dragon_newhp <= 0){
 		this->sethp(0);
@@ -108,7 +116,9 @@ void Dragon::beAttacked(Goblin &goblin){
 	int Dragon_def = this->getdef();
 	int attacker_atk = goblin.getatk();
 	// Dragon is the defender
-	int damagetaken = ceil((100/(100+Dragon_def)) * attacker_atk);
+	float d = (float)(100 * attacker_atk ) / (float)(100 + Dragon_def);
+	int damagetaken = ceil(d);
+	
 	int Dragon_newhp = Dragon_hp - damagetaken;
 	if(Dragon_newhp <= 0){
 		// goblin steals 5 gold from every slain enemy

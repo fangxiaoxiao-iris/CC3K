@@ -29,6 +29,7 @@ void Troll::beAttacked(Human &hu) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << hu.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Dwarf &dw) {
@@ -39,6 +40,7 @@ void Troll::beAttacked(Dwarf &dw) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << dw.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Elf &el) {
@@ -49,6 +51,7 @@ void Troll::beAttacked(Elf &el) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - 2*d) > 0) ? (t_cur_hp - 2*d) : 0;
 	sethp(t_updated_hp);
+	cout << el.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Orcs &o) {
@@ -59,6 +62,7 @@ void Troll::beAttacked(Orcs &o) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << o.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Merchant &m) {
@@ -69,6 +73,7 @@ void Troll::beAttacked(Merchant &m) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << m.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Dragon &dr) {
@@ -79,6 +84,7 @@ void Troll::beAttacked(Dragon &dr) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << dr.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Troll::beAttacked(Halfling &ha) {
@@ -89,4 +95,5 @@ void Troll::beAttacked(Halfling &ha) {
 	int d = ceil(damage);
 	int t_updated_hp = ((t_cur_hp - d) > 0) ? (t_cur_hp - d) : 0;
 	sethp(t_updated_hp);
+	cout << ha.gettype() << " deals " << d << " damage on Shade." << endl;
 }

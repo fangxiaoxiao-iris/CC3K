@@ -24,45 +24,57 @@ void Potion::used(PC &p) {
 			p_update_hp = ((p_cur_hp + 10*1.5) <= p_max_hp) ? 
 			(p_cur_hp + 10*1.5) : p_max_hp;
 			p.sethp(p_update_hp);
+			cout << "You HP increases or already at maximum." << endl;
 		} else if (itemType == "BA") {
 			p_update_atk = ceil(p_cur_atk + 5*1.5);
 			p.setatk(p_update_atk);
+			cout << "You Attack increases." << endl;
 		} else if (itemType == "BD") {
 			p_update_def = ceil(p_cur_def + 5*1.5);
 			p.setdef(p_update_def);
+			cout << "You Defense increases." << endl;
 		} else if (itemType == "PH") {
 			p_update_hp = ((p_cur_hp - 10*1.5) >= 0) ? 
 			(p_cur_hp - 10*1.5) : 0;
 			p.sethp(p_update_hp);
+			cout << "You HP decreases." << endl;
 		} else if (itemType == "WA") {
 			p_update_atk = (ceil(p_cur_atk - 5*1.5) >= 0) ? 
 			ceil(p_cur_atk - 5*1.5) : 0;
 			p.setatk(p_update_atk);
+			cout << "You Attack decreases." << endl;
 		} else if (itemType == "WD") {
 			p_update_def = (ceil(p_cur_def - 5*1.5) >= 0) ? 
 			ceil(p_cur_def - 5*1.5) : 0;
 			p.setdef(p_update_def);
+			cout << "You Defense decreases." << endl;
 		}
 	} else {
 		if (itemType == "RH") {
 			p_update_hp = ((p_cur_hp + 10) <= p_max_hp) ? (p_cur_hp + 10) 
 			: p_max_hp;
 			p.sethp(p_update_hp);
+			cout << "You HP increases or already at maximum." << endl;
 		} else if (itemType == "BA") {
 			p_update_atk = p_cur_atk + 5;
 			p.setatk(p_update_atk);
+			cout << "You Attack increases." << endl;
 		} else if (itemType == "BD") {
 			p_update_def = p_cur_def + 5;
 			p.setdef(p_update_def);
+			cout << "You Defense increases." << endl;
 		} else if (itemType == "PH") {
 			p_update_hp = ((p_cur_hp - 10) >= 0) ? (p_cur_hp - 10) : 0;
 			p.sethp(p_update_hp);
+			cout << "You HP decreases." << endl;
 		} else if (itemType == "WA") {
 			p_update_atk = ((p_cur_atk - 5) >= 0) ? (p_cur_atk - 5) : 0;
 			p.setatk(p_update_atk);
+			cout << "You Attack decreases." << endl;
 		} else if (itemType == "WD") {
 			p_update_def = ((p_cur_def - 5) >= 0) ? (p_cur_def - 5) : 0;
 			p.setdef(p_update_def);
+			cout << "You Defense decreases." << endl;
 		}
 	}
 

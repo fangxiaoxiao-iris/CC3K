@@ -18,6 +18,7 @@ void Gold::picked(PC &p) {
 	p.setgold(p_update_gold);
 	setSym('.');
 	notifyBoard();
+	cout << "You have picked up " << value << " piles of Gold!" << endl;
 }
 
 bool Gold::getavailable() {

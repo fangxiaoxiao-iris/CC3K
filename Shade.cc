@@ -26,7 +26,7 @@ void Shade::beAttacked(Human &hu) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Human dealt " << d << " damage on Shade." << endl;
+	cout << hu.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Dwarf &dw) {
@@ -37,7 +37,7 @@ void Shade::beAttacked(Dwarf &dw) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Dwarf dealt " << d << " damage on Shade." << endl;
+	cout << dw.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Elf &el) {
@@ -48,7 +48,7 @@ void Shade::beAttacked(Elf &el) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - 2*d) > 0) ? (s_cur_hp - 2*d) : 0;
 	sethp(s_updated_hp);
-	cout << "Elf dealt " << d << " damage on Shade." << endl;
+	cout << el.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Orcs &o) {
@@ -59,7 +59,7 @@ void Shade::beAttacked(Orcs &o) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Orcs dealt " << d << " damage on Shade." << endl;
+	cout << o.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Merchant &m) {
@@ -70,7 +70,7 @@ void Shade::beAttacked(Merchant &m) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Merchant dealt " << d << " damage on Shade." << endl;
+	cout << m.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Dragon &dr) {
@@ -81,7 +81,7 @@ void Shade::beAttacked(Dragon &dr) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Dragon dealt " << d << " damage on Shade." << endl;
+	cout << dr.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Shade::beAttacked(Halfling &ha) {
@@ -92,5 +92,5 @@ void Shade::beAttacked(Halfling &ha) {
 	int d = ceil(damage);
 	int s_updated_hp = ((s_cur_hp - d) > 0) ? (s_cur_hp - d) : 0;
 	sethp(s_updated_hp);
-	cout << "Halfling dealt " << d << " damage on Shade." << endl;
+	cout << ha.gettype() << " deals " << d << " damage on Shade." << endl;
 }

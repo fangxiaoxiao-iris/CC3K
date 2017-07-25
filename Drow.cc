@@ -26,6 +26,7 @@ void Drow::beAttacked(Human &hu) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << hu.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Dwarf &dw) {
@@ -36,6 +37,7 @@ void Drow::beAttacked(Dwarf &dw) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << dw.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Elf &el) {
@@ -46,6 +48,7 @@ void Drow::beAttacked(Elf &el) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << el.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Orcs &o) {
@@ -56,6 +59,7 @@ void Drow::beAttacked(Orcs &o) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << o.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Merchant &m) {
@@ -66,6 +70,7 @@ void Drow::beAttacked(Merchant &m) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << m.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Dragon &dr) {
@@ -76,6 +81,7 @@ void Drow::beAttacked(Dragon &dr) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << dr.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Drow::beAttacked(Halfling &ha) {
@@ -86,4 +92,5 @@ void Drow::beAttacked(Halfling &ha) {
 	int d = ceil(damage);
 	int d_updated_hp = ((d_cur_hp - d) > 0) ? (d_cur_hp - d) : 0;
 	sethp(d_updated_hp);
+	cout << ha.gettype() << " deals " << d << " damage on Shade." << endl;
 }

@@ -21,7 +21,10 @@ void Merchant::attack(PC &defender){
 			int tmp = rand() % 2;
 			if (tmp == 0 && this->isHostile == true) {
 				defender.beAttacked(*this);
-			}	
+			}
+			if(tmp == 1 && this->isHostile == true) {
+						cout << "Oops! " << "Enemy: " << this->gettype() << " misses his attack!" << endl;
+					}	
 		}
 	}
 	/*

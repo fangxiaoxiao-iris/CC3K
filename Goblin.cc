@@ -22,61 +22,75 @@ void Goblin::beAttacked(Human &hu) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int hu_atk = hu.getatk();
-	int damage = ceil((100/(100+g_def))*hu_atk);
+	float damage = (float)(100*hu_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << hu.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Dwarf &dw) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int dw_atk = dw.getatk();
-	int damage = ceil((100/(100+g_def))*dw_atk);
+	float damage = (float)(100*dw_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << dw.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Elf &el) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int el_atk = el.getatk();
-	int damage = ceil((100/(100+g_def))*el_atk);
+	float damage = (float)(100*el_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - 2*damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << el.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Orcs &o) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int o_atk = o.getatk();
-	int damage = ceil((100/(100+g_def))*o_atk*1.5);
+	float damage = (float)(100*o_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << o.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Merchant &m) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int m_atk = m.getatk();
-	int damage = ceil((100/(100+g_def))*m_atk);
+	float damage = (float)(100*m_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << m.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Dragon &dr) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int dr_atk = dr.getatk();
-	int damage = ceil((100/(100+g_def))*dr_atk);
+	float damage = (float)(100*dr_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << dr.gettype() << " deals " << d << " damage on Shade." << endl;
 }
 
 void Goblin::beAttacked(Halfling &ha) {
 	int g_cur_hp = gethp();
 	int g_def = getdef();
 	int ha_atk = ha.getatk();
-	int damage = ceil((100/(100+g_def))*ha_atk);
+	float damage = (float)(100*ha_atk)/(float)(100+g_def);
+	int d = ceil(damage);
 	int g_updated_hp = ((g_cur_hp - damage) > 0) ? (g_cur_hp - damage) : 0;
 	sethp(g_updated_hp);
+	cout << ha.gettype() << " deals " << d << " damage on Shade." << endl;
 }

@@ -35,6 +35,9 @@ void Dragon::attack(PC &defender) {
 					if (tmp == 0) {
 						defender.beAttacked(*this);
 					}
+					if(tmp == 1) {
+						cout << "Oops! " << "Enemy: " << this->gettype() << " misses his attack!" << endl;
+					}
 				}	
 			}		
 		}

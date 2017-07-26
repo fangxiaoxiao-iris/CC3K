@@ -51,6 +51,7 @@ void Merchant::beAttacked(Shade &shade) {
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -69,6 +70,7 @@ void Merchant::beAttacked(Drow &drow) {
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -91,6 +93,7 @@ void Merchant::beAttacked(Vampire &vampire) {
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -109,6 +112,7 @@ void Merchant::beAttacked(Troll &troll){
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -130,6 +134,7 @@ void Merchant::beAttacked(Goblin &goblin){
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -148,5 +153,6 @@ void Merchant::beAttacked(Fairy &fairy) {
 		this->dead();
 		} else {
 		this->sethp(Merchant_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }

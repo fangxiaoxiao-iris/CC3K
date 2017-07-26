@@ -63,6 +63,7 @@ void Dragon::beAttacked(Shade &shade) {
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -85,6 +86,7 @@ void Dragon::beAttacked(Drow &drow) {
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -111,6 +113,7 @@ void Dragon::beAttacked(Vampire &vampire) {
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -133,6 +136,7 @@ void Dragon::beAttacked(Troll &troll){
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -158,6 +162,7 @@ void Dragon::beAttacked(Goblin &goblin){
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -180,8 +185,8 @@ void Dragon::beAttacked(Fairy &fairy) {
 		}
 	} else {
 		this->sethp(Dragon_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
-void Dragon::move() {
-}
+void Dragon::move() {}

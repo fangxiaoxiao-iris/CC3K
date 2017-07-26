@@ -86,11 +86,13 @@ int main(int argc, char* argv[]) {
 					}
 					cout << endl;
 				}
+				cout << "You have collected " << f.getScore() << " pile(s) of gold in this round." << endl;
 				break;
 			}
 			//check stair 
 			if (f.at_stair()) {
 				int HP_record = f.getPC()->gethp();
+				int gold_record = f.getPC()->getgold();
 				vector<string> &knownPotions = f.getPC()->getKnownPotions();
 				if (argc == 1) {
 					f.init_no_file("cc3kfloor.txt", race);
@@ -100,6 +102,7 @@ int main(int argc, char* argv[]) {
 				}
 				
 				f.getPC()->sethp(HP_record);
+				f.getPC()->setgold(gold_record);
 				for(auto p: knownPotions) {
 					f.getPC()->setKnownPotions(p);
 				}
@@ -114,6 +117,7 @@ int main(int argc, char* argv[]) {
 						}
 						cout << endl;
 					}
+					cout << "You have collected " << f.getScore() << " pile(s) of gold in this round." << endl;
 					break;
 				}
 			}
@@ -132,7 +136,15 @@ int main(int argc, char* argv[]) {
 			cin >> cmd;
 			f.pcUse(cmd);
 			if (f.getPC()->isDead()) {
-				cout << "You lose!" << endl;
+				ifstream file ("gameover.txt");
+				string line;
+				while(getline(file, line)) {
+					for (int i = 0; i < 42; i++) {
+						cout << line[i];
+					}
+					cout << endl;
+				}
+				cout << "You have collected " << f.getScore() << " pile(s) of gold in this round." << endl;
 				break;
 			}
 			if (move == true) {
@@ -216,35 +228,54 @@ int main(int argc, char* argv[]) {
 			
 		} else if (cmd == "b") {
 			cin >> cmd;
+			if (!(cmd == "no" || cmd == "so" || cmd == "ea" || cmd == "we"
+				|| cmd == "ne" || cmd == "nw" || cmd == "se" || cmd == "sw")) {
+				cout << "Invalid instruction. Please follow the format: b <direction> <potion>." << endl;
+				continue;
+			}
+
 			if ((f.getPC()->getNeigh()[cmd])->get_sym() == 'M') {
 				cin >> cmd;
-				if (cmd == "RH") {
-					int cur_hp = f.getPC()->gethp();
-					int max_hp = f.getPC()->getmaxhp();
-					int update_hp = ((cur_hp + 10) <= max_hp) ? (cur_hp + 10) : max_hp;
-					f.getPC()->sethp(update_hp);
-				} else if (cmd == "BA") {
-					int cur_atk = f.getPC()->getatk();
-					int update_atk = cur_atk + 5;
-					f.getPC()->setatk(update_atk);
-				} else if (cmd == "BD") {
-					int cur_def = f.getPC()->getdef();
-					int update_def = cur_def + 5;
-					f.getPC()->setdef(update_def);
+				if (f.getPC()->getgold() >= 2) {
+					if (cmd == "RH") {
+						int cur_hp = f.getPC()->gethp();
+						int max_hp = f.getPC()->getmaxhp();
+						int cur_gold = f.getPC()->getgold();
+						int update_hp = ((cur_hp + 10) <= max_hp) ? (cur_hp + 10) : max_hp;
+						int update_gold = cur_gold - 2;
+						f.getPC()->sethp(update_hp);
+						f.getPC()->setgold(update_gold);
+					} else if (cmd == "BA") {
+						int cur_atk = f.getPC()->getatk();
+						int cur_gold = f.getPC()->getgold();
+						int update_atk = cur_atk + 5;
+						int update_gold = cur_gold - 2;
+						f.getPC()->setatk(update_atk);
+						f.getPC()->setgold(update_gold);
+					} else if (cmd == "BD") {
+						int cur_def = f.getPC()->getdef();
+						int cur_gold = f.getPC()->getgold();
+						int update_def = cur_def + 5;
+						int update_gold = cur_gold - 2;
+						f.getPC()->setdef(update_def);
+						f.getPC()->setgold(update_gold);
+					} else {
+						cout << "I don't sell this kind of Potion. I only sell RH, BA, BD." << endl;
+					}
+					cout << f;
+					cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
+						"                                            " << "Floor " << level << endl;
+					cout << "HP: " << f.getPC()->gethp() << endl;
+					cout << "Atk: " << f.getPC()->getatk() << endl;
+					cout << "Def: " << f.getPC()->getdef() << endl;
+					cout << "Action: "; 
+					cout << "PC buys Potion from Merchant." << endl;
 				} else {
-					cout << "I don't sell this kind of Potion. I only sell RH, BA, BD." << endl;
+					cout << "Sorry, you don't have enough money." << endl;
 				}
-				cout << f;
-				cout << "Race: " << full_name << " Gold: " << f.getPC()->getgold() <<
-					"                                            " << "Floor " << level << endl;
-				cout << "HP: " << f.getPC()->gethp() << endl;
-				cout << "Atk: " << f.getPC()->getatk() << endl;
-				cout << "Def: " << f.getPC()->getdef() << endl;
-				cout << "Action: "; 
-				cout << "PC buys Potion from Merchant." << endl;
 			} else {
 				cout << "No Merchant on this direction." << endl;
-			}
+			} 
 		} else {
 			cout << "Invalid Command. Please try again." << endl;
 		}

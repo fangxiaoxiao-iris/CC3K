@@ -47,6 +47,7 @@ void Orcs::beAttacked(Shade &shade) {
 		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -68,6 +69,7 @@ void Orcs::beAttacked(Drow &drow) {
 		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -93,6 +95,7 @@ void Orcs::beAttacked(Vampire &vampire) {
 		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -114,6 +117,7 @@ void Orcs::beAttacked(Troll &troll){
 		troll.setgold(troll.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -138,6 +142,7 @@ void Orcs::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -159,5 +164,6 @@ void Orcs::beAttacked(Fairy &fairy) {
 		fairy.setgold(fairy.getgold() + goldnum);
 		} else {
 		this->sethp(Orcs_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }

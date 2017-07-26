@@ -1,0 +1,14 @@
+Extra Credit Features 
+ASCII Arts
+Our program has a welcome page
+When player character loses, a unique ASCII Art page will show up.
+When player character wins, a unique ASCII Art page will also show up.
+The challenging part of the feature is that we need to carefully consider where to put the art page and using ifstream to read in file properly.
+Merchant has the ability to sell different types of potions.
+Merchant will only sell three different types of boost potion: RH(restore health by 10), BA(boost attack by 5), BD(boost defence by 5)
+When the Player Character buys a potion, it need to tell the merchant the direction and a potion type.
+The challenging part of the feature is that we need to check if the health will exceed the maxhp or not while attack and defence value have no upper bound.
+New Player Character Race - Fairy
+She has more defence and less attack default value.
+The challenging part of the feature is that creating a new PC subclass is needed and we also need to include different heading files.
+

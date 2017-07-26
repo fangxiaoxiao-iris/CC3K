@@ -50,6 +50,7 @@ void Halfling::beAttacked(Shade &shade) {
 		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }
@@ -74,6 +75,7 @@ void Halfling::beAttacked(Drow &drow) {
 		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }
@@ -102,6 +104,7 @@ void Halfling::beAttacked(Vampire &vampire) {
 		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }
@@ -126,6 +129,7 @@ void Halfling::beAttacked(Troll &troll){
 		troll.setgold(troll.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }
@@ -151,6 +155,7 @@ void Halfling::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }
@@ -175,6 +180,7 @@ void Halfling::beAttacked(Fairy &fairy) {
 		fairy.setgold(fairy.getgold() + goldnum);
 		} else {
 		this->sethp(Halfling_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 }

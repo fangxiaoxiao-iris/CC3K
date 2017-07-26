@@ -79,4 +79,5 @@ void Enemy::move() {
 void Enemy::dead() {
 	this->setSym('.');
 	this->notifyBoard();
+	cout << this->gettype() << " is dead now." << endl;
 }

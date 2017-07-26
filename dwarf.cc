@@ -47,6 +47,7 @@ void Dwarf::beAttacked(Shade &shade) {
 		shade.setgold(shade.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -68,6 +69,7 @@ void Dwarf::beAttacked(Drow &drow) {
 		drow.setgold(drow.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -95,6 +97,7 @@ void Dwarf::beAttacked(Vampire &vampire) {
 		vampire.setgold(vampire.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 
 	// after attack changes on vampire
@@ -125,6 +128,7 @@ void Dwarf::beAttacked(Troll &troll){
 		troll.setgold(troll.getgold() + goldnum);
 		} else {
 		this->sethp(troll_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -149,6 +153,7 @@ void Dwarf::beAttacked(Goblin &goblin){
 		goblin.setgold(goblin.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
 
@@ -170,5 +175,6 @@ void Dwarf::beAttacked(Fairy &fairy) {
 		fairy.setgold(fairy.getgold() + goldnum);
 		} else {
 		this->sethp(Dwarf_newhp);
+		cout << this->gettype() << " has " << this->gethp() << " HP now." << endl;
 	}
 }
